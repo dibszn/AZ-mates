@@ -1,22 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BGM: Beautiful in White (Instrumental)</title>
   <style>
-    html, body {
-      margin: 0; padding: 0; height: 100vh;
-      display: flex; justify-content: center; align-items: center;
-      background: transparent; font-family: sans-serif;
-    }
+html, body {
+  margin: 0; padding: 0; height: 100vh;
+  display: flex; justify-content: center; align-items: center;
+  background: transparent; font-family: sans-serif;
+}
 
-    .player {
-      display: flex; gap: 15px;
-      background: rgba(30, 30, 30, 0.85);
-      padding: 12px 20px; border-radius: 8px;
-      align-items: center; position: relative;
-    }
+.player {
+  position: fixed; /* Keeps the player fixed at a specific location */
+  bottom: 5vh; /* 5% from the bottom of the viewport */
+  right: 2%; /* 2% from the right edge of the viewport */
+  display: flex;
+  flex-direction: row; /* Align content vertically */
+  gap: 15px;
+  background: rgba(30, 30, 30, 0.85);
+  padding: 12px 20px; 
+  border-radius: 8px;
+  align-items: flex-end; /* Ensures child elements (iframe) are at the bottom */
+}
 
     button {
       position: relative;
@@ -292,5 +296,6 @@
       document.getElementById('player').style.display = 'none';
     });
   </script>
-</body>
-</html>
+
+
+</body></html>
