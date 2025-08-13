@@ -11,27 +11,39 @@ html, body {
 }
 
 .player {
-  position: fixed; /* Keeps the player fixed at a specific location */
-  height: 8%;
-  bottom: 0; /* 5% from the bottom of the viewport */
-  right: 0; /* 2% from the right edge of the viewport */
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
   display: flex;
-  flex-direction: row; /* Align content vertically */
-  gap: 15px;
+  flex-direction: row;
+  gap: 1vw;
   background: rgba(30, 30, 30, 0.85);
-  padding: 12px 20px; 
-  border-radius: 8px;
-  align-items: flex-end; /* Ensures child elements (iframe) are at the bottom */
+  padding: 1vh 1.5vw;
+  border-radius: 0.75vw;
+width: 30vw;
+  align-items: center;
+  justify-content: space-between;
+  inline-size: fit-content;
+  block-size: fit-content;
+  max-width: 95vw;
 }
 
     button {
-      position: relative;
-      width: 36px; height: 36px;
-      border: none; background: none;
-      cursor: pointer;
-    }
+  position: relative;
+  width: 6vw;
+  height: 6vw;
+  max-width: 48px;
+  max-height: 48px;
+  min-width: 32px;
+  min-height: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
 
     button::before {
+  width: 60%;
+  height: 60%;
       content: '';
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
