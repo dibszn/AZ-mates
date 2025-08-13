@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class=""><head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BGM: Beautiful in White (Instrumental)</title>
   <style>.player {
   width: clamp(15%, 25vw, 35%);
   max-height: 6%;
-  min-height: 7&;
+  min-height: 7%;
   height: auto;
   aspect-ratio: 3;
   position: absolute;
@@ -62,21 +62,22 @@ justify-content: center;
     }
 
         .volume-slider {
-      position: absolute;
-      bottom: 150%;
-      width: 20%;
-      left: 40%;                   
-  transform: translateX(-50%);
-      aspect-ratio:1/9;
-      background: rgba(30, 30, 30, 0.85);
-      border-radius: 12px;
-      cursor: pointer;
-      user-select: none;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 100;
-    }
+  position: absolute;
+  bottom: 150%;                   
+  left: 40%;                      
+  transform: translateX(-50%);    
+  width: 20%;                     
+  aspect-ratio: 1 / 9;
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 100;
+}
+
 
     .volume-slider.active {
       opacity: 1;
@@ -162,20 +163,18 @@ justify-content: center;
     
   </style>
 </head>
-<body> <div id="parent" class="parent" style="width:device-width; height:100vh;">  <div class="player" id="player">
+<body> <div class="player" id="player">
     <button id="playPause" aria-label="Play/Pause" class=""></button>
     <div class="volume-container" id="volumeContainer">
-      <button id="mute" aria-label="Mute/Unmute" class="low"></button>
+      <button id="mute" aria-label="Mute/Unmute" class="high"></button>
       <div class="volume-slider" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0.50" tabindex="0" aria-label="Volume control">
         <div class="volume-level" style="height: 50%;"></div>
-        <div class="thumb" tabindex="0" style="top: 43.5px;"></div>
+        <div class="thumb" tabindex="0" style="top: 30px;"></div>
       </div>
     </div>
     <button id="close" aria-label="Close player"></button>
     <audio id="audio" src="https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/d9f8b972-103e-48dc-8d3b-3c188b597993/Wedding-Entrance-X-Beautiful-In-White.mp3" preload="auto"></audio>
-  </div>
-
-  <script>
+  </div><script>
     const audio = document.getElementById('audio');
     const playPauseBtn = document.getElementById('playPause');
     const muteBtn = document.getElementById('mute');
@@ -329,6 +328,4 @@ justify-content: center;
     });
   </script>
 
-
-</div>
 </body></html>
