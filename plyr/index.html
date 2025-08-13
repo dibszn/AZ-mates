@@ -3,7 +3,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BGM: Beautiful in White (Instrumental)</title>
-  <style>html, body {
+  <style>
+    html, body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -42,9 +43,17 @@
   }
 }
 
-@media (max-width: 400px) {
+
+@media (max-width: 1000px){
   .player {
     transform: scale(0.95);
+    transform-origin: bottom right;
+  }
+}
+
+@media (max-width: 400px) {
+  .player {
+    transform: scale(0.85);
     transform-origin: bottom right;
   }
 }
@@ -100,10 +109,10 @@ button:hover::before {
 
 .volume-slider {
   position: absolute;
-  bottom: 100%; /* show above the button */
-  left: 50%;
+  bottom: 150%;
+  left: 40%;
   transform: translateX(-50%);
-  width: 30%; /* relative to .volume-container */
+  width: 30%; 
   aspect-ratio: 1 / 9;
   background: rgba(30, 30, 30, 0.85);
   border-radius: 12px;
@@ -196,6 +205,7 @@ button:hover::before {
     #close::before {
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 20 20" fill="white"><path d="m6.414 5 3.293 3.293a1 1 0 0 1-1.414 1.414L5 6.414 1.707 9.707A1 1 0 1 1 .293 8.293L3.586 5 .293 1.707A1 1 0 0 1 1.707.293L5 3.586 8.293.293a1 1 0 0 1 1.414 1.414L6.414 5z"/></svg>');
     }
+  
   </style>
 </head>
 <body> <div class="player" id="player">
