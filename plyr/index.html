@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,8 +12,8 @@ html, body {
 
 .player {
   position: fixed; /* Keeps the player fixed at a specific location */
-  bottom: 5vh; /* 5% from the bottom of the viewport */
-  right: 2%; /* 2% from the right edge of the viewport */
+  bottom: 0; /* 5% from the bottom of the viewport */
+  right: 0; /* 2% from the right edge of the viewport */
   display: flex;
   flex-direction: row; /* Align content vertically */
   gap: 15px;
@@ -133,10 +134,10 @@ html, body {
   <div class="player" id="player">
     <button id="playPause" aria-label="Play/Pause"></button>
     <div class="volume-container" id="volumeContainer">
-      <button id="mute" aria-label="Mute/Unmute"></button>
-      <div class="volume-slider" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0.5" tabindex="0" aria-label="Volume control">
-        <div class="volume-level"></div>
-        <div class="thumb" tabindex="0"></div>
+      <button id="mute" aria-label="Mute/Unmute" class="high"></button>
+      <div class="volume-slider" role="slider" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0.50" tabindex="0" aria-label="Volume control">
+        <div class="volume-level" style="height: 50%;"></div>
+        <div class="thumb" tabindex="0" style="top: 43.5px;"></div>
       </div>
     </div>
     <button id="close" aria-label="Close player"></button>
@@ -296,6 +297,7 @@ html, body {
       document.getElementById('player').style.display = 'none';
     });
   </script>
+
 
 
 </body></html>
