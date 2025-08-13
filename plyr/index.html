@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en" class=""><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>BGM: Beautiful in White (Instrumental)</title>
   <style>.player {
   width: clamp(15%, 25vw, 35%);
   max-height: 6%;
-  min-height: 7%;
+  min-height: 7&;
   height: auto;
   aspect-ratio: 3;
   position: absolute;
@@ -62,22 +62,21 @@ justify-content: center;
     }
 
         .volume-slider {
-  position: absolute;
-  bottom: 150%;                   
-  left: 40%;                      
-  transform: translateX(-50%);    
-  width: 20%;                     
-  aspect-ratio: 1 / 9;
-  background: rgba(30, 30, 30, 0.85);
-  border-radius: 12px;
-  cursor: pointer;
-  user-select: none;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 100;
-}
-
+      position: absolute;
+      bottom: 150%;
+      width: 20%;
+      left: 40%;                   
+  transform: translateX(-50%);
+      aspect-ratio:1/9;
+      background: rgba(30, 30, 30, 0.85);
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 100;
+    }
 
     .volume-slider.active {
       opacity: 1;
