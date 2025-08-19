@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pinyon Script', cursive;
+        }
+
+        .countdown-container {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 3rem;
+            color: #113C25;
+            margin-bottom: 2rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: nowrap;
+            margin-bottom: 2rem;
+        }
+
+        .time-unit {
+            color: #113C25;
+            padding: 1rem;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .time-number {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+            line-height: 1;
+        }
+
+        .time-label {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+
+
+        .celebration {
+            display: none;
+            font-size: 4rem;
+            color: #113C25;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+           </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1 class="title">days till our forever</h1>
+        
+        <div class="countdown" id="countdown">
+            <div class="time-unit">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label">days</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">hours</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">minutes</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">seconds</span>
+            </div>
+        </div>
+        
+        <div class="celebration" id="celebration">
+            🎉 Time's Up! 🎉
+        </div>
+        
+
+    </div>
+
+    <script>
+        // Target date: December 21, 2025 at 9:00 AM Singapore Time
+        const targetDate = new Date('2025-12-21T09:00:00+08:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                // Time's up!
+                document.getElementById('countdown').style.display = 'none';
+                document.getElementById('celebration').style.display = 'block';
+                return;
+            }
+
+            // Calculate time units
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update display with leading zeros
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9717f76eb0877506',t:'MTc1NTU4ODg0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
