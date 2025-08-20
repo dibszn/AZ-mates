@@ -44,11 +44,42 @@ html, body {
 .countdown-container {
   width: 100%;
   text-align: center;
-	height:100%%;
+  height: 100%; /* fixed */
+}
+@media (max-height: 400px) {
+  .countdown-container {
+    transform: scale(0.85);
+    transform-origin: center; /* better scaling */
+  }
+}
+@media (max-height: 250px) {
+  .countdown-container {
+    transform: scale(0.75);
+    transform-origin: center;
+  }
+}
+@media (max-width: 800px){
+  .countdown-container {
+    transform: scale(0.95);
+    transform-origin: center;
+  }
+}
+@media (max-width: 400px) {
+  .countdown-container {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+@media (max-width: 300px) {
+  .countdown-container {
+    transform: scale(0.75);
+    transform-origin: center;
+  }
 }
 
+
 .title {
-  font-size: 2rem;
+  font-size: clamp(1rem, 2rem, 2.3rem); 
   color: #113C25;
   margin-bottom: 1rem;
   font-weight: 200;
@@ -91,6 +122,7 @@ html, body {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
+
 </style>
     
 </head>
@@ -151,5 +183,3 @@ html, body {
     setInterval(updateCountdown, 1000);
   </script>
 </body></html>
-
-
