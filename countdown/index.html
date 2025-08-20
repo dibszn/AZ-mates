@@ -107,14 +107,14 @@ html, body {
 }
 
 .time-number {
-  font-size: 1.5rem;
+  font-size: clamp(1.8rem, 2.3rem, 3rem); 
   font-weight: bold;
   display: block;
   line-height: 1;
 }
 
 .time-label {
-  font-size: .9rem; 
+  font-size: clamp(1rem, 2rem, 2.5rem); 
   margin-top: 0.5rem;
   opacity: 0.9;
 }
@@ -143,11 +143,11 @@ html, body {
         <span class="time-label">days</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="hours">12</span>
+        <span class="time-number" id="hours">10</span>
         <span class="time-label">hours</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="minutes">48</span>
+        <span class="time-number" id="minutes">28</span>
         <span class="time-label">minutes</span>
       </div>
       <div class="time-unit">
@@ -189,6 +189,4 @@ html, body {
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
-
-
 </body></html>
