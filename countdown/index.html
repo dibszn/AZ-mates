@@ -44,12 +44,13 @@ html, body {
 .countdown-container {
   width: 100%;
   text-align: center;
-  height: 100%; /* fixed */
+  height: 100%;
 }
+
 @media (max-height: 400px) {
   .countdown-container {
     transform: scale(0.85);
-    transform-origin: center; /* better scaling */
+    transform-origin: center;
   }
 }
 @media (max-height: 250px) {
@@ -61,6 +62,12 @@ html, body {
 @media (max-width: 800px){
   .countdown-container {
     transform: scale(0.95);
+    transform-origin: center;
+  }
+}
+@media (max-width: 100px){
+  .countdown-container {
+    transform: scale(1.2);
     transform-origin: center;
   }
 }
@@ -77,43 +84,44 @@ html, body {
   }
 }
 
-
 .title {
   font-size: clamp(1rem, 2rem, 2.3rem); 
   color: #113C25;
-  margin-bottom: 1rem;
+  margin-bottom: 2vh;
   font-weight: 200;
 }
 
 .countdown {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between; /* spreads across full width */
 	align-items: center;
-  	gap: 3rem;
-  	flex-wrap: wrap;
+  	flex-wrap: nowrap; /* keep them in one row */
+  	width: 100%;
 }
 
 .time-unit {
-  color: #113C25;
+  flex: 1;            /* each expands evenly */
+  min-width: 0;
   text-align: center;
+  color: #113C25;
 }
 
 .time-number {
-  font-size: 1.8rem;
+  font-size: 5vw;   /* responsive size based on width */
   font-weight: bold;
   display: block;
   line-height: 1;
 }
 
 .time-label {
-  font-size: 1.3rem; 
+  font-size: 2vw; 
   margin-top: 0.5rem;
   opacity: 0.9;
 }
 
 .celebration {
   display: none;
-  font-size: clamp(1rem, 2rem, 2.5rem); /* responsive celebration size */
+  font-size: clamp(1rem, 2rem, 2.5rem);
   color: #113C25;
   animation: pulse 2s infinite;
 }
@@ -122,7 +130,6 @@ html, body {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
-
 </style>
     
 </head>
@@ -130,21 +137,21 @@ html, body {
   <div class="countdown-container">
     <h1 class="title">days till our forever</h1>
     
-    <div class="countdown" id="countdown">
+    <div class="countdown" id="countdown" style="object-fit:contain;">
       <div class="time-unit">
         <span class="time-number" id="days">122</span>
         <span class="time-label">days</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="hours">16</span>
+        <span class="time-number" id="hours">12</span>
         <span class="time-label">hours</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="minutes">43</span>
+        <span class="time-number" id="minutes">52</span>
         <span class="time-label">minutes</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="seconds">52</span>
+        <span class="time-number" id="seconds">19</span>
         <span class="time-label">seconds</span>
       </div>
     </div>
@@ -182,4 +189,5 @@ html, body {
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
+
 </body></html>
