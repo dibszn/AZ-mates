@@ -85,7 +85,7 @@ html, body {
 }
 
 .title {
-  font-size: clamp(1rem, 2rem, 2.3rem); 
+  font-size: clamp(1.8rem, 2.3rem, 3rem); 
   color: #113C25;
   margin-bottom: 2vh;
   font-weight: 200;
@@ -93,28 +93,28 @@ html, body {
 
 .countdown {
 	display: flex;
-	justify-content: space-between; /* spreads across full width */
+	justify-content: space-between;
 	align-items: center;
-  	flex-wrap: nowrap; /* keep them in one row */
+  	flex-wrap: nowrap;
   	width: 100%;
 }
 
 .time-unit {
-  flex: 1;            /* each expands evenly */
+  flex: 1; 
   min-width: 0;
   text-align: center;
   color: #113C25;
 }
 
 .time-number {
-  font-size: 5vw;   /* responsive size based on width */
+  font-size: 1.5rem;
   font-weight: bold;
   display: block;
   line-height: 1;
 }
 
 .time-label {
-  font-size: 2vw; 
+  font-size: .9rem; 
   margin-top: 0.5rem;
   opacity: 0.9;
 }
@@ -147,11 +147,11 @@ html, body {
         <span class="time-label">hours</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="minutes">51</span>
+        <span class="time-number" id="minutes">48</span>
         <span class="time-label">minutes</span>
       </div>
       <div class="time-unit">
-        <span class="time-number" id="seconds">44</span>
+        <span class="time-number" id="seconds">02</span>
         <span class="time-label">seconds</span>
       </div>
     </div>
@@ -189,5 +189,6 @@ html, body {
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
+
 
 </body></html>
