@@ -370,6 +370,13 @@ button:hover::before {
       audio.pause();
       document.getElementById('player').style.display = 'none';
     });
+
+    document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    audio.pause();
+    playPauseBtn.classList.remove('playing');
+  } 
+});
   </script>
 
 
