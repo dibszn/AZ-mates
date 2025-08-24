@@ -219,165 +219,196 @@ button:hover::before {
     <button id="close" aria-label="Close player"></button>
     <audio id="audio" src="https://files.elfsightcdn.com/eafe4a4d-3436-495d-b748-5bdce62d911d/d9f8b972-103e-48dc-8d3b-3c188b597993/Wedding-Entrance-X-Beautiful-In-White.mp3" preload="auto"></audio>
   </div><script>
-    const audio = document.getElementById('audio');
-    const playPauseBtn = document.getElementById('playPause');
-    const muteBtn = document.getElementById('mute');
-    const closeBtn = document.getElementById('close');
-    const volumeContainer = document.getElementById('volumeContainer');
-    const volumeSlider = volumeContainer.querySelector('.volume-slider');
-    const volumeLevel = volumeSlider.querySelector('.volume-level');
-    const thumb = volumeSlider.querySelector('.thumb');
+  const audio = document.getElementById('audio');
+  const playPauseBtn = document.getElementById('playPause');
+  const muteBtn = document.getElementById('mute');
+  const closeBtn = document.getElementById('close');
+  const volumeContainer = document.getElementById('volumeContainer');
+  const volumeSlider = volumeContainer.querySelector('.volume-slider');
+  const volumeLevel = volumeSlider.querySelector('.volume-level');
+  const thumb = volumeSlider.querySelector('.thumb');
 
-    let dragging = false;
-    let volume = 0.5;
+  let dragging = false;
+  let volume = 0.5;
 
+  audio.volume = volume;
+  audio.muted = false;
+
+  function updateMuteIcon() {
+    muteBtn.classList.remove('muted', 'low', 'high');
+    if (audio.muted || volume === 0) {
+      muteBtn.classList.add('muted');
+    } else if (volume < 0.5) {
+      muteBtn.classList.add('low');
+    } else {
+      muteBtn.classList.add('high');
+    }
+  }
+
+  function updateUI() {
+    const heightPercent = volume * 100;
+    volumeLevel.style.height = heightPercent + '%';
+
+    const sliderHeight = volumeSlider.clientHeight;
+    const thumbHeight = thumb.clientHeight;
+
+    const top = sliderHeight - (heightPercent / 100) * sliderHeight - thumbHeight / 2;
+    thumb.style.top = top + 'px';
+
+    volumeSlider.setAttribute('aria-valuenow', volume.toFixed(2));
+    updateMuteIcon();
+  }
+
+  function setVolumeFromPosition(clientY) {
+    const rect = volumeSlider.getBoundingClientRect();
+    let relativeY = rect.bottom - clientY;
+    relativeY = Math.min(Math.max(relativeY, 0), rect.height);
+    volume = relativeY / rect.height;
+    volume = Math.min(Math.max(volume, 0), 1);
     audio.volume = volume;
-    audio.muted = false;
+    audio.muted = volume === 0;
+    updateUI();
+  }
 
-    function updateMuteIcon() {
-      muteBtn.classList.remove('muted', 'low', 'high');
-      if (audio.muted || volume === 0) {
-        muteBtn.classList.add('muted');
-      } else if (volume < 0.5) {
-        muteBtn.classList.add('low');
-      } else {
-        muteBtn.classList.add('high');
-      }
+  function showSlider() {
+    volumeSlider.classList.add('active');
+    document.addEventListener('click', onClickOutside);
+  }
+
+  function hideSlider() {
+    volumeSlider.classList.remove('active');
+    document.removeEventListener('click', onClickOutside);
+  }
+
+  function onClickOutside(event) {
+    if (!volumeContainer.contains(event.target)) {
+      hideSlider();
     }
+  }
 
-    function updateUI() {
-      const heightPercent = volume * 100;
-      volumeLevel.style.height = heightPercent + '%';
-
-      const sliderHeight = volumeSlider.clientHeight;
-      const thumbHeight = thumb.clientHeight;
-
-      const top = sliderHeight - (heightPercent / 100) * sliderHeight - thumbHeight / 2;
-      thumb.style.top = top + 'px';
-
-      volumeSlider.setAttribute('aria-valuenow', volume.toFixed(2));
-      updateMuteIcon();
+  playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playPauseBtn.classList.add('playing');
+    } else {
+      audio.pause();
+      playPauseBtn.classList.remove('playing');
     }
+  });
 
-    function setVolumeFromPosition(clientY) {
-      const rect = volumeSlider.getBoundingClientRect();
-      let relativeY = rect.bottom - clientY;
-      relativeY = Math.min(Math.max(relativeY, 0), rect.height);
-      volume = relativeY / rect.height;
-      volume = Math.min(Math.max(volume, 0), 1);
+  muteBtn.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    updateUI();
+  });
+
+  volumeContainer.addEventListener('mouseenter', () => {
+    showSlider();
+  });
+
+  // --- Desktop dragging ---
+  thumb.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    dragging = true;
+    document.body.style.userSelect = 'none';
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (dragging) {
+      dragging = false;
+      document.body.style.userSelect = '';
+    }
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (dragging) {
+      setVolumeFromPosition(e.clientY);
+    }
+  });
+
+  // --- Mobile dragging ---
+  thumb.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    dragging = true;
+    document.body.style.userSelect = 'none';
+  }, { passive: false });
+
+  window.addEventListener('touchend', () => {
+    if (dragging) {
+      dragging = false;
+      document.body.style.userSelect = '';
+    }
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (dragging && e.touches.length) {
+      setVolumeFromPosition(e.touches[0].clientY);
+    }
+  }, { passive: false });
+
+  // Clicking on slider track (desktop + mobile)
+  volumeSlider.addEventListener('click', (e) => {
+    if (e.target !== thumb) {
+      setVolumeFromPosition(e.clientY);
+    }
+  });
+
+  volumeSlider.addEventListener('touchstart', (e) => {
+    if (e.target !== thumb && e.touches.length) {
+      setVolumeFromPosition(e.touches[0].clientY);
+    }
+  }, { passive: false });
+
+  // Keyboard control
+  volumeSlider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowRight') {
+      volume = Math.min(volume + 0.05, 1);
+      audio.volume = volume;
+      audio.muted = false;
+      updateUI();
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') {
+      volume = Math.max(volume - 0.05, 0);
       audio.volume = volume;
       audio.muted = volume === 0;
       updateUI();
-    }
-
-    function showSlider() {
-      volumeSlider.classList.add('active');
-      document.addEventListener('click', onClickOutside);
-    }
-
-    function hideSlider() {
-      volumeSlider.classList.remove('active');
-      document.removeEventListener('click', onClickOutside);
-    }
-
-    function onClickOutside(event) {
-      if (!volumeContainer.contains(event.target)) {
-        hideSlider();
-      }
-    }
-
-    playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playPauseBtn.classList.add('playing');
-      } else {
-        audio.pause();
-        playPauseBtn.classList.remove('playing');
-      }
-    });
-
-    muteBtn.addEventListener('click', () => {
-      audio.muted = !audio.muted;
-      updateUI();
-    });
-
-    volumeContainer.addEventListener('mouseenter', () => {
-      showSlider();
-    });
-
-    thumb.addEventListener('mousedown', (e) => {
       e.preventDefault();
-      dragging = true;
-      document.body.style.userSelect = 'none';
-    });
+    } else if (e.key === 'Home') {
+      volume = 0;
+      audio.volume = volume;
+      audio.muted = true;
+      updateUI();
+      e.preventDefault();
+    } else if (e.key === 'End') {
+      volume = 1;
+      audio.volume = volume;
+      audio.muted = false;
+      updateUI();
+      e.preventDefault();
+    }
+  });
 
-    window.addEventListener('mouseup', () => {
-      if (dragging) {
-        dragging = false;
-        document.body.style.userSelect = '';
-      }
-    });
+  updateUI();
 
-    window.addEventListener('mousemove', (e) => {
-      if (dragging) {
-        setVolumeFromPosition(e.clientY);
-      }
-    });
+  // Autoplay on first interaction
+  document.body.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    }
+  }, { once: true });
 
-    volumeSlider.addEventListener('click', (e) => {
-      if (e.target !== thumb) {
-        setVolumeFromPosition(e.clientY);
-      }
-    });
-
-    volumeSlider.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowUp' || e.key === 'ArrowRight') {
-        volume = Math.min(volume + 0.05, 1);
-        audio.volume = volume;
-        audio.muted = false;
-        updateUI();
-        e.preventDefault();
-      } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') {
-        volume = Math.max(volume - 0.05, 0);
-        audio.volume = volume;
-        audio.muted = volume === 0;
-        updateUI();
-        e.preventDefault();
-      } else if (e.key === 'Home') {
-        volume = 0;
-        audio.volume = volume;
-        audio.muted = true;
-        updateUI();
-        e.preventDefault();
-      } else if (e.key === 'End') {
-        volume = 1;
-        audio.volume = volume;
-        audio.muted = false;
-        updateUI();
-        e.preventDefault();
-      }
-    });
-
-    updateUI();
-
-    document.body.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play().catch(() => {});
-      }
-    }, { once: true });
-
-    closeBtn.addEventListener('click', () => {
-      audio.pause();
-      document.getElementById('player').style.display = 'none';
-    });
-
-    document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
+  closeBtn.addEventListener('click', () => {
     audio.pause();
-    playPauseBtn.classList.remove('playing');
-  } 
-});
-  </script>
+    document.getElementById('player').style.display = 'none';
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      audio.pause();
+      playPauseBtn.classList.remove('playing');
+    } 
+  });
+</script>
+
 
 
 
