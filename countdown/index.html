@@ -175,24 +175,13 @@ const flapWrap = document.getElementById('EnvelopeFlapWrap');
 const sealWrap = document.getElementById('EnvelopeSealWrap');
 const sealImg = document.getElementById('EnvelopeSeal');
 
-const fold = document.getElementById('EnvelopeFold');
-const parent = document.getElementById('EnvelopeGroup');
-
-function updateParentHeight() {
-  const foldHeight = fold.offsetHeight;
-  const sealHeight = sealImg.offsetHeight;
-  parent.style.height = (foldHeight + sealHeight) + 'px';
-}
 
 function animateEnvelope() {
   envelopeFlip.removeEventListener('click', animateEnvelope);
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
-  // Start flip animation
   envelopeFlip.classList.add('flip');
   setTimeout(() => {
-    updateParentHeight();
-
     flapWrap.classList.add('flap-open');
     sealWrap.classList.add('opened');
     setTimeout(() => {
@@ -207,3 +196,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
