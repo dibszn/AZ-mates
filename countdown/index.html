@@ -17,7 +17,7 @@
 #EnvelopeFlip {
   width: 100%;
   transform-style: preserve-3d;
-  transition: transform 700ms ease; /* Flip duration matches JS */
+  transition: transform 1500ms ease;
   position: relative;
   cursor: pointer;
 }
@@ -65,6 +65,8 @@
 #EnvelopeGroup {
   position: relative;
   width: 100%;
+  display:flex; 
+  align-items:flex-end
 }
 
 #EnvelopeFold {
@@ -85,8 +87,6 @@
   transform-origin: top center;
   transition: transform 1500ms ease; 
   z-index: 3;
-  transform-style: preserve-3d;
-  transform-origin: center bottom;
 }
 
 #EnvelopeSealWrap.opened {
@@ -112,8 +112,6 @@
   transform: translateX(-50%);
   z-index: 2;
 }
-
-/* Flap wrapper */
 #EnvelopeFlapWrap {
   position: absolute;
   top: 0;
@@ -123,6 +121,7 @@
   transition: transform 1500ms ease; /* match seal open duration */
 }
 
+/* Envelope flip */
 .flip {
   transform: rotateY(180deg);
 }
@@ -176,23 +175,31 @@ const flapWrap = document.getElementById('EnvelopeFlapWrap');
 const sealWrap = document.getElementById('EnvelopeSealWrap');
 const sealImg = document.getElementById('EnvelopeSeal');
 
+const fold = document.getElementById('EnvelopeFold');
+const parent = document.getElementById('EnvelopeGroup');
+
+function updateParentHeight() {
+  const foldHeight = fold.offsetHeight;
+  const sealHeight = sealImg.offsetHeight;
+  parent.style.height = (foldHeight + sealHeight) + 'px';
+}
 
 function animateEnvelope() {
   envelopeFlip.removeEventListener('click', animateEnvelope);
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
+  // Start flip animation
   envelopeFlip.classList.add('flip');
-
   setTimeout(() => {
+    updateParentHeight();
 
     flapWrap.classList.add('flap-open');
     sealWrap.classList.add('opened');
-
     setTimeout(() => {
       sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
-    }, 1500);
+    }, 750);
 
-  }, 700);
+  }, 1500);
 }
 
 envelopeFlip.addEventListener('click', animateEnvelope);
@@ -200,5 +207,3 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
-
-
