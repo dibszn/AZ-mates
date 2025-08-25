@@ -199,9 +199,10 @@ function animateEnvelope() {
     sealWrap.classList.add('opened');
     setTimeout(() => {
       sealNewImg.style.height = "newSealImgHeight";
+      sealOldImg.style.height = "newSealImgHeight";
       sealOldImg.classList.add('hidden');
       sealNewImg.classList.remove('hidden');
-    }, 750);
+    }, 1500);
 
   }, 2000);
 }
@@ -211,3 +212,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
