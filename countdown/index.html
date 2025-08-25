@@ -56,10 +56,10 @@
       left:50%;
       transform:translate(-50%, -50%);
       font-family: 'Pinyon Script', cursive;
-      color: black;
+      color: #113c25;
       z-index:1000;
       text-align:center;
-      font-size:2vmin;
+      font-size:4vmin;
       margin:0;
     }
 
@@ -90,14 +90,6 @@
 
     #EnvelopeSealWrap.opened {
       transform: rotateX(-120deg);
-    }
-
-    .flap-open-img {
-      width: 100%;
-      height: auto;
-      object-fit: none;
-      display: block;
-      margin: 0 auto;
     }
 
     #EnvelopeSeal, #EnvelopeFlap {
@@ -151,7 +143,7 @@
 
             
             <div id="EnvelopeSealWrap">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapPlain.png" id="EnvelopeSeal">
+              <img src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" id="EnvelopeSeal">
               <p class="back-text">You're invited!</p>
             </div>
 
@@ -190,6 +182,7 @@
             sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
             sealImg.style.width = "100%";
             sealImg.style.aspectRatio = "1.529";
+            sealImg.style.overflow = "visible";
             sealImg.style.objectFit = "none";
           }, 1500);
         }, 700);
@@ -200,3 +193,4 @@
     envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
 </body></html>
+
