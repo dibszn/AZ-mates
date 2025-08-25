@@ -9,119 +9,127 @@
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
 
-    #EnvelopeContainer {
-      max-width:90%;
-      perspective: 1000px;
-      margin: 0;
-    }
+#EnvelopeContainer {
+  max-width: 90%;
+  perspective: 1000px;
+  margin: 0;
+}
 
-    #EnvelopeFlip {
-      width: 100%;
-      transform-style: preserve-3d;
-      transition: transform 1500ms ease;
-      position: relative;
-      cursor: pointer;
-    }
+#EnvelopeFlip {
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1500ms ease; /* Flip duration matches JS */
+  position: relative;
+  cursor: pointer;
+}
 
-    #EnvelopeFrontWrap {
-      backface-visibility: hidden;
-      position: relative;
-    }
+#EnvelopeFrontWrap {
+  backface-visibility: hidden;
+  position: relative;
+}
 
-    .front-text {
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%, -50%);
-      font-family: 'Pinyon Script', cursive;
-      color: black;
-      z-index:1000;
-      text-align:center;
-      font-size:4vmin;
-      margin:0;
-    }
+.front-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Pinyon Script', cursive;
+  color: black;
+  z-index: 1000;
+  text-align: center;
+  font-size: 4vmin;
+  margin: 0;
+}
 
-    #EnvelopeBack {
-      backface-visibility: hidden;
-      transform: rotateY(180deg);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
+#EnvelopeBack {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 
-    .back-text {
-      position:absolute;
-      top:10%;
-      left:50%;
-      transform:translate(-50%, -50%);
-      font-family: 'Pinyon Script', cursive;
-      color: #113c25;
-      z-index:1000;
-      text-align:center;
-      font-size:4vmin;
-      margin:0;
-    }
+.back-text {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Pinyon Script', cursive;
+  color: #113c25;
+  z-index: 1000;
+  text-align: center;
+  font-size: 4vmin;
+  margin: 0;
+}
 
-    #EnvelopeGroup {
-      position: relative;
-      width: 100%;
-    }
+#EnvelopeGroup {
+  position: relative;
+  width: 100%;
+}
 
-    #EnvelopeFold {
-      position: relative;
-      display: block;
-      width: 100%;
-      height: auto;
-      z-index: 1;
-    }
+#EnvelopeFold {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
 
-    #EnvelopeSealWrap {
-      position: absolute;
-      top: 0;
-      left: 0;             
-      width: 100%;
-      height:100%;
-      object-fit: none;
-      transform-origin: top center;
-      transition: transform 1400ms ease;
-      z-index: 3;
-    }
+/* Seal wrapper */
+#EnvelopeSealWrap {
+  position: absolute;
+  top: 0;
+  left: 0;             
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  transform-origin: top center;
+  transition: transform 1500ms ease; /* match flap open duration */
+  z-index: 3;
+}
 
-    #EnvelopeSealWrap.opened {
-      transform: rotateX(-120deg);
-    }
+/* Seal open state */
+#EnvelopeSealWrap.opened {
+  transform: rotateX(-120deg);
+}
 
-    #EnvelopeSeal, #EnvelopeFlap {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+/* Seal image */
+#EnvelopeSeal, #EnvelopeFlap {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-    #EnvelopeFlap {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-    }
+/* Flap image */
+#EnvelopeFlap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
 
-    #EnvelopeFlapWrap {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      transform-origin: top center;
-      transition: transform 1s ease;
-    }
+/* Flap wrapper */
+#EnvelopeFlapWrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: top center;
+  transition: transform 1500ms ease; /* match seal open duration */
+}
 
-    .flip {
-      transform: rotateY(180deg);
-    }
+/* Envelope flip */
+.flip {
+  transform: rotateY(180deg);
+}
 
-    .flap-open {
-      transform: translateX(-50%) rotateX(-120deg);
-    }
+/* Flap open state */
+.flap-open {
+  transform: translateX(-50%) rotateX(-120deg);
+}
+
   </style>
 </head>
 <body>
@@ -161,36 +169,53 @@
     </div>
   </section>
 
-  <script>    const envelopeFlip = document.getElementById('EnvelopeFlip');
-    const flapWrap = document.getElementById('EnvelopeFlapWrap');
-    const sealWrap = document.getElementById('EnvelopeSealWrap');
-    const sealImg = document.getElementById('EnvelopeSeal');
+  <script>    
+const envelopeFlip = document.getElementById('EnvelopeFlip');
+const flapWrap = document.getElementById('EnvelopeFlapWrap');
+const sealWrap = document.getElementById('EnvelopeSealWrap');
+const sealImg = document.getElementById('EnvelopeSeal');
 
-    function animateEnvelope() {
-      envelopeFlip.removeEventListener('click', animateEnvelope);
-      envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+const fold = document.getElementById('EnvelopeFold');
+const parent = document.getElementById('EnvelopeContainer');
 
-      envelopeFlip.classList.add('flip');
+function updateParentHeight() {
+  const foldHeight = fold.offsetHeight;
+  const sealHeight = sealImg.offsetHeight;
+  parent.style.height = (foldHeight + sealHeight) + 'px';
+}
 
-      setTimeout(() => {
-        flapWrap.classList.add('flap-open');
+updateParentHeight();
 
-        setTimeout(() => {
-          sealWrap.classList.add('opened');
+function animateEnvelope() {
+  envelopeFlip.removeEventListener('click', animateEnvelope);
+  envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
-        setTimeout(() => { 
-            sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
-            sealImg.style.width = "100%";
-            sealImg.style.aspectRatio = "1.529";
-            sealImg.style.overflow = "visible";
-            sealImg.style.objectFit = "none";
-          }, 1500);
-        }, 700);
-      }, 1200);
-    }
+  // Start flip animation
+  envelopeFlip.classList.add('flip');
 
-    envelopeFlip.addEventListener('click', animateEnvelope);
-    envelopeFlip.addEventListener('touchstart', animateEnvelope);
+  // After 700ms, start flap+seal opening (duration 1.5s)
+  setTimeout(() => {
+    updateParentHeight();
+
+    flapWrap.classList.add('flap-open');
+    sealWrap.classList.add('opened');
+
+    // Change seal image exactly in the middle of flap+seal opening (750ms after this)
+    setTimeout(() => {
+      sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
+      sealImg.style.width = "100%";
+      sealImg.style.aspectRatio = "1.529";
+      sealImg.style.overflow = "visible";
+      sealImg.style.objectFit = "none";
+    }, 750);
+
+  }, 700);
+}
+
+envelopeFlip.addEventListener('click', animateEnvelope);
+envelopeFlip.addEventListener('touchstart', animateEnvelope);
+
   </script>
 </body></html>
+
 
