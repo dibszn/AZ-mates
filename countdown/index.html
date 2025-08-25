@@ -1,5 +1,4 @@
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
@@ -21,7 +20,7 @@
       transform-style: preserve-3d;
       transition: transform 1s ease;
       position: relative;
-      cursor: pointer; /* ✅ show it's clickable */
+      cursor: pointer;
     }
 
     #EnvelopeFrontWrap {
@@ -64,7 +63,6 @@
       z-index: 1;
     }
 
-    /* ✅ Seal wrapper for rotation */
     #EnvelopeSealWrap {
       position: absolute;
       top: 0;
@@ -77,9 +75,16 @@
       z-index: 3;
     }
 
-    /* ✅ Class to trigger seal opening */
     #EnvelopeSealWrap.opened {
       transform: rotateX(-120deg);
+    }
+
+    .flap-open-img {
+      width: 100%;
+      height: auto;
+      object-fit: none;
+      display: block;
+      margin: 0 auto;
     }
 
     #EnvelopeSeal, #EnvelopeFlap {
@@ -119,29 +124,29 @@
     <h1 class="title" style="color:white; font-family: Times New Roman, auto">envelope animation working file</h1>
 
     <div id="EnvelopeContainer">
-      <div id="EnvelopeFlip">
+      <div id="EnvelopeFlip" class="flip">
 
-        <!-- Front container with text -->
+        
         <div id="EnvelopeFrontWrap">
           <img src="../images/EnvelopeMaterials/EnvelopeFront.png" alt="Envelope Front" id="EnvelopeFront"> 
           <p class="front-text">To our favourite people;</p>
         </div> 
 
-        <!-- Back -->
+        
         <div id="EnvelopeBack">
           <div id="EnvelopeGroup">
 
-            <!-- ✅ Wrap Seal for animation -->
-            <div id="EnvelopeSealWrap">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" id="EnvelopeSeal">
+            
+            <div id="EnvelopeSealWrap" class="opened">
+              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png" id="EnvelopeSeal">
             </div>
 
-            <!-- Flap -->
-            <div id="EnvelopeFlapWrap">
+            
+            <div id="EnvelopeFlapWrap" class="flap-open">
               <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" id="EnvelopeFlap">
             </div>
 
-            <!-- Bottom -->
+            
             <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
           </div>
         </div>
@@ -152,9 +157,7 @@
     <p style="color:white">Footer or additional content</p>
   </section>
 
-  <script>
-    // ✅ Full user-triggered envelope animation
-    const envelopeFlip = document.getElementById('EnvelopeFlip');
+  <script>    const envelopeFlip = document.getElementById('EnvelopeFlip');
     const flapWrap = document.getElementById('EnvelopeFlapWrap');
     const sealWrap = document.getElementById('EnvelopeSealWrap');
     const sealImg = document.getElementById('EnvelopeSeal');
@@ -164,28 +167,25 @@
       envelopeFlip.removeEventListener('click', animateEnvelope);
       envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
-      // 1️⃣ Flip envelope
       envelopeFlip.classList.add('flip');
 
       setTimeout(() => {
-        // 2️⃣ Open flap
         flapWrap.classList.add('flap-open');
 
         setTimeout(() => {
-          // 3️⃣ Open seal
           sealWrap.classList.add('opened');
 
-          // ✅ Swap seal image at end of rotation
           setTimeout(() => {
             sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
-          }, 1000); // matches CSS transition
-        }, 500); // delay after flap opens
-      }, 1200); // delay after flip completes
+sealImg.classList.add('flap-open-img');
+          }, 1500);
+        }, 700);
+      }, 1200);
     }
 
-    // ✅ Add click & touch listeners
     envelopeFlip.addEventListener('click', animateEnvelope);
     envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
-</body>
-</html>
+
+
+</body></html>
