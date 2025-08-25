@@ -34,109 +34,162 @@
 
 
     
-<style>#EnvelopeContainer {
-max-width:90%;
+<style>
+  #EnvelopeContainer {
+    max-width:90%;
     max-height: 100vh;
     perspective: 1000px;
     margin: 0;
-}
+  }
 
-#EnvelopeFlip {
+  #EnvelopeFlip {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 2s ease;
-}
+    transition: transform 1s ease;
+    position: relative;
+  }
 
-#EnvelopeGroup {
+  #EnvelopeFrontWrap {
+    backface-visibility: hidden;
+    position: relative;
+  }
+
+  .front-text {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-family: 'Pinyon Script', cursive;
+    color: black;
+    z-index:1000;
+    text-align:center;
+    font-size:4vmin;
+    margin:0;
+  }
+
+  #EnvelopeBack {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  #EnvelopeGroup {
     position: relative;
     width: 100%;
-}
+  }
 
-#EnvelopeFold {
+  #EnvelopeFold {
     position: relative;
     display: block;
     width: 100%;
     height: auto;
-}
+    z-index: 1;
+  }
 
-#EnvelopeFront {
-  backface-visibility: hidden;
-  position: relative;
-}
-
-#EnvelopeBack {
-  backface-visibility: hidden;
-  transform: rotateY(180deg); /* hidden behind front */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-#EnvelopeSeal, #EnvelopeFlap {
+  #EnvelopeSealWrap {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    transform-origin: top center; /* hinge at top */
+    transition: transform 1s ease;
+    z-index: 3;
+  }
+
+  #EnvelopeSealWrap.opened {
+    transform: rotateX(-120deg); /* opens the seal upward */
+  }
+
+  #EnvelopeSeal, #EnvelopeFlap {
     width: 100%;
     height: auto;
-}
+    display: block;
+  }
 
-#EnvelopeSeal { z-index: 3; }
-#EnvelopeFlap { z-index: 2; }
-#EnvelopeFold { z-index: 1; }
+  #EnvelopeFlap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
 
-#EnvelopeFlapWrap {
+  #EnvelopeFlapWrap {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     transform-origin: top center;
-}
-
-.flip {
-    transform: rotateY(180deg);
-}
-
-.flap-open {
-    transform: translateX(-50%) rotateX(-120deg);
     transition: transform 1s ease;
-}
+  }
+
+  .flip {
+    transform: rotateY(180deg);
+  }
+
+  .flap-open {
+    transform: translateX(-50%) rotateX(-120deg);
+  }
 </style></head>
 <body>
     <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:grey">
-  <h1 class="title" style="color:white; font-family: Times New Roman, auto">envelope animation working file</h1><div id="EnvelopeContainer">
-  
-  <div id="EnvelopeFlip">
-    
-    
-    <img src="../images/EnvelopeMaterials/EnvelopeFront.png" alt="Envelope Front" id="EnvelopeFront"> 
-<p style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-family: 'Pinyon Script', cursive; color: black; z-index:1000; text-align:center; font-size:4vmin; margin:0;">
-      To our favourite people;</p><div id="EnvelopeBack">
-  <div id="EnvelopeGroup">
-    <img src="EnvelopeBackPlain.png" id="EnvelopeSeal">
-    <div id="EnvelopeFlapWrap">
-      <img src="EnvelopeBackFlapMask.png" id="EnvelopeFlap">
+  <h1 class="title" style="color:white; font-family: Times New Roman, auto">envelope animation working file</h1>
+
+  <div id="EnvelopeContainer">
+    <div id="EnvelopeFlip">
+
+      <!-- Front container with text -->
+      <div id="EnvelopeFrontWrap">
+        <img src="../images/EnvelopeMaterials/EnvelopeFront.png" alt="Envelope Front" id="EnvelopeFront"> 
+        <p class="front-text">To our favourite people;</p>
+      </div> 
+
+      <!-- Back -->
+      <div id="EnvelopeBack">
+        <div id="EnvelopeGroup">
+
+          <!-- ✅ Wrap Seal for animation -->
+          <div id="EnvelopeSealWrap">
+            <img src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" id="EnvelopeSeal">
+          </div>
+
+          <div id="EnvelopeFlapWrap">
+            <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" id="EnvelopeFlap">
+          </div>
+
+          <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
+        </div>
+      </div>
+
     </div>
-    <img src="EnvelopeBackBottom.png" id="EnvelopeFold">
   </div>
-</div>
-    
-  </div>
-</div>
+
+  <p style="color:white">Footer or additional content</p>
+</section>
+
 
 <script>
-  // Demo animation sequence
+  // Sequence: Flip → Flap → Seal
   setTimeout(() => {
-    // Flip the entire envelope
     document.getElementById('EnvelopeFlip').classList.add('flip');
-    
-    // Then open flap after flip
+
+    // Flap opens after flip
     setTimeout(() => {
       document.getElementById('EnvelopeFlapWrap').classList.add('flap-open');
-    }, 1200); // delay so it happens after flip
-  }, 1000);
+
+      // Seal opens after flap
+      setTimeout(() => {
+        document.getElementById('EnvelopeSealWrap').classList.add('opened');
+      }, 500); // delay after flap opens
+
+    }, 1200); // delay after flip completes
+
+  }, 1000); // initial delay before flip
 </script>
-    </section>
+
+
 </body></html>
