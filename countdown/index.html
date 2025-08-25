@@ -170,8 +170,15 @@ const envelopeFlip = document.getElementById('EnvelopeFlip');
 const flapWrap = document.getElementById('EnvelopeFlapWrap');
 const sealWrap = document.getElementById('EnvelopeSealWrap');
 const sealImg = document.getElementById('EnvelopeSeal');
+const envBack = document.getElementById('EnvelopeBack');
+const foldImg = document.getElementById('EnvelopeFold');
 
-
+function updateBackHeight() {
+  const foldHeight = foldImg.offsetHeight;
+  const sealHeight = sealImg.offsetHeight;
+  envBack.style.height = (foldHeight + sealHeight) + 'px';
+}
+    
 function animateEnvelope() {
   envelopeFlip.removeEventListener('click', animateEnvelope);
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
@@ -180,6 +187,7 @@ function animateEnvelope() {
   setTimeout(() => {
     flapWrap.classList.add('flap-open');
     sealWrap.classList.add('opened');
+    updateBackHeight();
     setTimeout(() => {
       sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
     }, 750);
@@ -192,5 +200,6 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
 
 
