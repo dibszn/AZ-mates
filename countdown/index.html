@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Countdown Timer</title>
+  <title>Invite Animation</title>
 
   <style>
     @font-face {
@@ -30,164 +29,35 @@
   		src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2');
   		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 		}
+</style><style>
+    #EnvelopeFront {
+        src: "images/EnvelopeMaterials/EnvelopeFront.png";
+    }
+    #EnvelopeBackFull {
+        src: 'images/EnvelopeMaterials/EnvelopeBackFullWithSeal.png';
+    }
+    #EnvelopeBackOpen {
+        src: 'images/EnvelopeMaterials/EnvelopeBackFlapOpen.png';
+    }
 </style>
 
-<style>
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 25vh;
-  font-family: 'Pinyon Script', cursive;
-}
 
-.countdown-container {
-  width: 100%;
-  text-align: center;
-  height: 100%;
-}
-
-@media (max-height: 400px) {
-  .countdown-container {
-    transform: scale(0.85);
-    transform-origin: center;
-  }
-}
-@media (max-height: 250px) {
-  .countdown-container {
-    transform: scale(0.75);
-    transform-origin: center;
-  }
-}
-@media (max-width: 800px){
-  .countdown-container {
-    transform: scale(0.95);
-    transform-origin: center;
-  }
-}
-@media (max-width: 100px){
-  .countdown-container {
-    transform: scale(1.2);
-    transform-origin: center;
-  }
-}
-@media (max-width: 400px) {
-  .countdown-container {
-    transform: scale(0.85);
-    transform-origin: center;
-  }
-}
-@media (max-width: 300px) {
-  .countdown-container {
-    transform: scale(0.75);
-    transform-origin: center;
-  }
-}
-
-.title {
-  font-size: clamp(1.8rem, 2rem, 3rem); 
-  color: #113C25;
-  margin-bottom: 6vh;
-  font-weight: 200;
-}
-
-.countdown {
-	display: flex;
-	gap: 2.5vw;
-	align-items: center;
-  	flex-wrap: nowrap;
-  	width: 100%;
-}
-
-.time-unit {
-  flex: 1; 
-  min-width: 0;
-  text-align: center;
-  color: #113C25;
-}
-
-.time-number {
-  font-size: clamp(1.4rem, 1.6rem, 2.5rem); 
-  font-weight: bold;
-  display: block;
-  line-height: 1;
-}
-
-.time-label {
-  font-size: clamp(1rem, 1.4rem, 2.5rem); 
-  margin-top: 0.5rem;
-  opacity: 0.9;
-}
-
-.celebration {
-  display: none;
-  font-size: clamp(1rem, 1.4rem, 2.5rem);
-  color: #113C25;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-</style>
     
 </head>
 <body>
-  <div class="countdown-container">
-    <h1 class="title">days till our forever</h1>
+  <h1 class="title">envelope animation working file</h1><div class="env-container" style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:center; text-align:center">
     
-    <div class="countdown" id="countdown" style="object-fit:contain;">
-      <div class="time-unit">
-        <span class="time-number" id="days">122</span>
-        <span class="time-label">days</span>
-      </div>
-      <div class="time-unit">
-        <span class="time-number" id="hours">08</span>
-        <span class="time-label">hours</span>
-      </div>
-      <div class="time-unit">
-        <span class="time-number" id="minutes">56</span>
-        <span class="time-label">minutes</span>
-      </div>
-      <div class="time-unit">
-        <span class="time-number" id="seconds">45</span>
-        <span class="time-label">seconds</span>
-      </div>
-    </div>
     
-    <div class="celebration" id="celebration">
-      🎉 It's D-day! 🎉
-    </div>
+    
+    
+    <div id="space" style="position:absolute; width:90%; height:90%; background-color: #383838; opacity:0.7;">
+
+    <img id="EnvelopeFront" style="position:relative; width:50%; height:50%;">
+    
+</div>
   </div>
 
-  <script>
-    // Target date: December 21, 2025 at 9:00 AM Singapore Time
-    const targetDate = new Date('2025-12-21T09:00:00+08:00').getTime();
+  
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
 
-      if (distance < 0) {
-        document.getElementById('countdown').style.display = 'none';
-        document.getElementById('celebration').style.display = 'block';
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById('days').textContent = days.toString().padStart(2, '0');
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
 </body></html>
-
