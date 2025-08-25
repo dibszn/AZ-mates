@@ -108,13 +108,11 @@
 #EnvelopeFlapWrap {
   position: absolute;
   top: 0;
-  left: 50%;
   width: 100%;
   transform-origin: top center;
   transition: transform 1500ms ease;
 }
 
-/* Envelope flip */
 .flip {
   transform: rotateY(180deg);
 }
@@ -179,8 +177,8 @@ function animateEnvelope() {
   setTimeout(() => {
     flapWrap.classList.add('flap-open');
     sealWrap.classList.add('opened');
-    updateBackHeight();
     setTimeout(() => {
+      updateBackHeight();
       sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
     }, 750);
 
@@ -196,3 +194,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
 
 </body></html>
+
