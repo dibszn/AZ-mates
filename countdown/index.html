@@ -118,7 +118,7 @@
   left: 50%;
   transform: translateX(-50%);
   transform-origin: top center;
-  transition: transform 1500ms ease; /* match seal open duration */
+  transition: transform 1500ms ease;
 }
 
 /* Envelope flip */
@@ -147,11 +147,8 @@
 
         
         <div id="EnvelopeBack">
-          <div id="EnvelopeGroup">
-
-            
             <div id="EnvelopeSealWrap">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png" id="EnvelopeSeal">
+              <img src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" id="EnvelopeSeal">
               <p class="back-text">You're invited!</p>
             </div>
 
@@ -162,7 +159,6 @@
 
             
             <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
-          </div>
         </div>
 
       </div>
@@ -196,4 +192,5 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
 
