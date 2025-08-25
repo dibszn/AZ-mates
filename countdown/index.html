@@ -163,11 +163,9 @@ const sealWrap = document.getElementById('EnvelopeSealWrap');
 const sealImg = document.getElementById('EnvelopeSeal');
 const foldImg = document.getElementById('EnvelopeFold');
 
-function updateBackHeight() {
-  const foldHeight = foldImg.offsetHeight;
-  const sealHeight = sealImg.offsetHeight;
-  const newSealImgHeight = (foldHeight + sealHeight) + 'px';
-}
+const foldHeight = foldImg.offsetHeight;
+const sealHeight = sealImg.offsetHeight;
+const newSealImgHeight = (foldHeight + sealHeight) + 'px';
     
 function animateEnvelope() {
   envelopeFlip.removeEventListener('click', animateEnvelope);
@@ -190,5 +188,6 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
 
 
