@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,7 +125,7 @@
     <h1 class="title" style="color:white; font-family: Times New Roman, auto">envelope animation working file</h1>
 
     <div id="EnvelopeContainer">
-      <div id="EnvelopeFlip" class="flip">
+      <div id="EnvelopeFlip">
 
         
         <div id="EnvelopeFrontWrap">
@@ -137,12 +138,12 @@
           <div id="EnvelopeGroup">
 
             
-            <div id="EnvelopeSealWrap" class="opened">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png" id="EnvelopeSeal">
+            <div id="EnvelopeSealWrap">
+              <img src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" id="EnvelopeSeal">
             </div>
 
             
-            <div id="EnvelopeFlapWrap" class="flap-open">
+            <div id="EnvelopeFlapWrap">
               <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" id="EnvelopeFlap">
             </div>
 
@@ -186,6 +187,7 @@ sealImg.classList.add('flap-open-img');
     envelopeFlip.addEventListener('click', animateEnvelope);
     envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
+
 
 
 </body></html>
