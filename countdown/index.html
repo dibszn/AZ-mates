@@ -19,7 +19,7 @@
       width: 100%;
       height: 100%;
       transform-style: preserve-3d;
-      transition: transform 1s ease;
+      transition: transform 1500ms ease;
       position: relative;
       cursor: pointer;
     }
@@ -164,7 +164,6 @@
     const sealImg = document.getElementById('EnvelopeSeal');
 
     function animateEnvelope() {
-      // Prevent multiple triggers
       envelopeFlip.removeEventListener('click', animateEnvelope);
       envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
@@ -176,9 +175,11 @@
         setTimeout(() => {
           sealWrap.classList.add('opened');
 
-          setTimeout(() => {
+        setTimeout(() => { 
             sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
-sealImg.classList.add('flap-open-img');
+            sealImg.style.width = "100%";
+            sealImg.style.height = "auto";
+            sealImg.style.objectFit = "none";
           }, 1500);
         }, 700);
       }, 1200);
@@ -187,7 +188,4 @@ sealImg.classList.add('flap-open-img');
     envelopeFlip.addEventListener('click', animateEnvelope);
     envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
-
-
-
 </body></html>
