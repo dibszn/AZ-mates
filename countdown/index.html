@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
@@ -10,14 +11,12 @@
 
     #EnvelopeContainer {
       max-width:90%;
-      max-height: 100vh;
       perspective: 1000px;
       margin: 0;
     }
 
     #EnvelopeFlip {
       width: 100%;
-      height: 100%;
       transform-style: preserve-3d;
       transition: transform 1500ms ease;
       position: relative;
@@ -152,7 +151,8 @@
 
             
             <div id="EnvelopeSealWrap">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" id="EnvelopeSeal">
+              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapPlain.png" id="EnvelopeSeal">
+              <p class="back-text">You're invited!</p>
             </div>
 
             
@@ -200,7 +200,3 @@
     envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
 </body></html>
-
-
-
-
