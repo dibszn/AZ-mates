@@ -107,7 +107,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  transition: opacity 1500ms ease-in-out;
+  transition: opacity 750ms ease-in-out;
   opacity: 1;
   z-index: 1;
 }
@@ -194,17 +194,16 @@ function animateEnvelope() {
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
   envelopeFlip.classList.add('flip');
-  setTimeout(() => {
-    flapWrap.classList.add('flap-open');
-    sealWrap.classList.add('opened');
-    setTimeout(() => {
-      sealNewImg.style.height = "newSealImgHeight";
-      sealOldImg.style.height = "newSealImgHeight";
-      sealOldImg.classList.add('hidden');
-      sealNewImg.classList.remove('hidden');
-    }, 1500);
+setTimeout(() => {
+  flapWrap.classList.add('flap-open');
+  sealWrap.classList.add('opened');
 
-  }, 2000);
+  sealNewImg.style.height = newSealImgHeight;
+  sealOldImg.style.height = newSealImgHeight;
+  sealOldImg.classList.add('hidden');
+  sealNewImg.classList.remove('hidden');
+
+}, 2000);
 }
 
 envelopeFlip.addEventListener('click', animateEnvelope);
@@ -212,6 +211,7 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
 
 
 
