@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
   <style>
-    @font-face {
-      font-family: 'Pinyon Script';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2');
-    }
+    @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
-  </style>
 
-  <style>
     #EnvelopeContainer {
       max-width:90%;
       max-height: 100vh;
@@ -29,6 +21,7 @@
       transform-style: preserve-3d;
       transition: transform 1s ease;
       position: relative;
+      cursor: pointer; /* ✅ show it's clickable */
     }
 
     #EnvelopeFrontWrap {
@@ -71,18 +64,20 @@
       z-index: 1;
     }
 
-    /* ✅ NEW: Seal wrapper for rotation */
+    /* ✅ Seal wrapper for rotation */
     #EnvelopeSealWrap {
       position: absolute;
       top: 0;
-      left: 0;              /* fill envelope back */
-      width: 100%;           /* full width */
+      left: 0;             
+      width: 100%;
+      height:100%;
+      overflow:hidden;
       transform-origin: top center;
       transition: transform 1s ease;
       z-index: 3;
     }
 
-    /* ✅ NEW: Class to trigger seal opening */
+    /* ✅ Class to trigger seal opening */
     #EnvelopeSealWrap.opened {
       transform: rotateX(-120deg);
     }
@@ -158,34 +153,39 @@
   </section>
 
   <script>
-    // ✅ Full animation sequence: Flip → Flap → Seal (with image swap)
-    setTimeout(() => {
+    // ✅ Full user-triggered envelope animation
+    const envelopeFlip = document.getElementById('EnvelopeFlip');
+    const flapWrap = document.getElementById('EnvelopeFlapWrap');
+    const sealWrap = document.getElementById('EnvelopeSealWrap');
+    const sealImg = document.getElementById('EnvelopeSeal');
+
+    function animateEnvelope() {
+      // Prevent multiple triggers
+      envelopeFlip.removeEventListener('click', animateEnvelope);
+      envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+
       // 1️⃣ Flip envelope
-      document.getElementById('EnvelopeFlip').classList.add('flip');
+      envelopeFlip.classList.add('flip');
 
       setTimeout(() => {
         // 2️⃣ Open flap
-        document.getElementById('EnvelopeFlapWrap').classList.add('flap-open');
+        flapWrap.classList.add('flap-open');
 
         setTimeout(() => {
           // 3️⃣ Open seal
-          const sealWrap = document.getElementById('EnvelopeSealWrap');
-          const sealImg = document.getElementById('EnvelopeSeal');
-
           sealWrap.classList.add('opened');
 
           // ✅ Swap seal image at end of rotation
           setTimeout(() => {
             sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
-          }, 1000); // matches CSS transition duration
-
+          }, 1000); // matches CSS transition
         }, 500); // delay after flap opens
+      }, 1200); // delay after flip completes
+    }
 
-      }, 1800); // delay after flip completes
-
-    }, 2000); // initial delay before flip
+    // ✅ Add click & touch listeners
+    envelopeFlip.addEventListener('click', animateEnvelope);
+    envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
-
-
-</body></html>
-
+</body>
+</html>
