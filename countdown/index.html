@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
@@ -13,12 +12,14 @@
   max-width: 90%;
   perspective: 1000px;
   margin: 0;
+  display:flex; 
+  align-items:flex-end
 }
 
 #EnvelopeFlip {
   width: 100%;
   transform-style: preserve-3d;
-  transition: transform 1500ms ease; /* Flip duration matches JS */
+  transition: transform 700ms ease; /* Flip duration matches JS */
   position: relative;
   cursor: pointer;
 }
@@ -52,7 +53,7 @@
 
 .back-text {
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Pinyon Script', cursive;
@@ -76,7 +77,6 @@
   z-index: 1;
 }
 
-/* Seal wrapper */
 #EnvelopeSealWrap {
   position: absolute;
   top: 0;
@@ -85,23 +85,26 @@
   height: 100%;
   object-fit: none;
   transform-origin: top center;
-  transition: transform 1500ms ease; /* match flap open duration */
+  transition: transform 1500ms ease; 
   z-index: 3;
 }
 
-/* Seal open state */
 #EnvelopeSealWrap.opened {
   transform: rotateX(-120deg);
 }
 
-/* Seal image */
-#EnvelopeSeal, #EnvelopeFlap {
+#EnvelopeSeal {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
-/* Flap image */
+##EnvelopeFlap {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 #EnvelopeFlap {
   position: absolute;
   top: 0;
@@ -151,7 +154,7 @@
 
             
             <div id="EnvelopeSealWrap">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" id="EnvelopeSeal">
+              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png" id="EnvelopeSeal">
               <p class="back-text">You're invited!</p>
             </div>
 
@@ -184,8 +187,6 @@ function updateParentHeight() {
   parent.style.height = (foldHeight + sealHeight) + 'px';
 }
 
-updateParentHeight();
-
 function animateEnvelope() {
   envelopeFlip.removeEventListener('click', animateEnvelope);
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
@@ -203,11 +204,7 @@ function animateEnvelope() {
     // Change seal image exactly in the middle of flap+seal opening (750ms after this)
     setTimeout(() => {
       sealImg.src = "../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png";
-      sealImg.style.width = "100%";
-      sealImg.style.aspectRatio = "1.529";
-      sealImg.style.overflow = "visible";
-      sealImg.style.objectFit = "none";
-    }, 750);
+    }, 1500);
 
   }, 700);
 }
@@ -217,5 +214,3 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
-
-
