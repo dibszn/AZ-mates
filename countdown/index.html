@@ -12,8 +12,6 @@
   max-width: 90%;
   perspective: 1000px;
   margin: 0;
-  display:flex; 
-  align-items:flex-end
 }
 
 #EnvelopeFlip {
@@ -67,6 +65,8 @@
 #EnvelopeGroup {
   position: relative;
   width: 100%;
+  display:flex; 
+  align-items:flex-end
 }
 
 #EnvelopeFold {
@@ -179,7 +179,7 @@ const sealWrap = document.getElementById('EnvelopeSealWrap');
 const sealImg = document.getElementById('EnvelopeSeal');
 
 const fold = document.getElementById('EnvelopeFold');
-const parent = document.getElementById('EnvelopeContainer');
+const parent = document.getElementById('EnvelopeGroup');
 
 function updateParentHeight() {
   const foldHeight = fold.offsetHeight;
@@ -214,3 +214,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
