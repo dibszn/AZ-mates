@@ -162,6 +162,7 @@
   display: block;
   object-fit:cover;
   transition: opacity 1000ms ease-in-out;
+  transform: rotateY(-180deg);
   }
 
 .envContents.top { 
@@ -235,7 +236,6 @@ function animateEnvelope() {
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
   envelopeFlip.classList.add('flip');
-  
   frontPage.classList.remove('top');
   frontPage.classList.add('bottom');
   thirdPage.classList.remove('bottom');
@@ -251,13 +251,6 @@ setTimeout(() => {
   sealNewImg.classList.remove('hidden');
 
 }, 2000);
-setTimeout(() => {
-  secondPage.style.transform = "translateY(-20%)";
-  thirdPage.style.transform = "translateY(-5%)";
-
-  secondPage.style.transition = "transform 500ms ease;";
-  thirdPage.style.transition = "transform 500ms ease;";
-}, 500);  
 }
 
 envelopeFlip.addEventListener('click', animateEnvelope);
@@ -265,9 +258,3 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
-
-
-
-
-
-
