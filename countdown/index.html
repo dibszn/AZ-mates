@@ -26,6 +26,7 @@
   backface-visibility: hidden;
   position: relative;
   width: 100%;
+  z-index: 1000;
 }
 
 .front-text {
@@ -34,10 +35,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Pinyon Script', cursive;
-  color: black;
+  color: #113c25;
   z-index: 1000;
   text-align: center;
-  font-size: 4vmin;
+  font-size: 5vmin;
   margin: 0;
 }
 
@@ -48,6 +49,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1000;
 }
 
 .back-text {
@@ -59,7 +61,7 @@
   color: #113c25;
   z-index: 1000;
   text-align: center;
-  font-size: 4vmin;
+  font-size: 5vmin;
   margin: 0;
 }
 
@@ -142,6 +144,24 @@
   transform: rotateX(-180deg);
 }
 
+#EnvelopContent {
+  width: 95%;
+  transform-style: preserve-3d;
+  transition: transform 2s ease;
+  position: relative;
+  cursor: pointer;
+  z-index: 0;
+}
+  .envContents { 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit:cover;
+  /*transform: rotate(-90deg);*/
+  }
   </style>
 </head>
 <body>
@@ -152,6 +172,18 @@
       <div id="EnvelopeFlip">
 
         
+        <div id="EnvelopeContent">
+          <div id="FrontPage">
+            <img src="../images/FrontPage.png" class="envContents" style="z-index:1">
+          </div> 
+          <div id="SecondPage">
+            <img src="../images/LILYBG.jpg" class="envContents" style="z-index:2">
+          </div>
+          <div id="ThirdPage">
+            <img src="../images/BG4.jpg" class="envContents" style="z-index:3">
+          </div>           
+        </div>
+        
         <div id="EnvelopeFrontWrap">
           <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block;" alt="Envelope Front" id="EnvelopeFront"> 
           <p class="front-text">To our favourite people;</p>
@@ -160,8 +192,8 @@
         
         <div id="EnvelopeBack">
             <div id="EnvelopeSealWrap">
-              <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" />
-              <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png" />
+              <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
+              <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
               <p class="back-text">You're invited!</p>
             </div>
 
@@ -212,11 +244,3 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
-
-
-
-
-
-
-
-
