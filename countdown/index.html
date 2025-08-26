@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
   <style>
+
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
@@ -17,7 +18,7 @@
 #EnvelopeFlip {
   width: 100%;
   transform-style: preserve-3d;
-  transition: transform 2s ease;
+  transition: transform 4s ease;
   position: relative;
   cursor: pointer;
 }
@@ -172,8 +173,11 @@
 .envContents.bottom { 
   opacity: 0;
   z-index: 1;
-  }    
-    
+  } 
+
+.slideup {
+  transform: translateY(-20%);
+}      
   </style>
 </head>
 
@@ -215,7 +219,7 @@
     </div>
   </section>
 
-  <script>    
+<script>    
 const envelopeFlip = document.getElementById('EnvelopeFlip');
 const flapWrap = document.getElementById('EnvelopeFlapWrap');
 const sealWrap = document.getElementById('EnvelopeSealWrap');
@@ -223,6 +227,7 @@ const sealOldImg = document.getElementById('EnvelopeSealOld');
 const sealNewImg = document.getElementById('EnvelopeSealNew');
 const foldImg = document.getElementById('EnvelopeFold');
 
+const envContent = document.getElementById('EnvelopeContent');
 const frontPage = document.getElementById('FrontPage');
 const secondPage = document.getElementById('SecondPage');
 const thirdPage = document.getElementById('ThirdPage');
@@ -236,10 +241,9 @@ function animateEnvelope() {
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
   envelopeFlip.classList.add('flip');
-  frontPage.classList.remove('top');
-  frontPage.classList.add('bottom');
-  thirdPage.classList.remove('bottom');
-  thirdPage.classList.add('top');  
+  
+  frontPage.classList.replace('top','bottom');
+  thirdPage.classList.replace('bottom','top');
   
 setTimeout(() => {
   flapWrap.classList.add('flap-open');
@@ -250,7 +254,9 @@ setTimeout(() => {
   sealOldImg.classList.add('hidden');
   sealNewImg.classList.remove('hidden');
 
-}, 2000);
+envContent.classList.add('slideup');
+
+}, 4000);
 }
 
 envelopeFlip.addEventListener('click', animateEnvelope);
@@ -258,3 +264,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
