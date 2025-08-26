@@ -18,7 +18,7 @@
 #EnvelopeFlip {
   width: 100%;
   transform-style: preserve-3d;
-  transition: transform 4s ease;
+  transition: transform 2s ease;
   position: relative;
   cursor: pointer;
 }
@@ -254,9 +254,7 @@ setTimeout(() => {
   sealOldImg.classList.add('hidden');
   sealNewImg.classList.remove('hidden');
 
-envContent.classList.add('slideup');
-
-}, 4000);
+}, 2000);
 }
 
 envelopeFlip.addEventListener('click', animateEnvelope);
@@ -264,4 +262,5 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
 
