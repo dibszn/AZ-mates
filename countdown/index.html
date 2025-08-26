@@ -162,15 +162,18 @@
   display: block;
   object-fit:cover;
   transition: opacity 1000ms ease-in-out;
-  opacity: 1;
-  z-index: 1000;
   transform: rotateY(-180deg);
   }
 
-.envContents.hidden { 
-  opacity: 0;
-  z-index: 0;
+.envContents.top { 
+  opacity: 1;
+  z-index: 3;
   }
+.envContents.bottom { 
+  opacity: 0;
+  z-index: 1;
+  }    
+    
   </style>
 </head>
 
@@ -183,9 +186,9 @@
 
         
         <div id="EnvelopeContent">
-            <img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index:3">
-            <img id="SecondPage" src="../images/LILYBG.jpg" class="envContents" style="z-index:2">
-            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents hidden" style="z-index:1">     
+            <img id="FrontPage" src="../images/FrontPage.png" class="envContents top">
+            <img id="SecondPage" src="../images/LILYBG.jpg" class="envContents">
+            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents bottom">     
         </div>
         
         <div id="EnvelopeFrontWrap">
@@ -233,8 +236,10 @@ function animateEnvelope() {
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
   envelopeFlip.classList.add('flip');
-  frontPage.classList.add('hidden');
-  thirdPage.classList.remove('hidden');
+  frontPage.classList.remove('top');
+  frontPage.classList.add('bottom');
+  thirdPage.classList.remove('bottom');
+  thirdPage.classList.add('top');  
   
 setTimeout(() => {
   flapWrap.classList.add('flap-open');
@@ -253,6 +258,7 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
 
 
 
