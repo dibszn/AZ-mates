@@ -152,7 +152,8 @@
   cursor: pointer;
   z-index: 0;
 }
-  .envContents { 
+    
+.envContents { 
   position: absolute;
   top: 0;
   left: 0;
@@ -160,10 +161,18 @@
   height: 100%;
   display: block;
   object-fit:cover;
-  /*transform: rotate(-90deg);*/
+  transition: opacity 1000ms ease-in-out;
+  opacity: 1;
+  z-index: 1000;
+  }
+
+.envContents.hidden { 
+  opacity: 0;
+  z-index: 0;
   }
   </style>
 </head>
+
 <body>
   <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
     <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL</h1>
@@ -174,13 +183,13 @@
         
         <div id="EnvelopeContent">
           <div id="FrontPage">
-            <img src="../images/FrontPage.png" class="envContents" style="z-index:1">
+            <img src="../images/FrontPage.png" class="envContents" style="z-index:3">
           </div> 
           <div id="SecondPage">
             <img src="../images/LILYBG.jpg" class="envContents" style="z-index:2">
           </div>
           <div id="ThirdPage">
-            <img src="../images/BG4.jpg" class="envContents" style="z-index:3">
+            <img src="../images/BG4.jpg" class="envContents hidden" style="z-index:1">
           </div>           
         </div>
         
@@ -201,8 +210,6 @@
             <div id="EnvelopeFlapWrap">
               <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" id="EnvelopeFlap">
             </div>
-
-            
             <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
         </div>
 
@@ -218,6 +225,10 @@ const sealOldImg = document.getElementById('EnvelopeSealOld');
 const sealNewImg = document.getElementById('EnvelopeSealNew');
 const foldImg = document.getElementById('EnvelopeFold');
 
+const frontPage = document.getElementById('FrontPage');
+const secondPage = document.getElementById('SecondPage');
+const thirdPage = document.getElementById('ThirdPage');
+
 const foldHeight = foldImg.offsetHeight;
 const sealHeight = sealOldImg.offsetHeight;
 const newSealImgHeight = (foldHeight + sealHeight) + 'px';
@@ -227,6 +238,9 @@ function animateEnvelope() {
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
   envelopeFlip.classList.add('flip');
+  frontPage.classList.add('hidden');
+  thirdPage.classList.remove('hidden');
+  
 setTimeout(() => {
   flapWrap.classList.add('flap-open');
   sealWrap.classList.add('opened');
@@ -244,3 +258,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
 </body></html>
+
