@@ -3,7 +3,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
-  <style>
+</head>
+
+<body>
+  <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
+      <style>
 
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
     @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
@@ -162,7 +166,7 @@
   height: 100%;
   display: block;
   object-fit:cover;
-  transition: opacity 1000ms ease-in-out;
+  transition: opacity 1000ms ease-in-out transform 1000ms ease-in-out;
   transform: rotateY(-180deg);
   }
 
@@ -179,10 +183,6 @@
   transform: translateY(-20%);
 }      
   </style>
-</head>
-
-<body>
-  <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
     <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL</h1>
 
     <div id="EnvelopeContainer">
@@ -217,9 +217,7 @@
 
       </div>
     </div>
-  </section>
-
-<script>    
+    <script>    
 const envelopeFlip = document.getElementById('EnvelopeFlip');
 const flapWrap = document.getElementById('EnvelopeFlapWrap');
 const sealWrap = document.getElementById('EnvelopeSealWrap');
@@ -261,6 +259,8 @@ envelopeFlip.addEventListener('click', animateEnvelope);
 envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
   </script>
+  </section>
 </body></html>
+
 
 
