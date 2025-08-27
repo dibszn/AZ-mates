@@ -1,279 +1,245 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invite Animation</title>
-</head>
-
-<body>
-  <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
-      
-    <style>
-
-      @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
-      @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
-      @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
-
-      #EnvelopeContainer {
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Animation</title>
+  </head>
+  <body>
+    <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
+      <style>
+        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
+        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
+        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
+        #EnvelopeContainer {
         max-width: 90%;
         perspective: 1000px;
         margin: 0;
-      }
-
-      #EnvelopeFlip {
+        }
+        #EnvelopeFlip {
         width: 100%;
         transform-style: preserve-3d;
         transition: transform 2s ease;
         position: relative;
         cursor: pointer;
-      }
-
-#EnvelopeFrontWrap {
-  backface-visibility: hidden;
-  position: relative;
-  width: 100%;
-  z-index: 1000;
-}
-
-.front-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Pinyon Script', cursive;
-  color: #113c25;
-  z-index: 1000;
-  text-align: center;
-  font-size: 5vmin;
-  margin: 0;
-}
-
-#EnvelopeBack {
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.back-text {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Pinyon Script', cursive;
-  color: #113c25;
-  z-index: 1000;
-  text-align: center;
-  font-size: 5vmin;
-  margin: 0;
-}
-
-#EnvelopeGroup {
-  position: relative;
-  width: 100%;
-  display:flex; 
-  align-items:flex-end
-}
-
-#EnvelopeFold {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: auto;
-  z-index: 1;
-}
-
-#EnvelopeSealWrap {
-  position: absolute;
-  top: 0;
-  left: 0;             
-  width: 100%;
-  height: 100%;
-  object-fit: none;
-  transform-origin: top center;
-  transition: transform 1500ms ease; 
-  z-index: 3;
-  perspective: 1000px;
-}
-
-#EnvelopeSealWrap.opened {
-  transform: rotateX(-180deg);
-}
-
-#EnvelopeSeal {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.seal-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  transition: opacity 750ms ease-in-out;
-  opacity: 1;
-  z-index: 1;
-}
-    
-.seal-img.hidden {
-  opacity: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-    
-
-#EnvelopeFlap {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-#EnvelopeFlapWrap {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  transform-origin: top center;
-  transition: transform 1500ms ease;
-}
-
-.flip {
-  transform: rotateY(180deg);
-}
-
-.flap-open {
-  transform: rotateX(-180deg);
-}
-
-#EnvelopContent {
-  width: 95%;
-  transform-style: preserve-3d;
-  transition: transform 2s ease;
-  position: relative;
-  cursor: pointer;
-  z-index: 0;
-}
-    
-.envContents { 
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit:cover;
-  transition: transform 2s ease, opacity 2s ease;
-  transform: rotateY(-180deg);
-  }
-
-.envContents.top { 
-  opacity: 1;
-  z-index: 3;
-  }
-.envContents.bottom { 
-  opacity: 0;
-  z-index: 1;
-  } 
-
-.slideup {
-  transform: translateY(-20%);
-}      
-  </style>
-    <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL fr work somewhere else</h1>
-
-    <div id="EnvelopeContainer">
-      <div id="EnvelopeFlip">
-
-        
-        <div id="EnvelopeContent">
+        }
+        #EnvelopeFrontWrap {
+        backface-visibility: hidden;
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        }
+        .front-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Pinyon Script', cursive;
+        color: #113c25;
+        z-index: 1000;
+        text-align: center;
+        font-size: 5vmin;
+        margin: 0;
+        }
+        #EnvelopeBack {
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        }
+        .back-text {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Pinyon Script', cursive;
+        color: #113c25;
+        z-index: 1000;
+        text-align: center;
+        font-size: 5vmin;
+        margin: 0;
+        }
+        #EnvelopeGroup {
+        position: relative;
+        width: 100%;
+        display:flex; 
+        align-items:flex-end
+        }
+        #EnvelopeFold {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        z-index: 1;
+        }
+        #EnvelopeSealWrap {
+        position: absolute;
+        top: 0;
+        left: 0;             
+        width: 100%;
+        height: 100%;
+        object-fit: none;
+        transform-origin: top center;
+        transition: transform 1500ms ease; 
+        z-index: 3;
+        perspective: 1000px;
+        }
+        #EnvelopeSealWrap.opened {
+        transform: rotateX(-180deg);
+        }
+        #EnvelopeSeal {
+        width: 100%;
+        height: 100%;
+        display: block;
+        }
+        .seal-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: opacity 750ms ease-in-out;
+        opacity: 1;
+        z-index: 1;
+        }
+        .seal-img.hidden {
+        opacity: 0;
+        pointer-events: none;
+        z-index: 0;
+        }
+        #EnvelopeFlap {
+        width: 100%;
+        height: 100%;
+        display: block;
+        }
+        #EnvelopeFlapWrap {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        transform-origin: top center;
+        transition: transform 1500ms ease;
+        }
+        .flip {
+        transform: rotateY(180deg);
+        }
+        .flap-open {
+        transform: rotateX(-180deg);
+        }
+        #EnvelopContent {
+        width: 95%;
+        transform-style: preserve-3d;
+        transition: transform 2s ease;
+        position: relative;
+        cursor: pointer;
+        z-index: 0;
+        }
+        .envContents { 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit:cover;
+        transition: transform 2s ease, opacity 2s ease;
+        transform: rotateY(-180deg);
+        }
+        .envContents.top { 
+        opacity: 1;
+        z-index: 3;
+        }
+        .envContents.bottom { 
+        opacity: 0;
+        z-index: 1;
+        } 
+        .slideup {
+        transform: translateY(-20%);
+        }      
+      </style>
+      <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL fr work somewhere else</h1>
+      <div id="EnvelopeContainer">
+        <div id="EnvelopeFlip">
+          <div id="EnvelopeContent">
             <img id="FrontPage" src="../images/FrontPage.png" class="envContents top">
             <img id="SecondPage" src="../images/LILYBG.jpg" class="envContents">
             <img id="ThirdPage" src="../images/BG4.jpg" class="envContents bottom">     
-        </div>
-        
-        <div id="EnvelopeFrontWrap">
-          <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block;" alt="Envelope Front" id="EnvelopeFront"> 
-          <p class="front-text">To our favourite people;</p>
-        </div> 
-
-        
-        <div id="EnvelopeBack">
+          </div>
+          <div id="EnvelopeFrontWrap">
+            <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block;" alt="Envelope Front" id="EnvelopeFront"> 
+            <p class="front-text">To our favourite people;</p>
+          </div>
+          <div id="EnvelopeBack">
             <div id="EnvelopeSealWrap">
               <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
               <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
               <p class="back-text">You're invited!</p>
             </div>
-
-            
             <div id="EnvelopeFlapWrap">
               <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" id="EnvelopeFlap">
             </div>
             <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
+          </div>
         </div>
-
       </div>
-    </div>
-    <script>    
-      document.addEventListener('DOMContentLoaded', function() {
-        const envelopeFlip = document.getElementById('EnvelopeFlip');
-        const flapWrap = document.getElementById('EnvelopeFlapWrap');
-        const sealWrap = document.getElementById('EnvelopeSealWrap');
-        const sealOldImg = document.getElementById('EnvelopeSealOld');
-        const sealNewImg = document.getElementById('EnvelopeSealNew');
-        const foldImg = document.getElementById('EnvelopeFold');
-
-        const envContent = document.getElementById('EnvelopeContent');
-        const frontPage = document.getElementById('FrontPage');
-        const secondPage = document.getElementById('SecondPage');
-        const thirdPage = document.getElementById('ThirdPage');
-
-        const foldHeight = foldImg.offsetHeight;
-        const sealHeight = sealOldImg.offsetHeight;
-        const newSealImgHeight = (foldHeight + sealHeight) + 'px';
-    
-        function animateEnvelope() {
-          envelopeFlip.removeEventListener('click', animateEnvelope);
-          envelopeFlip.removeEventListener('touchstart', animateEnvelope);
-
-          envelopeFlip.classList.add('flip');
-  
-          frontPage.classList.replace('top', 'bottom');
-          thirdPage.classList.replace('bottom', 'top');
-  
-            setTimeout(() => {
-              flapWrap.classList.add('flap-open');
-              sealWrap.classList.add('opened');
-
-              sealNewImg.style.height = "newSealImgHeight";
-              sealOldImg.style.height = "newSealImgHeight";
-              sealOldImg.classList.add('hidden');
-              sealNewImg.classList.remove('hidden');
-
-/*    setTimeout(() => {
-      const images = [frontPage, secondPage, thirdPage];
-      let offset = 0; 
-      images.forEach((img, index) => {
-        setTimeout(() => {
-          img.style.transition = "transform 500ms ease";
-          img.style.transform = `translateY(${-translateYValue})`
-          offset += 10;
-        }, index * 500);
-      });
-    }, 2000); */
-  }, 2000);
-}
-
-
-envelopeFlip.addEventListener('click', animateEnvelope);
-envelopeFlip.addEventListener('touchstart', animateEnvelope);
-});
-  </script>
-</section>
-</body></html>
-
-
+      <script>    
+        document.addEventListener('DOMContentLoaded', function() {
+          const envelopeFlip = document.getElementById('EnvelopeFlip');
+          const flapWrap = document.getElementById('EnvelopeFlapWrap');
+          const sealWrap = document.getElementById('EnvelopeSealWrap');
+          const sealOldImg = document.getElementById('EnvelopeSealOld');
+          const sealNewImg = document.getElementById('EnvelopeSealNew');
+          const foldImg = document.getElementById('EnvelopeFold');
+        
+          const envContent = document.getElementById('EnvelopeContent');
+          const frontPage = document.getElementById('FrontPage');
+          const secondPage = document.getElementById('SecondPage');
+          const thirdPage = document.getElementById('ThirdPage');
+        
+          const foldHeight = foldImg.offsetHeight;
+          const sealHeight = sealOldImg.offsetHeight;
+          const newSealImgHeight = (foldHeight + sealHeight) + 'px';
+        
+          function animateEnvelope() {
+            envelopeFlip.removeEventListener('click', animateEnvelope);
+            envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+        
+            envelopeFlip.classList.add('flip');
+        
+            frontPage.classList.replace('top', 'bottom');
+            thirdPage.classList.replace('bottom', 'top');
+        
+              setTimeout(() => {
+                flapWrap.classList.add('flap-open');
+                sealWrap.classList.add('opened');
+        
+                sealNewImg.style.height = "newSealImgHeight";
+                sealOldImg.style.height = "newSealImgHeight";
+                sealOldImg.classList.add('hidden');
+                sealNewImg.classList.remove('hidden');
+        
+        /*    setTimeout(() => {
+        const images = [frontPage, secondPage, thirdPage];
+        let offset = 0; 
+        images.forEach((img, index) => {
+          setTimeout(() => {
+            img.style.transition = "transform 500ms ease";
+            img.style.transform = `translateY(${-translateYValue})`
+            offset += 10;
+          }, index * 500);
+        });
+        }, 2000); */
+        }, 2000);
+        }
+        
+        
+        envelopeFlip.addEventListener('click', animateEnvelope);
+        envelopeFlip.addEventListener('touchstart', animateEnvelope);
+        });
+      </script>
+    </section>
+  </body>
+</html>
