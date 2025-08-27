@@ -166,7 +166,7 @@
   height: 100%;
   display: block;
   object-fit:cover;
-  transition: opacity 2000ms ease-in-out;
+  transition: transform 2s ease, opacity 2s ease;
   transform: rotateY(-180deg);
   }
 
@@ -252,6 +252,10 @@ setTimeout(() => {
   sealOldImg.classList.add('hidden');
   sealNewImg.classList.remove('hidden');
 
+/*  setTimeout(() => {
+    envContents.classList.add('slideup');
+  }, 500);*/
+
 }, 2000);
 }
 
@@ -261,6 +265,7 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
   </section>
 </body></html>
+
 
 
 
