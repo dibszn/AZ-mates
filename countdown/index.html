@@ -218,6 +218,7 @@
       </div>
     </div>
     <script>    
+document.addEventListener('DOMContentLoaded', function() {
 const envelopeFlip = document.getElementById('EnvelopeFlip');
 const flapWrap = document.getElementById('EnvelopeFlapWrap');
 const sealWrap = document.getElementById('EnvelopeSealWrap');
@@ -240,42 +241,37 @@ function animateEnvelope() {
 
   envelopeFlip.classList.add('flip');
   
-  frontPage.classList.replace('top','bottom');
-  thirdPage.classList.replace('bottom','top');
+  frontPage.classList.replace('top', 'bottom');
+  thirdPage.classList.replace('bottom', 'top');
   
-setTimeout(() => {
-  flapWrap.classList.add('flap-open');
-  sealWrap.classList.add('opened');
+  setTimeout(() => {
+    flapWrap.classList.add('flap-open');
+    sealWrap.classList.add('opened');
 
-  sealNewImg.style.height = "newSealImgHeight";
-  sealOldImg.style.height = "newSealImgHeight";
-  sealOldImg.classList.add('hidden');
-  sealNewImg.classList.remove('hidden');
+    sealNewImg.style.height = "newSealImgHeight";
+    sealOldImg.style.height = "newSealImgHeight";
+    sealOldImg.classList.add('hidden');
+    sealNewImg.classList.remove('hidden');
 
-setTimeout(() => {
-    const images = [frontPage, secondPage, thirdPage];
-    let offset = 0; 
     setTimeout(() => {
-      const translateYValue = offset + "vh";
-      img.style.transition = "transform 500ms ease-in-out";
-      img.style.transform = `translateY(${translateYValue})`; 
-      offset += 10;
-      }, index * 500);
-    });
-  }, 2000);
-
-}, 2000);
+      const images = [frontPage, secondPage, thirdPage];
+      let offset = 0; 
+      images.forEach((img, index) => {
+        setTimeout(() => {
+          const translateYValue = offset + "vh";
+          img.style.transition = "transform 500ms ease-in-out";
+          img.style.transform = `translateY(${translateYValue})`; 
+          offset += 10;
+        }, index * 500);
+      });
+    }, 2000); // This timeout delays the second animation
+  }, 2000); // This timeout starts the initial animation for opening the flap and seal
 }
+
 
 envelopeFlip.addEventListener('click', animateEnvelope);
 envelopeFlip.addEventListener('touchstart', animateEnvelope);
-
+});
   </script>
   </section>
 </body></html>
-
-
-
-
-
-
