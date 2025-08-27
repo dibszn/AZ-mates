@@ -252,9 +252,17 @@ setTimeout(() => {
   sealOldImg.classList.add('hidden');
   sealNewImg.classList.remove('hidden');
 
-/*  setTimeout(() => {
-    envContents.classList.add('slideup');
-  }, 500);*/
+setTimeout(() => {
+    const images = [frontPage, secondPage, thirdPage];
+    let offset = 0; 
+    setTimeout(() => {
+      const translateYValue = offset + "vh";
+      img.style.transition = "transform 500ms ease-in-out";
+      img.style.transform = `translateY(${translateYValue})`; 
+      offset += 10;
+      }, index * 500);
+    });
+  }, 2000);
 
 }, 2000);
 }
@@ -265,6 +273,7 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
   </section>
 </body></html>
+
 
 
 
