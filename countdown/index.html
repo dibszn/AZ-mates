@@ -259,8 +259,10 @@ function animateEnvelope() {
       images.forEach((img, index) => {
         setTimeout(() => {
           const translateYValue = offset + "vh";
-          img.style.transition = "transform 500ms ease-in-out";
-          img.style.transform = `translateY(${translateYValue})`; 
+          img.style.transition = "";
+          img.style.transition = "transform 500ms ease";
+          img.style.transform = ``; 
+          img.style.transform = `translateY(${-translateYValue})`; 
           offset += 10;
         }, index * 500);
       });
@@ -275,3 +277,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
   </script>
   </section>
 </body></html>
+
