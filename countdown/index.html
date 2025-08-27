@@ -144,6 +144,7 @@
             transition: transform 2s ease, opacity 2s ease;
             transform: rotateY(-180deg);
             opacity: 1;
+            animation: slideUp 0.5s ease-out forwards;            
         }
         
         .envContents:nth-child(1) {
@@ -154,10 +155,12 @@
         }
         .envContents:nth-child(3) {
             z-index: 1;
-        } 
-        .slideup {
-            transform: translateY(-20%);
-        }      
+        }
+        @keyframes slideUp {
+            to {
+              top: var(--top-pos);
+            }
+        }
       </style>
       <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL fr work somewhere else</h1>
 <div id="EnvelopeContainer" style="display: none;">
@@ -174,8 +177,8 @@
     <div id="EnvelopeBack">
       <div id="EnvelopeSealWrap">
         <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
+        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" class="seal-img" id="EnvelopeFlap">          
         <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
-        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" id="EnvelopeFlap">
         <p class="back-text">You're invited!</p>
       </div>
       <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
@@ -246,6 +249,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
