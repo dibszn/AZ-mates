@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,11 +170,11 @@
   transform: rotateY(-180deg);
   }
 
-.envContents:nth-child(1) { 
+.envContents.top { 
   opacity: 1;
   z-index: 3;
   }
-.envContents:nth-child(3) { 
+.envContents.bottom { 
   opacity: 0;
   z-index: 1;
   } 
@@ -182,16 +183,16 @@
   transform: translateY(-20%);
 }      
   </style>
-    <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL</h1>
+    <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL fr work somewhere else</h1>
 
     <div id="EnvelopeContainer">
       <div id="EnvelopeFlip">
 
         
         <div id="EnvelopeContent">
-            <img id="FrontPage" src="../images/FrontPage.png" class="envContents">
+            <img id="FrontPage" src="../images/FrontPage.png" class="envContents top">
             <img id="SecondPage" src="../images/LILYBG.jpg" class="envContents">
-            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents">     
+            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents bottom">     
         </div>
         
         <div id="EnvelopeFrontWrap">
@@ -225,9 +226,10 @@ const sealOldImg = document.getElementById('EnvelopeSealOld');
 const sealNewImg = document.getElementById('EnvelopeSealNew');
 const foldImg = document.getElementById('EnvelopeFold');
 
-const contentParent = document.querySelector('.envContents').parentNode;
-const firstContent = contentParent.querySelector('.envContent:nth-child(1)');
-const thirdContent = contentParent.querySelector('.envContent:nth-child(3)');
+const envContent = document.getElementById('EnvelopeContent');
+const frontPage = document.getElementById('FrontPage');
+const secondPage = document.getElementById('SecondPage');
+const thirdPage = document.getElementById('ThirdPage');
 
 const foldHeight = foldImg.offsetHeight;
 const sealHeight = sealOldImg.offsetHeight;
@@ -239,7 +241,8 @@ function animateEnvelope() {
 
   envelopeFlip.classList.add('flip');
   
-  contentParent.insertBefore(thirdContent, firstContent);
+  frontPage.classList.replace('top', 'bottom');
+  thirdPage.classList.replace('bottom', 'top');
   
   setTimeout(() => {
     flapWrap.classList.add('flap-open');
@@ -250,20 +253,17 @@ function animateEnvelope() {
     sealOldImg.classList.add('hidden');
     sealNewImg.classList.remove('hidden');
 
-   /* setTimeout(() => {
+    setTimeout(() => {
       const images = [frontPage, secondPage, thirdPage];
       let offset = 0; 
       images.forEach((img, index) => {
         setTimeout(() => {
-          img.style.transform = ``; 
-          img.style.transition = "";
-          const translateYValue = offset + "vh";
           img.style.transition = "transform 500ms ease";
-          img.style.transform = `translateY(${-translateYValue})`; 
+          img.style.transform = `translateY(${-translateYValue})`
           offset += 10;
         }, index * 500);
       });
-    }, 2000); */
+    }, 2000);
   }, 2000);
 }
 
@@ -273,8 +273,5 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 });
   </script>
   </section>
-
-
-
 </body></html>
 
