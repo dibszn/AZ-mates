@@ -205,7 +205,9 @@
         
             envelopeFlip.classList.add('flip');
         
-            envContent.insertBefore(lastChild, firstChild);
+            setTimeout(function() {
+              envContent.insertBefore(lastChild, firstChild);
+            }, 1000); 
         
               setTimeout(() => {
                 sealWrap.classList.add('opened');
@@ -217,10 +219,10 @@
         }, 2000);
         }
         
-        
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
         });
       </script>
     </section>
 </body></html>
+
