@@ -189,9 +189,9 @@
 
         
         <div id="EnvelopeContent">
-            <img id="FrontPage" src="../images/FrontPage.png" class="envContents top">
+            <img id="FrontPage" src="../images/FrontPage.png" class="envContents">
             <img id="SecondPage" src="../images/LILYBG.jpg" class="envContents">
-            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents bottom">     
+            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents">     
         </div>
         
         <div id="EnvelopeFrontWrap">
@@ -226,8 +226,8 @@ const sealNewImg = document.getElementById('EnvelopeSealNew');
 const foldImg = document.getElementById('EnvelopeFold');
 
 const contentParent = document.querySelector('.envContents').parentNode;
-const firstContent = parent.querySelector('.envContent:nth-child(1)');
-const thirdContent = parent.querySelector('.envContent:nth-child(3)');
+const firstContent = contentParent.querySelector('.envContent:nth-child(1)');
+const thirdContent = contentParent.querySelector('.envContent:nth-child(3)');
 
 const foldHeight = foldImg.offsetHeight;
 const sealHeight = sealOldImg.offsetHeight;
@@ -277,3 +277,4 @@ envelopeFlip.addEventListener('touchstart', animateEnvelope);
 
 
 </body></html>
+
