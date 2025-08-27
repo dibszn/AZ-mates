@@ -7,25 +7,26 @@
 
 <body>
   <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
-      <style>
+      
+    <style>
 
-    @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
-    @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
-    @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
+      @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
+      @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
+      @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
 
-#EnvelopeContainer {
-  max-width: 90%;
-  perspective: 1000px;
-  margin: 0;
-}
+      #EnvelopeContainer {
+        max-width: 90%;
+        perspective: 1000px;
+        margin: 0;
+      }
 
-#EnvelopeFlip {
-  width: 100%;
-  transform-style: preserve-3d;
-  transition: transform 2s ease;
-  position: relative;
-  cursor: pointer;
-}
+      #EnvelopeFlip {
+        width: 100%;
+        transform-style: preserve-3d;
+        transition: transform 2s ease;
+        position: relative;
+        cursor: pointer;
+      }
 
 #EnvelopeFrontWrap {
   backface-visibility: hidden;
@@ -218,42 +219,42 @@
       </div>
     </div>
     <script>    
-document.addEventListener('DOMContentLoaded', function() {
-const envelopeFlip = document.getElementById('EnvelopeFlip');
-const flapWrap = document.getElementById('EnvelopeFlapWrap');
-const sealWrap = document.getElementById('EnvelopeSealWrap');
-const sealOldImg = document.getElementById('EnvelopeSealOld');
-const sealNewImg = document.getElementById('EnvelopeSealNew');
-const foldImg = document.getElementById('EnvelopeFold');
+      document.addEventListener('DOMContentLoaded', function() {
+        const envelopeFlip = document.getElementById('EnvelopeFlip');
+        const flapWrap = document.getElementById('EnvelopeFlapWrap');
+        const sealWrap = document.getElementById('EnvelopeSealWrap');
+        const sealOldImg = document.getElementById('EnvelopeSealOld');
+        const sealNewImg = document.getElementById('EnvelopeSealNew');
+        const foldImg = document.getElementById('EnvelopeFold');
 
-const envContent = document.getElementById('EnvelopeContent');
-const frontPage = document.getElementById('FrontPage');
-const secondPage = document.getElementById('SecondPage');
-const thirdPage = document.getElementById('ThirdPage');
+        const envContent = document.getElementById('EnvelopeContent');
+        const frontPage = document.getElementById('FrontPage');
+        const secondPage = document.getElementById('SecondPage');
+        const thirdPage = document.getElementById('ThirdPage');
 
-const foldHeight = foldImg.offsetHeight;
-const sealHeight = sealOldImg.offsetHeight;
-const newSealImgHeight = (foldHeight + sealHeight) + 'px';
+        const foldHeight = foldImg.offsetHeight;
+        const sealHeight = sealOldImg.offsetHeight;
+        const newSealImgHeight = (foldHeight + sealHeight) + 'px';
     
-function animateEnvelope() {
-  envelopeFlip.removeEventListener('click', animateEnvelope);
-  envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+        function animateEnvelope() {
+          envelopeFlip.removeEventListener('click', animateEnvelope);
+          envelopeFlip.removeEventListener('touchstart', animateEnvelope);
 
-  envelopeFlip.classList.add('flip');
+          envelopeFlip.classList.add('flip');
   
-  frontPage.classList.replace('top', 'bottom');
-  thirdPage.classList.replace('bottom', 'top');
+          frontPage.classList.replace('top', 'bottom');
+          thirdPage.classList.replace('bottom', 'top');
   
-  setTimeout(() => {
-    flapWrap.classList.add('flap-open');
-    sealWrap.classList.add('opened');
+            setTimeout(() => {
+              flapWrap.classList.add('flap-open');
+              sealWrap.classList.add('opened');
 
-    sealNewImg.style.height = "newSealImgHeight";
-    sealOldImg.style.height = "newSealImgHeight";
-    sealOldImg.classList.add('hidden');
-    sealNewImg.classList.remove('hidden');
+              sealNewImg.style.height = "newSealImgHeight";
+              sealOldImg.style.height = "newSealImgHeight";
+              sealOldImg.classList.add('hidden');
+              sealNewImg.classList.remove('hidden');
 
-    setTimeout(() => {
+/*    setTimeout(() => {
       const images = [frontPage, secondPage, thirdPage];
       let offset = 0; 
       images.forEach((img, index) => {
@@ -263,7 +264,7 @@ function animateEnvelope() {
           offset += 10;
         }, index * 500);
       });
-    }, 2000);
+    }, 2000); */
   }, 2000);
 }
 
@@ -272,6 +273,7 @@ envelopeFlip.addEventListener('click', animateEnvelope);
 envelopeFlip.addEventListener('touchstart', animateEnvelope);
 });
   </script>
-  </section>
+</section>
 </body></html>
+
 
