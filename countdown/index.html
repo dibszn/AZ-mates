@@ -185,25 +185,21 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Select all the images in EnvelopeContent and EnvelopeBack
     const images = document.querySelectorAll('#EnvelopeContent img, #EnvelopeBack img');
 
     let loadedImages = 0;
 
-    // Function to check if all images have loaded
     function checkImagesLoaded() {
       loadedImages++;
       if (loadedImages === images.length) {
-        // Show the EnvelopeContainer once all images are loaded
-        document.getElementById('EnvelopeContainer').style.display = 'block';
-        initAnimation(); // Initialize animation after all images are loaded
+        document.getElementById('EnvelopeContainer').style.display = 'flex';
+        initAnimation();
       }
     }
 
-    // Attach load event listener to all images
     images.forEach(function(img) {
       img.addEventListener('load', checkImagesLoaded);
-      if (img.complete) {  // If image is already cached and loaded
+      if (img.complete) { 
         checkImagesLoaded();
       }
     });
@@ -250,6 +246,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
