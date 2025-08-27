@@ -118,7 +118,7 @@
         .seal-img.hidden {
             opacity: 0;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
         }
         .flip {
             transform: rotateY(180deg);
@@ -156,12 +156,32 @@
         .envContents:nth-child(3) {
             z-index: 1;
         }
+        
+        .envContents.after {
+            z-index: 0;
+        }        
+        .envContents.after:nth-child(1) {
+            --n: 1;
+            --top-pos: -15%;
+        }
+        .envContents.after:nth-child(2) {
+            --n: 2;
+            --top-pos: -30%;
+        }
+        .envContents.after:nth-child(3) {
+            --n: 3;
+            --top-pos: -45%;
+        }
+        .envContents.after:nth-child(n) {
+            animation-delay: calc((var(--n) - 1) * 0.5s);
+        }        
         @keyframes slideUp {
             to {
               top: var(--top-pos);
             }
         }
       </style>
+    
       <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL fr work somewhere else</h1>
 <div id="EnvelopeContainer" style="display: none;">
   <div id="EnvelopeFlip">
@@ -177,7 +197,7 @@
     <div id="EnvelopeBack">
       <div id="EnvelopeSealWrap">
         <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
-        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" class="seal-img" id="EnvelopeFlap">          
+        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" class="seal-img" id="EnvelopeFlap" style="z-index:0;">          
         <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
         <p class="back-text">You're invited!</p>
       </div>
@@ -249,6 +269,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
