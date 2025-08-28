@@ -11,9 +11,10 @@
         @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
         
         #EnvelopeContainer {
-            max-width: 90%;
+            max-width: 85%;
             perspective: 1000px;
             margin: 0;
+            -webkit-transform: translateZ(0); /* iOS flicker fix */
         }
         #EnvelopeFlip {
             width: 100%;
@@ -21,10 +22,13 @@
             transition: transform 2s ease;
             position: relative;
             cursor: pointer;
+            -webkit-transform: translateZ(0); /* iOS flicker fix */
+            will-change: transform; /* iOS flicker fix */
         }
         
         #EnvelopeFrontWrap {
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; /* iOS flicker fix */
             position: relative;
             width: 100%;
             z-index: 1000;
@@ -41,10 +45,12 @@
             text-align: center;
             font-size: 5vmin;
             margin: 0;
+            -webkit-transform: translate(-50%, -50%) translateZ(0); /* iOS flicker fix */
         }
         
         #EnvelopeBack {
             backface-visibility: hidden;
+            -webkit-backface-visibility: hidden; /* iOS flicker fix */
             transform: rotateY(180deg);
             position: absolute;
             top: 0;
@@ -64,13 +70,14 @@
             text-align: center;
             font-size: 5vmin;
             margin: 0;
+            -webkit-transform: translate(-50%, -50%) translateZ(0); /* iOS flicker fix */
         }
         
         #EnvelopeGroup {
             position: relative;
             width: 100%;
             display:flex; 
-            align-items:flex-end
+            align-items:flex-end;
         }
         
         #EnvelopeFold {
@@ -92,10 +99,12 @@
             transition: transform 1500ms ease; 
             z-index: 3;
             perspective: 1000px;
+            -webkit-backface-visibility: hidden; /* iOS flicker fix */
         }
         
         #EnvelopeSealWrap.opened {
             transform: rotateX(-180deg);
+            -webkit-transform: rotateX(-180deg); /* iOS flicker fix */
         }
         
         #EnvelopeSeal {
@@ -114,6 +123,8 @@
             transition: opacity 750ms ease-in-out;
             opacity: 1;
             z-index: 1;
+            -webkit-transform: translateZ(0); /* iOS flicker fix */
+            will-change: opacity, transform; /* iOS flicker fix */
         }
         .seal-img.hidden {
             opacity: 0;
@@ -122,6 +133,7 @@
         }
         .flip {
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg); /* iOS flicker fix */
         }
         
         #EnvelopContent {
@@ -143,8 +155,11 @@
             object-fit:cover;
             transition: transform 2s ease, opacity 2s ease;
             transform: rotateY(-180deg);
+            -webkit-transform: rotateY(-180deg) translateZ(0); /* iOS flicker fix */
             opacity: 1;
             animation: slideUp 0.5s ease-out forwards;            
+            -webkit-backface-visibility: hidden; /* iOS flicker fix */
+            will-change: transform, opacity; /* iOS flicker fix */
         }
         
         .envContents:nth-child(1) {
@@ -269,6 +284,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
