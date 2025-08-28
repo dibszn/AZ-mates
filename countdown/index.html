@@ -144,7 +144,11 @@
             transition: transform 2s ease, opacity 2s ease;
             transform: rotateY(-180deg);
             opacity: 1;
-            animation: slideUp 0.5s ease-out forwards;            
+            animation: slideUp 0.5s ease-out forwards;
+            -webkit-transform: rotateY(-180deg);
+            -webkit-transition: transform 2s ease, opacity 2s ease;
+            -moz-transition: transform 2s ease, opacity 2s ease;
+            -webkit-transition: transform 2s ease, opacity 2s ease;
         }
         
         .envContents:nth-child(1) {
@@ -269,5 +273,6 @@
 </script>
     </section>
 </body></html>
+
 
 
