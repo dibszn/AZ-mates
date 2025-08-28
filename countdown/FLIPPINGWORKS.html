@@ -12,13 +12,6 @@
       font-display: swap;
       src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2');
     }
-    @font-face {
-      font-family: 'Pinyon Script';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2');
-    }
     body {
       margin: 0;
       background-color: black;
@@ -30,11 +23,9 @@
     }
     #EnvelopeContainer {
       transform: scale(0.8);
-      -ms-transform: scale(0.8);
-      -moz-transform: scale(0.8);
-      -webkit-transform: scale(0.8);
       perspective: 1000px;
       margin: 0;
+      position: relative;
     }
     #EnvelopeFlip {
       width: 100%;
@@ -42,33 +33,20 @@
       position: relative;
       cursor: pointer;
       transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-      -moz-transform-style: preserve-3d;
-      -ms-transform-style: preserve-3d;
     }
     #ContentStack {
       width: 100%;
-      transition: transform 2500ms ease;
       position: relative;
       transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-      -moz-transform-style: preserve-3d;
-      -ms-transform-style: preserve-3d;
     }
     #EnvelopeFrontWrap, #EnvelopeContent {
       backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
       position: relative;
       width: 100%;
     }
     .text {
       position: absolute;
       transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      -moz-transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
       font-family: 'Pinyon Script', cursive;
       color: #113c25;
       text-align: center;
@@ -77,9 +55,6 @@
     }
     #EnvelopeBack {
       backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
       position: absolute;
       top: 0;
       left: 0;
@@ -94,7 +69,7 @@
       display: block;
       width: 100%;
       height: auto;
-      z-index: 10; /* always top */
+      z-index: 10; /* always above pages */
     }
     #EnvelopeSealWrap {
       position: absolute;
@@ -102,20 +77,13 @@
       left: 0;             
       width: 100%;
       height: 100%;
-      object-fit: none;
       transform-origin: top center;
-      -ms-transform-origin: top center;
-      -moz-transform-origin: top center;
-      -webkit-transform-origin: top center;
       transition: transform 1500ms ease;
       perspective: 1000px;
       z-index: 0; /* always lowest */
     }
     #EnvelopeSealWrap.opened {
       transform: rotateX(-180deg);
-      -ms-transform: rotateX(-180deg);
-      -moz-transform: rotateX(-180deg);
-      -webkit-transform: rotateX(-180deg);
     }
     .seal-img, .flap-img {
       position: absolute;
@@ -133,9 +101,6 @@
     }
     .flip, #EnvelopeBack {
       transform: rotateY(180deg);
-      -ms-transform: rotateY(180deg);
-      -moz-transform: rotateY(180deg);
-      -webkit-transform: rotateY(180deg);
     }
     .envContents {
       position: absolute;
@@ -146,12 +111,15 @@
       display: block;
       object-fit: cover;
     }
-    /* Stack container that grows dynamically */
+
+    /* Stack container placed behind the fold */
     #ContentsStack {
-      position: relative;
+      position: absolute;
+      bottom: 0; 
+      left: 0;
       width: 100%;
       display: none;
-      z-index: 1;
+      z-index: 5; /* below fold (z=10), above seal (z=0) */
       overflow: visible;
     }
     #EnvelopeContent {
@@ -162,25 +130,27 @@
     .envContents2 {
       width: 100%;
       height: auto;
-      position: absolute; /* start from bottom */
+      position: absolute;
       left: 0;
-      bottom: 0; /* anchored inside */
+      bottom: 0;
       object-fit: cover;
-      transform: translateY(100%); /* hidden below fold */
+      transform: translateY(100%); /* start hidden below fold */
     }
-    .envContents2:nth-child(1) { z-index: 5; transform: rotateY(-90deg);}
-    .envContents2:nth-child(2) { z-index: 4; transform: rotateY(-90deg);}
-    .envContents2:nth-child(3) { z-index: 3; transform: rotateY(-90deg);}
-    .envContents2:nth-child(4) { z-index: 2; transform: rotateY(-90deg);}
-    .envContents2:nth-child(5) { z-index: 1; }
 
-    .slid {
-      animation: slideUp 600ms forwards ease-out;
+    /* give vertical rotate start for nth-children */
+    .envContents2:nth-child(1) { z-index: 5; transform: rotateX(-90deg); }
+    .envContents2:nth-child(2) { z-index: 4; transform: rotateX(-90deg); }
+    .envContents2:nth-child(3) { z-index: 3; transform: rotateX(-90deg); }
+    .envContents2:nth-child(4) { z-index: 2; transform: rotateX(-90deg); }
+    .envContents2:nth-child(5) { z-index: 1;}
+
+.slid {
+      animation: slideUp 800ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     @keyframes slideUp {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
+      from { transform: translateY(100%) rotateX(90deg); }
+      to   { transform: translateY(0) rotateX(0deg); }
     }
   </style>
 </head>
@@ -204,6 +174,8 @@
         <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:-1">
       </div>
     </div>
+
+    <!-- stack goes right under the fold -->
     <div id="ContentsStack">
       <div id="EnvelopeContent">
         <img id="Page1" src="../images/BG4.jpg" class="envContents2">
@@ -227,10 +199,9 @@
       }
       images.forEach(function(img) {
         img.addEventListener('load', checkImagesLoaded);
-        if (img.complete) {
-          checkImagesLoaded();
-        }
+        if (img.complete) checkImagesLoaded();
       });
+
       function initAnimation () {
         const envelopeFlip = document.getElementById('EnvelopeFlip');
         const sealWrap = document.getElementById('EnvelopeSealWrap');
@@ -245,17 +216,20 @@
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
         const newSealImgHeight = foldHeight + sealHeight + 'px';
+
         function animateEnvelope() {
           envelopeFlip.removeEventListener('click', animateEnvelope);
           envelopeFlip.removeEventListener('touchstart', animateEnvelope);
           envelopeFlip.classList.add('flip');
+
           envelopeFlip.addEventListener('transitionend', function() {
             sealWrap.classList.add('opened');
             sealNewImg.style.height = "newSealImgHeight";
             sealOldImg.style.height = "newSealImgHeight";
             sealOldImg.classList.add('hidden');
             sealNewImg.classList.remove('hidden');
-          });
+          }, { once: true });
+
           sealWrap.addEventListener('transitionend', function() {
             ContentsStack.style.display = 'block';
             FirstPage.style.display = 'none';
@@ -265,8 +239,9 @@
               page.style.setProperty("--n", i+1);
               page.classList.add('slid');
             });
-          });
+          }, { once: true });
         }
+
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
       }
