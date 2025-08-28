@@ -129,19 +129,15 @@
         
         #EnvelopContent {
             width: 95%;
-            transition: transform 2s ease;
             position: relative;
-            cursor: pointer;
             z-index: 0;
             backface-visibility: hidden;
             -ms-backface-visibility: hidden;
             -moz-backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            transform-style: preserve-3d;
         }
-        
-        .envContents { 
-            will-change: transform, opacity;
+
+        .envContents {
             position: absolute;
             top: 0;
             left: 0;
@@ -149,43 +145,22 @@
             height: 100%;
             display: block;
             object-fit:cover;
-            opacity: 1;
-            transition: opacity 2s ease;
         }
 
-        .envContents.transformFlip {
-            transform: rotateY(-180deg);
-            -ms-transform: rotateY(-180deg);
-            -moz-transform: rotateY(-180deg);
-            -webkit-transform: rotateY(-180deg);
-        }
-
-        .envContents.opacityFade { opacity: 0; }
-        
-        .envContents:nth-child(1) {
-            z-index: 3;
-        }
-        .envContents:nth-child(2) {
-            z-index: 2;
-        }
-        .envContents:nth-child(3) {
-            z-index: 1;
-        }
-        
-        .envContents.after {
-            z-index: 0;
-        }        
         .envContents.after:nth-child(1) {
             --n: 1;
             --top-pos: -15%;
+            z-index: 3;
         }
         .envContents.after:nth-child(2) {
             --n: 2;
             --top-pos: -30%;
+            z-index: 2;
         }
         .envContents.after:nth-child(3) {
             --n: 3;
             --top-pos: -45%;
+            z-index: 1;
         }
         .envContents.after:nth-child(n) {
             animation-delay: calc((var(--n) - 1) * 0.5s);
@@ -198,25 +173,21 @@
       </style>
     
       <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL fr work somewhere else</h1>
-<div id="EnvelopeContainer" style="display: none;">
+<div id="EnvelopeContainer" style="display: block;">
   <div id="EnvelopeFlip">
-    <div id="EnvelopeContent">
-      <img id="FrontPage" src="../images/FrontPage.png" class="envContents">
-      <img id="SecondPage" src="../images/LILYBG.jpg" class="envContents">
-      <img id="ThirdPage" src="../images/BG4.jpg" class="envContents">     
-    </div>
+    
     <div id="EnvelopeFrontWrap">
-      <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block;" alt="Envelope Front" id="EnvelopeFront"> 
-      <p class="text" style="top: 50%; left: 50%;">To our favourite people;</p>
+      <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:1;" alt="Envelope Front" id="EnvelopeFront"> 
+      <p class="text" style="top: 50%; left: 50%; z-index: 2;">To our favourite people;</p><img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index:0; opacity:0.8;">
     </div>
     <div id="EnvelopeBack">
-      <div id="EnvelopeSealWrap">
+      <div id="EnvelopeSealWrap" style="z-index:3;">
         <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
         <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" class="seal-img" id="EnvelopeFlap" style="z-index:0;">          
         <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
         <p class="text" style="top: 20%; left: 50%;">You're invited!</p>
-      </div>
-      <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
+      </div><img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold" style="z-index:2;"><img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:1">
+      
     </div>
   </div>
 </div>
@@ -286,11 +257,3 @@
 </script>
     </section>
 </body></html>
-
-
-
-
-
-
-
-
