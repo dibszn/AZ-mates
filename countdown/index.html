@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,7 +66,7 @@
             width: 100%;
         }
 			
-        #EnvelopeSealWrap {
+        #EnvelopeSealWrap,  {
             position: absolute;
             top: 0;
             left: 0;             
@@ -75,9 +74,9 @@
             height: 100%;
             object-fit: none;
             transform-origin: top center;
-            transition: transform 1500ms ease; 
-            z-index: 3;
+            transition: transform 1500ms ease;
             perspective: 1000px;
+			z-index:3;
         }
         
         #EnvelopeSealWrap.opened {
@@ -102,7 +101,7 @@
             display: block;
             transition: opacity 750ms ease-in-out;
             opacity: 1;
-            z-index: 2;
+			z-index: 2;
         }
         .seal-img.hidden {
             opacity: 0;
@@ -117,7 +116,6 @@
         #EnvelopContent {
             width: 95%;
             position: relative;
-            z-index: 0;
             backface-visibility: hidden;
             -ms-backface-visibility: hidden;
             -moz-backface-visibility: hidden;
@@ -163,26 +161,26 @@
 <div id="EnvelopeContainer" style="display: block;">
   <div id="EnvelopeFlip">
     <div id="EnvelopeFrontWrap">
-			<img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index:1;">
+		<img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index:-1;">
       <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
       <p class="text" style="top: 50%; left: 50%; z-index: 3;">To our favourite people;</p>
     </div>
     <div id="EnvelopeBack">
-      <div id="EnvelopeSealWrap" style="z-index:3;">
+      <div id="EnvelopeSealWrap">
         <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
-        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:1" id="EnvelopeFlap">          
+        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" id="EnvelopeFlap">          
         <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
         <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
       </div>
-			<img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold" style="z-index:2;">
-			<img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:1">
+	<img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold" style="z-index:2;">
+	<img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:-1">
       
     </div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+	document.addEventListener('DOMContentLoaded', function() {
     const images = document.querySelectorAll('#EnvelopeContainer img');
     let loadedImages = 0;
 
@@ -190,6 +188,7 @@
       loadedImages++;
       if (loadedImages === images.length) {
         document.getElementById('EnvelopeContainer').style.display = 'block';
+        initAnimation();
       }
     }
 
@@ -218,14 +217,14 @@
     
       envelopeFlip.addEventListener('transitionend', function() {
         sealWrap.classList.add('opened');
-    
+
         sealNewImg.style.height = "newSealImgHeight";
         sealOldImg.style.height = "newSealImgHeight";
         sealOldImg.classList.add('hidden');
         sealNewImg.classList.remove('hidden');
       });
     }
-    
+	
     envelopeFlip.addEventListener('click', animateEnvelope);
     envelopeFlip.addEventListener('touchstart', animateEnvelope);
   });
