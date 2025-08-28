@@ -1,4 +1,11 @@
-    <section style="width:100vw;  display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invite Animation</title>
+  </head>
+  <body>
+<section style="width:100vw;  display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
       <style>
         @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
         @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
@@ -20,14 +27,13 @@
         transform-style: preserve-3d;
         }
         
-        #EnvelopeFrontWrap {
+        #EnvelopeFrontWrap, #EnvelopeContent {
         backface-visibility: hidden;
         -ms-backface-visibility: hidden;
         -moz-backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
         position: relative;
         width: 100%;
-        z-index: 1000;
         }
         
         .text {
@@ -141,7 +147,8 @@
         transform: rotateY(-90deg);
         }
 
-         .envContents:nth-child(4) {
+        
+        .envContents:nth-child(4) {
         --n: 4;
         --top-pos: -60%;
         z-index: 2;
@@ -154,13 +161,14 @@
         z-index: 1;
         }
         
-        /* .envContents.slid:nth-child(n) {
+        .envContents.slid {
+            animation: slideUp 500ms forwards;
         animation-delay: calc((var(--n) - 1) * 0.5s);
-        } */         
+        }
         
         @keyframes slideUp {
         to {
-        top: var(--top-pos);
+            top: var(--top-pos);
         }
       }
       </style>
@@ -187,12 +195,12 @@
         </div>
 
         <div id="ContentsStack">
-          <div id="EnvelopeContent" style="position:sticky">
-            <img id="Page1" src="../images/FrontPage.png" class="envContents:nth-child(1)">
-            <img id="Page2" src="../images/LILYBG.jpg" class="envContents:nth-child(2)">
-            <img id="Page3" src="../images/GREYBG.jpg" class="envContents:nth-child(3)">
-            <img id="Page4" src="../images/QUOTEBG.jpg" class="envContents:nth-child(4)">
-            <img id="Page5" src="../images/SPACEBETWEEN.jpg" class="envContents:nth-child(5)">
+          <div id="EnvelopeContent">
+            <img id="Page1" src="../images/BG4.jpg" class="envContents">
+            <img id="Page2" src="../images/GREYBG.jpg" class="envContents">
+            <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents">
+            <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents">
+            <img id="Page5" src="../images/FrontPage.png" class="envContents">
           </div>
         </div>
       </div>
@@ -263,5 +271,4 @@
         });
       </script>
     </section>
-
-
+</body></html>
