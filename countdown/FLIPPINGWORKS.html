@@ -55,7 +55,7 @@
       -moz-transform-style: preserve-3d;
       -ms-transform-style: preserve-3d;
     }
-    #EnvelopeFrontWrap, #EnvelopeContent {
+    #EnvelopeFrontWrap {
       backface-visibility: hidden;
       -ms-backface-visibility: hidden;
       -moz-backface-visibility: hidden;
@@ -63,6 +63,16 @@
       position: relative;
       width: 100%;
     }
+    
+    #EnvelopeContent {
+      backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      position: relative;
+      width: 100%;
+    }
+    
     .text {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -196,27 +206,51 @@
       z-index: 1;
     }
     .slid {
-      animation: slideUp 600ms forwards ease-out;
-      -webkit-animation: slideUp 600ms forwards ease-out;
-      -moz-animation: slideUp 600ms forwards ease-out;
-      -ms-animation: slideUp 600ms forwards ease-out;
-      animation-delay: calc((var(--n) - 1) * 0.4s);
-      -webkit-animation-delay: calc((var(--n) - 1) * 0.4s);
-      -moz-animation-delay: calc((var(--n) - 1) * 0.4s);
-      -ms-animation-delay: calc((var(--n) - 1) * 0.4s);
-    }
-    @keyframes slideUp {
-       transform: translateY(var(--top-pos));
-      }
-    }
-    @-webkit-keyframes slideUp {transform: translateY(var(--top-pos));}
-    }
-    @-moz-keyframes slideUp {
- transform: translateY(var(--top-pos));
-    }
-    @-ms-keyframes slideUp {
-      transform: translateY(var(--top-pos));
-    }
+  animation: slideUp 600ms forwards ease-out;
+  -webkit-animation: slideUp 600ms forwards ease-out;
+  -moz-animation: slideUp 600ms forwards ease-out;
+  -ms-animation: slideUp 600ms forwards ease-out;
+  animation-delay: calc((var(--n) - 1) * 0.4s);
+  -webkit-animation-delay: calc((var(--n) - 1) * 0.4s);
+  -moz-animation-delay: calc((var(--n) - 1) * 0.4s);
+  -ms-animation-delay: calc((var(--n) - 1) * 0.4s);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(var(--top-pos));
+  }
+}
+
+@-webkit-keyframes slideUp {
+  from {
+    -webkit-transform: translateY(0);
+  }
+  to {
+    -webkit-transform: translateY(var(--top-pos));
+  }
+}
+
+@-moz-keyframes slideUp {
+  from {
+    -moz-transform: translateY(0);
+  }
+  to {
+    -moz-transform: translateY(var(--top-pos));
+  }
+}
+
+@-ms-keyframes slideUp {
+  from {
+    -ms-transform: translateY(0);
+  }
+  to {
+    -ms-transform: translateY(var(--top-pos));
+  }
+}
   </style>
 </head>
 <body>
