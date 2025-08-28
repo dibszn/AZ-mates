@@ -8,7 +8,6 @@
 <section style="width:100vw;  display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
     <style>
         @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
-        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
         @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
         
         #EnvelopeContainer {
@@ -142,6 +141,7 @@
         }
         
         .envContents { 
+            will-change: transform, opacity;
             position: absolute;
             top: 0;
             left: 0;
@@ -263,14 +263,14 @@
           envContent.insertBefore(lastChild, firstChild);
         }, 500);
     
-        setTimeout(() => {
+        envelopeFlip.addEventListener('transitionend', function() {
           sealWrap.classList.add('opened');
     
           sealNewImg.style.height = "newSealImgHeight";
           sealOldImg.style.height = "newSealImgHeight";
           sealOldImg.classList.add('hidden');
           sealNewImg.classList.remove('hidden');
-        }, 2000);
+        });
       }
     
       envelopeFlip.addEventListener('click', animateEnvelope);
@@ -280,6 +280,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
