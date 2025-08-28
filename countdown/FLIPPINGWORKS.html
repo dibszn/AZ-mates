@@ -122,7 +122,7 @@
         -webkit-transform: rotateY(180deg);
         }
         
-        .envContents, .envContents2  {
+        .envContents {
         position: absolute;
         top: 0;
         left: 0;
@@ -130,6 +130,12 @@
         height: 100%;
         display: block;
         object-fit:cover;
+        }
+
+        .envContents2 {
+        width: 100%;
+        height: 100%;
+        display: block;
         }
         
         .envContents2:nth-child(1) {
@@ -199,43 +205,13 @@
           </div>
         </div>
 
-        <div id="ContentsStack">
+        <div id="ContentsStack" style="display:none">
           <div id="EnvelopeContent">
-            <img id="Page1" src="../images/BG4.jpg" style="        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit:cover;">
-            <img id="Page2" src="../images/GREYBG.jpg" class="        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit:cover;">
-            <img id="Page3" src="../images/QUOTEBG.jpg" class="        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit:cover;">
-            <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit:cover;">
-            <img id="Page5" src="../images/FrontPage.png" class="        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit:cover;">
+            <img id="Page1" src="../images/BG4.jpg" class="envContents2">
+            <img id="Page2" src="../images/GREYBG.jpg" class="envContents2">
+            <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents2;">
+            <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
+            <img id="Page5" src="../images/FrontPage.png" class="envContents2">
           </div>
         </div>
       </div>
@@ -266,7 +242,8 @@
         const sealOldImg = document.getElementById('EnvelopeSealOld');
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
-        const envContents = document.getElementById('EnvelopeContent');
+        const Content = document.getElementById('EnvelopeContent');
+        const ContentsStack = document.getElementById('ContentsStack');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -288,7 +265,8 @@
           });
 
           sealWrap.addEventListener('transitionend', function() {
-            envContents.classList.add('slid');
+              ContentsStack.style.display = 'block';
+              Content.classList.add('slid');
           });
         }
         envelopeFlip.addEventListener('click', animateEnvelope);
@@ -298,4 +276,5 @@
       </script>
     </section>
 </body></html>
+
 
