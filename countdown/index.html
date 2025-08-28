@@ -46,7 +46,7 @@
             color: #113c25;
             z-index: 1000;
             text-align: center;
-            font-size: 3vmax;
+            font-size: 8vmin;
             margin: 0;
         }
         
@@ -149,14 +149,18 @@
             height: 100%;
             display: block;
             object-fit:cover;
-            transition: transform 2s ease, opacity 2s ease;
             opacity: 1;
-            animation: slideUp 0.5s ease-out forwards;
-            transform: translate3d(0,0,0) rotateY(-180deg);
-            -ms-transform: translate3d(0,0,0) rotateY(-180deg);
-            -moz-transform: translate3d(0,0,0) rotateY(-180deg);
-            -webkit-transform: translate3d(0,0,0) rotateY(-180deg);
+            transition: opacity 2s ease;
         }
+
+        .envContents.transformFlip {
+            transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -webkit-transform: rotateY(-180deg);
+        }
+
+        .envContents.opacityFade { opacity: 0; }
         
         .envContents:nth-child(1) {
             z-index: 3;
@@ -260,7 +264,9 @@
         envelopeFlip.classList.add('flip');
     
         setTimeout(function() {
-          envContent.insertBefore(lastChild, firstChild);
+            envContent.insertBefore(lastChild, firstChild);
+            envContent.classList.add('transformFlip');
+            envContent.classList.add('opacityFade');
         }, 500);
     
         envelopeFlip.addEventListener('transitionend', function() {
@@ -280,6 +286,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
