@@ -59,7 +59,6 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 1000;
         }
         
         #EnvelopeGroup {
@@ -93,6 +92,7 @@
         -moz-transform: rotateX(-180deg);
         -webkit-transform: rotateX(-180deg);
         }
+          
         .seal-img, .flap-img {
         position: absolute;
         top: 0;
@@ -116,7 +116,7 @@
         -webkit-transform: rotateY(180deg);
         }
         
-        .envContents, #envContents2  {
+        .envContents, .envContents2  {
         position: absolute;
         top: 0;
         left: 0;
@@ -126,36 +126,35 @@
         object-fit:cover;
         }
         
-        #envContents2:nth-child(1) {
+        .envContents2:nth-child(1) {
         --n: 1;
         --top-pos: -15%;
         z-index: 5;
         transform: rotateY(-90deg);
         }
         
-        #envContents2:nth-child(2) {
+        .envContents2:nth-child(2) {
         --n: 2;
         --top-pos: -30%;
         z-index: 4;
         transform: rotateY(-90deg);
         }
         
-        #envContents2:nth-child(3) {
+        .envContents2:nth-child(3) {
         --n: 3;
         --top-pos: -45%;
         z-index: 3;
         transform: rotateY(-90deg);
         }
 
-        
-        #envContents2:nth-child(4) {
+        .envContents2:nth-child(4) {
         --n: 4;
         --top-pos: -60%;
         z-index: 2;
         transform: rotateY(-90deg);
         }    
 
-        #envContents2:nth-child(5) {
+        .envContents2:nth-child(5) {
         --n: 5;
         --top-pos: -75%;
         z-index: 1;
@@ -163,7 +162,7 @@
         
         .slid {
             animation: slideUp 500ms forwards;
-        animation-delay: calc((var(--n) - 1) * 0.5s);
+            animation-delay: calc((var(--n) - 1) * 0.5s);
         }
         
         @keyframes slideUp {
@@ -196,11 +195,11 @@
 
         <div id="ContentsStack">
           <div id="EnvelopeContent">
-            <img id="Page1" src="../images/BG4.jpg" class="envContents">
-            <img id="Page2" src="../images/GREYBG.jpg" class="envContents">
-            <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents">
-            <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents">
-            <img id="Page5" src="../images/FrontPage.png" class="envContents">
+            <img id="Page1" src="../images/BG4.jpg" class="envContents2">
+            <img id="Page2" src="../images/GREYBG.jpg" class="envContents2">
+            <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents2">
+            <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
+            <img id="Page5" src="../images/FrontPage.png" class="envContents2">
           </div>
         </div>
       </div>
@@ -231,7 +230,7 @@
         const sealOldImg = document.getElementById('EnvelopeSealOld');
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
-        const envContents = document.getElementById('envContents2');
+        const envContents = document.getElementById('EnvelopeContent');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -253,7 +252,7 @@
           });
 
           sealWrap.addEventListener('transitionend', function() {
-            envContents2.classList.add('slid');
+            envContents.classList.add('slid');
           });
         }
         envelopeFlip.addEventListener('click', animateEnvelope);
@@ -263,4 +262,5 @@
       </script>
     </section>
 </body></html>
+
 
