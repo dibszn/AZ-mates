@@ -46,7 +46,7 @@
             color: #113c25;
             z-index: 1000;
             text-align: center;
-            font-size: 5vmin;
+            font-size: 3vmax;
             margin: 0;
         }
         
@@ -152,10 +152,10 @@
             transition: transform 2s ease, opacity 2s ease;
             opacity: 1;
             animation: slideUp 0.5s ease-out forwards;
-            transform: rotateY(-180deg);
-            -ms-transform: rotateY(-180deg);
-            -moz-transform: rotateY(-180deg);
-            -webkit-transform: rotateY(-180deg);
+            transform: translate3d(0,0,0) rotateY(-180deg);
+            -ms-transform: translate3d(0,0,0) rotateY(-180deg);
+            -moz-transform: translate3d(0,0,0) rotateY(-180deg);
+            -webkit-transform: translate3d(0,0,0) rotateY(-180deg);
         }
         
         .envContents:nth-child(1) {
@@ -280,6 +280,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
