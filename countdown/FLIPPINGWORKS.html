@@ -116,7 +116,7 @@
         -webkit-transform: rotateY(180deg);
         }
         
-        .envContents {
+        .envContents, #envContents2  {
         position: absolute;
         top: 0;
         left: 0;
@@ -126,21 +126,21 @@
         object-fit:cover;
         }
         
-        .envContents:nth-child(1) {
+        #envContents2:nth-child(1) {
         --n: 1;
         --top-pos: -15%;
         z-index: 5;
         transform: rotateY(-90deg);
         }
         
-        .envContents:nth-child(2) {
+        #envContents2:nth-child(2) {
         --n: 2;
         --top-pos: -30%;
         z-index: 4;
         transform: rotateY(-90deg);
         }
         
-        .envContents:nth-child(3) {
+        #envContents2:nth-child(3) {
         --n: 3;
         --top-pos: -45%;
         z-index: 3;
@@ -148,20 +148,20 @@
         }
 
         
-        .envContents:nth-child(4) {
+        #envContents2:nth-child(4) {
         --n: 4;
         --top-pos: -60%;
         z-index: 2;
         transform: rotateY(-90deg);
         }    
 
-        .envContents:nth-child(5) {
+        #envContents2:nth-child(5) {
         --n: 5;
         --top-pos: -75%;
         z-index: 1;
         }
         
-        .envContents.slid {
+        .slid {
             animation: slideUp 500ms forwards;
         animation-delay: calc((var(--n) - 1) * 0.5s);
         }
@@ -231,6 +231,7 @@
         const sealOldImg = document.getElementById('EnvelopeSealOld');
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
+        const envContents = document.getElementById('envContents2');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -252,17 +253,7 @@
           });
 
           sealWrap.addEventListener('transitionend', function() {
-            let Page1 = document.querySelectorAll('#Page1');
-            let Page2 = document.querySelectorAll('#Page2');
-            let Page3 = document.querySelectorAll('#Page3');
-            let Page4 = document.querySelectorAll('#Page4');
-            let Page5 = document.querySelectorAll('#Page5');
-
-            Page1.classList.add('slid');
-            Page2.classList.add('slid');
-            Page3.classList.add('slid');
-            Page4.classList.add('slid');
-            Page5.classList.add('slid');
+            envContents2.classList.add('slid');
           });
         }
         envelopeFlip.addEventListener('click', animateEnvelope);
@@ -272,3 +263,4 @@
       </script>
     </section>
 </body></html>
+
