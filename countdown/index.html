@@ -14,21 +14,24 @@
             max-width: 85%;
             perspective: 1000px;
             margin: 0;
-            -webkit-transform: translateZ(0); /* iOS flicker fix */
         }
         #EnvelopeFlip {
             width: 100%;
             transform-style: preserve-3d;
             transition: transform 2s ease;
+            -webkit-transition: transform 2s ease;
             position: relative;
             cursor: pointer;
-            -webkit-transform: translateZ(0); /* iOS flicker fix */
-            will-change: transform; /* iOS flicker fix */
+            transform: translate3d(0, 0, 0);
+        }
+
+        #EnvelopeFlip, #EnvelopeSealWrap, .envContents {
+            will-change: transform, opacity;
         }
         
         #EnvelopeFrontWrap {
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden; /* iOS flicker fix */
+            -webkit-backface-visibility: hidden;
             position: relative;
             width: 100%;
             z-index: 1000;
@@ -39,19 +42,20 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
             font-family: 'Pinyon Script', cursive;
             color: #113c25;
             z-index: 1000;
             text-align: center;
             font-size: 5vmin;
             margin: 0;
-            -webkit-transform: translate(-50%, -50%) translateZ(0); /* iOS flicker fix */
         }
         
         #EnvelopeBack {
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden; /* iOS flicker fix */
+            -webkit-backface-visibility: hidden;
             transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
             position: absolute;
             top: 0;
             left: 0;
@@ -64,20 +68,20 @@
             top: 20%;
             left: 50%;
             transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
             font-family: 'Pinyon Script', cursive;
             color: #113c25;
             z-index: 1000;
             text-align: center;
             font-size: 5vmin;
             margin: 0;
-            -webkit-transform: translate(-50%, -50%) translateZ(0); /* iOS flicker fix */
         }
         
         #EnvelopeGroup {
             position: relative;
             width: 100%;
             display:flex; 
-            align-items:flex-end;
+            align-items:flex-end
         }
         
         #EnvelopeFold {
@@ -96,15 +100,16 @@
             height: 100%;
             object-fit: none;
             transform-origin: top center;
-            transition: transform 1500ms ease; 
+            -webkit-transform-origin: top center;
+            transition: transform 1500ms ease;
+            -webkit-transition: transform 1500ms ease;
             z-index: 3;
             perspective: 1000px;
-            -webkit-backface-visibility: hidden; /* iOS flicker fix */
         }
         
         #EnvelopeSealWrap.opened {
             transform: rotateX(-180deg);
-            -webkit-transform: rotateX(-180deg); /* iOS flicker fix */
+            -webkit-transform: rotateX(-180deg);
         }
         
         #EnvelopeSeal {
@@ -121,10 +126,9 @@
             height: 100%;
             display: block;
             transition: opacity 750ms ease-in-out;
+            -webkit-transition: opacity 750ms ease-in-out;
             opacity: 1;
             z-index: 1;
-            -webkit-transform: translateZ(0); /* iOS flicker fix */
-            will-change: opacity, transform; /* iOS flicker fix */
         }
         .seal-img.hidden {
             opacity: 0;
@@ -133,16 +137,18 @@
         }
         .flip {
             transform: rotateY(180deg);
-            -webkit-transform: rotateY(180deg); /* iOS flicker fix */
+            -webkit-transform: rotateY(180deg);
         }
         
         #EnvelopContent {
             width: 95%;
             transform-style: preserve-3d;
             transition: transform 2s ease;
+            -webkit-transition: transform 2s ease;
             position: relative;
             cursor: pointer;
             z-index: 0;
+            transform: translate3d(0, 0, 0);
         }
         
         .envContents { 
@@ -154,12 +160,13 @@
             display: block;
             object-fit:cover;
             transition: transform 2s ease, opacity 2s ease;
+            -webkit-transition: transform 2s ease, opacity 2s ease;
             transform: rotateY(-180deg);
-            -webkit-transform: rotateY(-180deg) translateZ(0); /* iOS flicker fix */
+            -webkit-transform: rotateY(-180deg);
             opacity: 1;
-            animation: slideUp 0.5s ease-out forwards;            
-            -webkit-backface-visibility: hidden; /* iOS flicker fix */
-            will-change: transform, opacity; /* iOS flicker fix */
+            animation: slideUp 0.5s ease-out forwards;
+            -webkit-animation: slideUp 0.5s ease-out forwards;
+            transform: translate3d(0, 0, 0);
         }
         
         .envContents:nth-child(1) {
@@ -284,12 +291,3 @@
 </script>
     </section>
 </body></html>
-
-
-
-
-
-
-
-
-
