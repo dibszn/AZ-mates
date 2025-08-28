@@ -174,10 +174,10 @@
             transition: transform 2s ease, opacity 2s ease;
             opacity: 1;
             animation: slideUp 0.5s ease-out forwards;
-            backface-visibility: hidden;
-            -ms-backface-visibility: hidden;
-            -moz-backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+            transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -webkit-transform: rotateY(-180deg);
         }
         
         .envContents:nth-child(1) {
@@ -302,6 +302,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
