@@ -124,24 +124,28 @@
         --n: 1;
         --top-pos: -15%;
         z-index: 5;
+        transform: rotateY(-90deg);
         }
         
         .envContents.slid:nth-child(2) {
         --n: 2;
         --top-pos: -30%;
         z-index: 4;
+        transform: rotateY(-90deg);
         }
         
         .envContents.slid:nth-child(3) {
         --n: 3;
         --top-pos: -45%;
         z-index: 3;
+        transform: rotateY(-90deg);
         }
 
          .envContents.slid:nth-child(4) {
         --n: 4;
         --top-pos: -60%;
         z-index: 2;
+        transform: rotateY(-90deg);
         }    
 
         .envContents.slid:nth-child(5) {
@@ -150,9 +154,9 @@
         z-index: 1;
         }
         
-        .envContents.slid:nth-child(n) {
+        /* .envContents.slid:nth-child(n) {
         animation-delay: calc((var(--n) - 1) * 0.5s);
-        }        
+        } */         
         
         @keyframes slideUp {
         to {
@@ -183,7 +187,7 @@
         </div>
 
         <div id="ContentsStack">
-          <div id="EnvelopeContent">
+          <div id="EnvelopeContent" style="position:sticky">
             <img id="Page1" src="../images/FrontPage.png" class="envContents:nth-child(1)">
             <img id="Page2" src="../images/LILYBG.jpg" class="envContents:nth-child(2)">
             <img id="Page3" src="../images/GREYBG.jpg" class="envContents:nth-child(3)">
@@ -259,3 +263,4 @@
         });
       </script>
     </section>
+
