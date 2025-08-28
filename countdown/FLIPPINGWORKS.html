@@ -46,7 +46,16 @@
       -moz-transform-style: preserve-3d;
       -ms-transform-style: preserve-3d;
     }
-    #EnvelopeFrontWrap {
+    #ContentStack {
+      width: 100%;
+      transition: transform 2500ms ease;
+      position: relative;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+    }
+    #EnvelopeFrontWrap, #EnvelopeContent {
       backface-visibility: hidden;
       -ms-backface-visibility: hidden;
       -moz-backface-visibility: hidden;
@@ -54,16 +63,6 @@
       position: relative;
       width: 100%;
     }
-    
-    #EnvelopeContent {
-      backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
-      -moz-backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      position: relative;
-      width: 100%;
-    }
-    
     .text {
       position: absolute;
       transform: translate(-50%, -50%);
@@ -147,100 +146,42 @@
       display: block;
       object-fit: cover;
     }
+    /* Make stack grow dynamically */
     #ContentsStack {
       position: relative;
-      bottom: 0;
-      left: 0;
       width: 100%;
+      display: none;
       z-index: 1;
-      overflow: visible;
+      overflow: visible; /* allow growth */
     }
     #EnvelopeContent {
       position: relative;
       width: 100%;
-      height: 100%;
+      height: auto; /* allow content height */
     }
     .envContents2 {
       width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+      height: auto;
+      position: relative;
       display: block;
       object-fit: cover;
       transition: none;
+      margin-top: -15%; /* stagger effect replaces absolute positioning */
     }
-    .envContents2:nth-child(1) {
-      --n: 1;
-      --top-pos: -15%;
-      z-index: 5;
-    }
-    .envContents2:nth-child(2) {
-      --n: 2;
-      --top-pos: -30%;
-      z-index: 4;
-    }
-    .envContents2:nth-child(3) {
-      --n: 3;
-      --top-pos: -45%;
-      z-index: 3;
-    }
-    .envContents2:nth-child(4) {
-      --n: 4;
-      --top-pos: -60%;
-      z-index: 2;
-    }
-    .envContents2:nth-child(5) {
-      --n: 5;
-      --top-pos: -75%;
-      z-index: 1;
-    }
+    .envContents2:nth-child(1) { z-index: 5; margin-top: 0; }
+    .envContents2:nth-child(2) { z-index: 4; }
+    .envContents2:nth-child(3) { z-index: 3; }
+    .envContents2:nth-child(4) { z-index: 2; }
+    .envContents2:nth-child(5) { z-index: 1; }
+
     .slid {
-  animation: slideUp 600ms forwards ease-out;
-  -webkit-animation: slideUp 600ms forwards ease-out;
-  -moz-animation: slideUp 600ms forwards ease-out;
-  -ms-animation: slideUp 600ms forwards ease-out;
-  animation-delay: calc((var(--n) - 1) * 0.4s);
-  -webkit-animation-delay: calc((var(--n) - 1) * 0.4s);
-  -moz-animation-delay: calc((var(--n) - 1) * 0.4s);
-  -ms-animation-delay: calc((var(--n) - 1) * 0.4s);
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(var(--top-pos));
-  }
-}
-
-@-webkit-keyframes slideUp {
-  from {
-    -webkit-transform: translateY(0);
-  }
-  to {
-    -webkit-transform: translateY(var(--top-pos));
-  }
-}
-
-@-moz-keyframes slideUp {
-  from {
-    -moz-transform: translateY(0);
-  }
-  to {
-    -moz-transform: translateY(var(--top-pos));
-  }
-}
-
-@-ms-keyframes slideUp {
-  from {
-    -ms-transform: translateY(0);
-  }
-  to {
-    -ms-transform: translateY(var(--top-pos));
-  }
-}
+      animation: slideUp 600ms forwards ease-out;
+      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -263,7 +204,7 @@
         <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:-1">
       </div>
     </div>
-    <div id="ContentsStack" style="display:none">
+    <div id="ContentsStack">
       <div id="EnvelopeContent">
         <img id="Page1" src="../images/BG4.jpg" class="envContents2">
         <img id="Page2" src="../images/GREYBG.jpg" class="envContents2">
@@ -320,7 +261,10 @@
             FirstPage.style.display = 'none';
             ThirdPage.style.display = 'none';
             const pages = Content.querySelectorAll('.envContents2');
-            pages.forEach(page => page.classList.add('slid'));
+            pages.forEach((page, i) => {
+              page.style.setProperty("--n", i+1);
+              page.classList.add('slid');
+            });
           });
         }
         envelopeFlip.addEventListener('click', animateEnvelope);
