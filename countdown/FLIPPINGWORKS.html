@@ -30,6 +30,9 @@
     }
     #EnvelopeContainer {
       transform: scale(0.8);
+      -ms-transform: scale(0.8);
+      -moz-transform: scale(0.8);
+      -webkit-transform: scale(0.8);
       perspective: 1000px;
       margin: 0;
     }
@@ -39,21 +42,33 @@
       position: relative;
       cursor: pointer;
       transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
     }
     #ContentStack {
       width: 100%;
       transition: transform 2500ms ease;
       position: relative;
       transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      -moz-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
     }
     #EnvelopeFrontWrap, #EnvelopeContent {
       backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       position: relative;
       width: 100%;
     }
     .text {
       position: absolute;
       transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
       font-family: 'Pinyon Script', cursive;
       color: #113c25;
       text-align: center;
@@ -62,6 +77,9 @@
     }
     #EnvelopeBack {
       backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
       position: absolute;
       top: 0;
       left: 0;
@@ -86,12 +104,18 @@
       height: 100%;
       object-fit: none;
       transform-origin: top center;
+      -ms-transform-origin: top center;
+      -moz-transform-origin: top center;
+      -webkit-transform-origin: top center;
       transition: transform 1500ms ease;
       perspective: 1000px;
       z-index: 3;
     }
     #EnvelopeSealWrap.opened {
       transform: rotateX(-180deg);
+      -ms-transform: rotateX(-180deg);
+      -moz-transform: rotateX(-180deg);
+      -webkit-transform: rotateX(-180deg);
     }
     .seal-img, .flap-img {
       position: absolute;
@@ -109,6 +133,9 @@
     }
     .flip, #EnvelopeBack {
       transform: rotateY(180deg);
+      -ms-transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
     }
     .envContents {
       position: absolute;
@@ -150,7 +177,7 @@
     }
     .envContents2:nth-child(2) {
       --n: 2;
-      --top-pos: -40%;
+      --top-pos: -30%;
       z-index: 4;
     }
     .envContents2:nth-child(3) {
@@ -170,9 +197,30 @@
     }
     .slid {
       animation: slideUp 600ms forwards ease-out;
+      -webkit-animation: slideUp 600ms forwards ease-out;
+      -moz-animation: slideUp 600ms forwards ease-out;
+      -ms-animation: slideUp 600ms forwards ease-out;
       animation-delay: calc((var(--n) - 1) * 0.4s);
+      -webkit-animation-delay: calc((var(--n) - 1) * 0.4s);
+      -moz-animation-delay: calc((var(--n) - 1) * 0.4s);
+      -ms-animation-delay: calc((var(--n) - 1) * 0.4s);
     }
     @keyframes slideUp {
+      to {
+        top: var(--top-pos);
+      }
+    }
+    @-webkit-keyframes slideUp {
+      to {
+        top: var(--top-pos);
+      }
+    }
+    @-moz-keyframes slideUp {
+      to {
+        top: var(--top-pos);
+      }
+    }
+    @-ms-keyframes slideUp {
       to {
         top: var(--top-pos);
       }
@@ -243,8 +291,8 @@
           envelopeFlip.classList.add('flip');
           envelopeFlip.addEventListener('transitionend', function() {
             sealWrap.classList.add('opened');
-            sealNewImg.style.height = "newSealImgHeight";
-            sealOldImg.style.height = "newSealImgHeight";
+            sealNewImg.style.height = newSealImgHeight;
+            sealOldImg.style.height = newSealImgHeight;
             sealOldImg.classList.add('hidden');
             sealNewImg.classList.remove('hidden');
           });
