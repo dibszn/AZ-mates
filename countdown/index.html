@@ -18,13 +18,13 @@
             -webkit-transform: scale(0.7);
             perspective: 1000px;
             margin: 0;
-            transform-style: preserve-3d;
         }
         #EnvelopeFlip {
             width: 100%;
             transition: transform 2s ease;
             position: relative;
             cursor: pointer;
+            transform-style: preserve-3d;
         }
         
         #EnvelopeFrontWrap {
@@ -160,6 +160,7 @@
             -ms-backface-visibility: hidden;
             -moz-backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            /* transform-style: preserve-3d; */
         }
         
         .envContents { 
@@ -297,3 +298,4 @@
 </script>
     </section>
 </body></html>
+
