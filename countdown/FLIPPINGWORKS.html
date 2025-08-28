@@ -94,7 +94,7 @@
       display: block;
       width: 100%;
       height: auto;
-      z-index: 2;
+      z-index: 10; /* always top */
     }
     #EnvelopeSealWrap {
       position: absolute;
@@ -109,7 +109,7 @@
       -webkit-transform-origin: top center;
       transition: transform 1500ms ease;
       perspective: 1000px;
-      z-index: 3;
+      z-index: 0; /* always lowest */
     }
     #EnvelopeSealWrap.opened {
       transform: rotateX(-180deg);
@@ -146,32 +146,32 @@
       display: block;
       object-fit: cover;
     }
-    /* Make stack grow dynamically */
+    /* Stack container that grows dynamically */
     #ContentsStack {
       position: relative;
       width: 100%;
       display: none;
       z-index: 1;
-      overflow: visible; /* allow growth */
+      overflow: visible;
     }
     #EnvelopeContent {
       position: relative;
       width: 100%;
-      height: auto; /* allow content height */
+      height: auto;
     }
     .envContents2 {
       width: 100%;
       height: auto;
-      position: relative;
-      display: block;
+      position: absolute; /* start from bottom */
+      left: 0;
+      bottom: 0; /* anchored inside */
       object-fit: cover;
-      transition: none;
-      margin-top: -15%; /* stagger effect replaces absolute positioning */
+      transform: translateY(100%); /* hidden below fold */
     }
-    .envContents2:nth-child(1) { z-index: 5; margin-top: 0; }
-    .envContents2:nth-child(2) { z-index: 4; }
-    .envContents2:nth-child(3) { z-index: 3; }
-    .envContents2:nth-child(4) { z-index: 2; }
+    .envContents2:nth-child(1) { z-index: 5; transform: rotateY(-90deg);}
+    .envContents2:nth-child(2) { z-index: 4; transform: rotateY(-90deg);}
+    .envContents2:nth-child(3) { z-index: 3; transform: rotateY(-90deg);}
+    .envContents2:nth-child(4) { z-index: 2; transform: rotateY(-90deg);}
     .envContents2:nth-child(5) { z-index: 1; }
 
     .slid {
