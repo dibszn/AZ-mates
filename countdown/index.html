@@ -190,8 +190,9 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('#EnvelopeContent img, #EnvelopeBack img');
+    const images = document.querySelectorAll('#EnvelopeContainer img');
     let loadedImages = 0;
+
     function checkImagesLoaded() {
       loadedImages++;
       if (loadedImages === images.length) {
@@ -207,39 +208,39 @@
       }
     });
 
-    function initAnimation() {
-      const envelopeFlip = document.getElementById('EnvelopeFlip');
-      const sealWrap = document.getElementById('EnvelopeSealWrap');
-      const sealOldImg = document.getElementById('EnvelopeSealOld');
-      const sealNewImg = document.getElementById('EnvelopeSealNew');
-      const foldImg = document.getElementById('EnvelopeFold');
-
-      const foldHeight = foldImg.offsetHeight;
-      const sealHeight = sealOldImg.offsetHeight;
-      const newSealImgHeight = (foldHeight + sealHeight) + 'px';
-
-      function animateEnvelope() {
-        envelopeFlip.removeEventListener('click', animateEnvelope);
-        envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+    const envelopeFlip = document.getElementById('EnvelopeFlip');
+    const sealWrap = document.getElementById('EnvelopeSealWrap');
+    const sealOldImg = document.getElementById('EnvelopeSealOld');
+    const sealNewImg = document.getElementById('EnvelopeSealNew');
+    const foldImg = document.getElementById('EnvelopeFold');
     
-        envelopeFlip.classList.add('flip');
-
-		envelopeFlip.addEventListener('transitionend', () => {
-          sealWrap.classList.add('opened');
-          sealNewImg.style.height = "newSealImgHeight";
-          sealOldImg.style.height = "newSealImgHeight";
-          sealOldImg.classList.add('hidden');
-          sealNewImg.classList.remove('hidden');
-        };
-
-      }
-      envelopeFlip.addEventListener('click', animateEnvelope);
-      envelopeFlip.addEventListener('touchstart', animateEnvelope);
+    const foldHeight = foldImg.offsetHeight;
+    const sealHeight = sealOldImg.offsetHeight;
+    const newSealImgHeight = foldHeight + sealHeight + 'px';
+    
+    function animateEnvelope() {
+      envelopeFlip.removeEventListener('click', animateEnvelope);
+      envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+    
+      envelopeFlip.classList.add('flip');
+    
+      envelopeFlip.addEventListener('transitionend', function() {
+        sealWrap.classList.add('opened');
+    
+        sealNewImg.style.height = "newSealImgHeight";
+        sealOldImg.style.height = "newSealImgHeight";
+        sealOldImg.classList.add('hidden');
+        sealNewImg.classList.remove('hidden');
+      });
     }
+    
+    envelopeFlip.addEventListener('click', animateEnvelope);
+    envelopeFlip.addEventListener('touchstart', animateEnvelope);
   });
 </script>
 
     </section>
 </body></html>
+
 
 
