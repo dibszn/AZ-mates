@@ -95,13 +95,7 @@
             -webkit-transform: rotateX(-180deg);
         }
         
-        #EnvelopeSeal {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-        
-        .seal-img {
+        .seal-img, .flap-img {
             position: absolute;
             top: 0;
             left: 0;
@@ -178,7 +172,7 @@
     <div id="EnvelopeBack">
       <div id="EnvelopeSealWrap">
         <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
-        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" id="EnvelopeFlap">          
+        <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" class="flap-img">          
         <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
         <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
       </div>
@@ -241,6 +235,7 @@
 
     </section>
 </body></html>
+
 
 
 
