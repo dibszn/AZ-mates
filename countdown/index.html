@@ -186,7 +186,8 @@
               checkImagesLoaded();
             }
           });
-        
+
+          function initAnimation () {
           const envelopeFlip = document.getElementById('EnvelopeFlip');
           const sealWrap = document.getElementById('EnvelopeSealWrap');
           const sealOldImg = document.getElementById('EnvelopeSealOld');
@@ -211,7 +212,7 @@
               sealOldImg.classList.add('hidden');
               sealNewImg.classList.remove('hidden');
             });
-          }
+          };
           
           envelopeFlip.addEventListener('click', animateEnvelope);
           envelopeFlip.addEventListener('touchstart', animateEnvelope);
@@ -220,3 +221,4 @@
     </section>
   </body>
 </html>
+
