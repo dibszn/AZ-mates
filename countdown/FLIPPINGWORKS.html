@@ -172,12 +172,12 @@
     }
     .envContents2:nth-child(1) {
       --n: 1;
-      --top-pos: 40px;
+      --top-pos: -15%;
       z-index: 5;
     }
     .envContents2:nth-child(2) {
       --n: 2;
-      --top-pos: 60px;
+      --top-pos: -30%;
       z-index: 4;
     }
     .envContents2:nth-child(3) {
@@ -206,24 +206,16 @@
       -ms-animation-delay: calc((var(--n) - 1) * 0.4s);
     }
     @keyframes slideUp {
-      to {
-        top: var(--top-pos);
+       transform: translateY(var(--top-pos));
       }
     }
-    @-webkit-keyframes slideUp {
-      to {
-        top: var(--top-pos);
-      }
+    @-webkit-keyframes slideUp {transform: translateY(var(--top-pos));}
     }
     @-moz-keyframes slideUp {
-      to {
-        top: var(--top-pos);
-      }
+ transform: translateY(var(--top-pos));
     }
     @-ms-keyframes slideUp {
-      to {
-        top: var(--top-pos);
-      }
+      transform: translateY(var(--top-pos));
     }
   </style>
 </head>
