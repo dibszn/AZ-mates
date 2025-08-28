@@ -1,241 +1,231 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invite Animation</title>
-  </head>
-  <body>
-<section style="width:100vw;  display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
-      <style>
-        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
-        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
-        
-        #EnvelopeContainer {
-        transform: scale(0.8);
-        -ms-transform: scale(0.8);
-        -moz-transform: scale(0.8);
-        -webkit-transform: scale(0.8);
-        perspective: 1000px;
-        margin: 0;
-        }
-        
-        #EnvelopeFlip {
-        width: 100%;
-        transition: transform 2s ease;
-        position: relative;
-        cursor: pointer;
-        transform-style: preserve-3d;
-        }
-          
-        #ContentStack {
-        width: 100%;
-        transition: transform 2500ms ease;
-        position: relative;
-        transform-style: preserve-3d;
-        }        
-          
-        #EnvelopeFrontWrap, #EnvelopeContent {
-        backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        position: relative;
-        width: 100%;
-        }
-        
-        .text {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        font-family: 'Pinyon Script', cursive;
-        color: #113c25;
-        text-align: center;
-        font-size: 7vmin;
-        margin: 0;
-        }
-        
-        #EnvelopeBack {
-        backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        }
-        
-        #EnvelopeGroup {
-        position: relative;
-        width: 100%;
-        }
-        
-        #EnvelopeFold {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: auto;
-        }
-        
-        #EnvelopeSealWrap {
-        position: absolute;
-        top: 0;
-        left: 0;             
-        width: 100%;
-        height: 100%;
-        object-fit: none;
-        transform-origin: top center;
-        transition: transform 1500ms ease;
-        perspective: 1000px;
-        z-index:3;
-        }
-        
-        #EnvelopeSealWrap.opened {
-        transform: rotateX(-180deg);
-        -ms-transform: rotateX(-180deg);
-        -moz-transform: rotateX(-180deg);
-        -webkit-transform: rotateX(-180deg);
-        }
-          
-        .seal-img, .flap-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        transition: opacity 750ms ease-in-out;
-        opacity: 1;
-        z-index: 2;
-        }
-        
-        .seal-img.hidden {
-        opacity: 0;
-        }
-        
-        .flip, #EnvelopeBack {
-        transform: rotateY(180deg);
-        -ms-transform: rotateY(180deg);
-        -moz-transform: rotateY(180deg);
-        -webkit-transform: rotateY(180deg);
-        }
-        
-        .envContents {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit:cover;
-        }
-
-        .envContents2 {
-        width: 100%;
-        height: 100%;
-        display: block;
-        }
-        
-        .envContents2:nth-child(1) {
-        --n: 1;
-        --top-pos: -15%;
-        z-index: 5;
-        transform: rotateY(-90deg);
-        }
-        
-        .envContents2:nth-child(2) {
-        --n: 2;
-        --top-pos: -30%;
-        z-index: 4;
-        transform: rotateY(-90deg);
-        }
-        
-        .envContents2:nth-child(3) {
-        --n: 3;
-        --top-pos: -45%;
-        z-index: 3;
-        transform: rotateY(-90deg);
-        }
-
-        .envContents2:nth-child(4) {
-        --n: 4;
-        --top-pos: -60%;
-        z-index: 2;
-        transform: rotateY(-90deg);
-        }    
-
-        .envContents2:nth-child(5) {
-        --n: 5;
-        --top-pos: -75%;
-        z-index: 1;
-        }
-        
-        .slid {
-            animation: slideUp 500ms forwards;
-            animation-delay: calc((var(--n) - 1) * 0.5s);
-        }
-        
-        @keyframes slideUp {
-        to {
-            top: var(--top-pos);
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invite Animation</title>
+  <style>
+    @font-face {
+      font-family: 'Pinyon Script';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2');
+    }
+    @font-face {
+      font-family: 'Pinyon Script';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2');
+    }
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      text-align: center;
+    }
+    #EnvelopeContainer {
+      transform: scale(0.8);
+      perspective: 1000px;
+      margin: 0;
+    }
+    #EnvelopeFlip {
+      width: 100%;
+      transition: transform 2s ease;
+      position: relative;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+    #ContentStack {
+      width: 100%;
+      transition: transform 2500ms ease;
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    #EnvelopeFrontWrap, #EnvelopeContent {
+      backface-visibility: hidden;
+      position: relative;
+      width: 100%;
+    }
+    .text {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      font-family: 'Pinyon Script', cursive;
+      color: #113c25;
+      text-align: center;
+      font-size: 7vmin;
+      margin: 0;
+    }
+    #EnvelopeBack {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    #EnvelopeGroup {
+      position: relative;
+      width: 100%;
+    }
+    #EnvelopeFold {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: auto;
+      z-index: 2;
+    }
+    #EnvelopeSealWrap {
+      position: absolute;
+      top: 0;
+      left: 0;             
+      width: 100%;
+      height: 100%;
+      object-fit: none;
+      transform-origin: top center;
+      transition: transform 1500ms ease;
+      perspective: 1000px;
+      z-index: 3;
+    }
+    #EnvelopeSealWrap.opened {
+      transform: rotateX(-180deg);
+    }
+    .seal-img, .flap-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      transition: opacity 750ms ease-in-out;
+      opacity: 1;
+      z-index: 2;
+    }
+    .seal-img.hidden {
+      opacity: 0;
+    }
+    .flip, #EnvelopeBack {
+      transform: rotateY(180deg);
+    }
+    .envContents {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    #ContentsStack {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+    #EnvelopeContent {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .envContents2 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      object-fit: cover;
+      transition: none;
+    }
+    .envContents2:nth-child(1) {
+      --n: 1;
+      --top-pos: -15%;
+      z-index: 5;
+    }
+    .envContents2:nth-child(2) {
+      --n: 2;
+      --top-pos: -30%;
+      z-index: 4;
+    }
+    .envContents2:nth-child(3) {
+      --n: 3;
+      --top-pos: -45%;
+      z-index: 3;
+    }
+    .envContents2:nth-child(4) {
+      --n: 4;
+      --top-pos: -60%;
+      z-index: 2;
+    }
+    .envContents2:nth-child(5) {
+      --n: 5;
+      --top-pos: -75%;
+      z-index: 1;
+    }
+    .slid {
+      animation: slideUp 600ms forwards ease-out;
+      animation-delay: calc((var(--n) - 1) * 0.4s);
+    }
+    @keyframes slideUp {
+      to {
+        top: var(--top-pos);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title" style="color:white; font-family: Times New Roman, auto">STACKING IN PROGRESS!!!!!</h1>
+  <div id="EnvelopeContainer">
+    <div id="EnvelopeFlip">
+      <div id="EnvelopeFrontWrap">
+        <img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index:-1;">
+        <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
+        <p class="text" style="top: 50%; left: 50%; z-index: 3;">To our favourite people;</p>
+      </div>
+      <div id="EnvelopeBack">
+        <div id="EnvelopeSealWrap">
+          <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
+          <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" class="flap-img">          
+          <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
+          <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
+        </div>
+        <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
+        <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:-1">
+      </div>
+    </div>
+    <div id="ContentsStack" style="display:none">
+      <div id="EnvelopeContent">
+        <img id="Page1" src="../images/BG4.jpg" class="envContents2">
+        <img id="Page2" src="../images/GREYBG.jpg" class="envContents2">
+        <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents2">
+        <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
+        <img id="Page5" src="../images/FrontPage.png" class="envContents2">
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const images = document.querySelectorAll('#EnvelopeContainer img');
+      let loadedImages = 0;
+      function checkImagesLoaded() {
+        loadedImages++;
+        if (loadedImages === images.length) {
+          document.getElementById('EnvelopeContainer').style.display = 'block';
+          initAnimation();
         }
       }
-      </style>
-      
-      <h1 class="title" style="color:white; font-family: Times New Roman, auto">STACKING IN PROGRESS!!!!!</h1>
-      
-      <div id="EnvelopeContainer" style="display: block;">
-        <div id="EnvelopeFlip">
-          <div id="EnvelopeFrontWrap">
-            <img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index:-1;">
-            <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
-            <p class="text" style="top: 50%; left: 50%; z-index: 3;">To our favourite people;</p>
-          </div>
-          <div id="EnvelopeBack">
-            <div id="EnvelopeSealWrap">
-              <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" class="flap-img">          
-              <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
-              <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
-            </div>
-            <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold" style="z-index:2;">
-            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:-1">
-          </div>
-        </div>
-
-        <div id="ContentsStack" style="display:none">
-          <div id="EnvelopeContent">
-            <img id="Page1" src="../images/BG4.jpg" class="envContents2">
-            <img id="Page2" src="../images/GREYBG.jpg" class="envContents2">
-            <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents2;">
-            <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
-            <img id="Page5" src="../images/FrontPage.png" class="envContents2">
-          </div>
-        </div>
-      </div>
-      
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        const images = document.querySelectorAll('#EnvelopeContainer img');
-        let loadedImages = 0;
-
-        function checkImagesLoaded() {
-          loadedImages++;
-          if (loadedImages === images.length) {
-            document.getElementById('EnvelopeContainer').style.display = 'block';
-            initAnimation();
-          }
+      images.forEach(function(img) {
+        img.addEventListener('load', checkImagesLoaded);
+        if (img.complete) {
+          checkImagesLoaded();
         }
-
-        images.forEach(function(img) {
-          img.addEventListener('load', checkImagesLoaded);
-          if (img.complete) {
-            checkImagesLoaded();
-          }
-        });
-        
+      });
       function initAnimation () {
         const envelopeFlip = document.getElementById('EnvelopeFlip');
         const sealWrap = document.getElementById('EnvelopeSealWrap');
@@ -244,37 +234,30 @@
         const foldImg = document.getElementById('EnvelopeFold');
         const Content = document.getElementById('EnvelopeContent');
         const ContentsStack = document.getElementById('ContentsStack');
-
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
         const newSealImgHeight = foldHeight + sealHeight + 'px';
-  
         function animateEnvelope() {
           envelopeFlip.removeEventListener('click', animateEnvelope);
           envelopeFlip.removeEventListener('touchstart', animateEnvelope);
-  
           envelopeFlip.classList.add('flip');
-  
           envelopeFlip.addEventListener('transitionend', function() {
             sealWrap.classList.add('opened');
-            
-            sealNewImg.style.height = "newSealImgHeight";
-            sealOldImg.style.height = "newSealImgHeight";
+            sealNewImg.style.height = newSealImgHeight;
+            sealOldImg.style.height = newSealImgHeight;
             sealOldImg.classList.add('hidden');
             sealNewImg.classList.remove('hidden');
           });
-
           sealWrap.addEventListener('transitionend', function() {
-              ContentsStack.style.display = 'block';
-              Content.classList.add('slid');
+            ContentsStack.style.display = 'block';
+            const pages = Content.querySelectorAll('.envContents2');
+            pages.forEach(page => page.classList.add('slid'));
           });
         }
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
       }
-        });
-      </script>
-    </section>
-</body></html>
-
-
+    });
+  </script>
+</body>
+</html>
