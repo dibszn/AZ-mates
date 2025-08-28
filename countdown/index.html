@@ -12,6 +12,9 @@
         
         #EnvelopeContainer {
             transform: scale(0.7);
+            -ms-transform: scale(0.7);
+            -moz-transform: scale(0.7);
+            -webkit-transform: scale(0.7);
             perspective: 1000px;
             margin: 0;
         }
@@ -35,6 +38,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
             font-family: 'Pinyon Script', cursive;
             color: #113c25;
             z-index: 1000;
@@ -46,6 +52,9 @@
         #EnvelopeBack {
             backface-visibility: hidden;
             transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
             position: absolute;
             top: 0;
             left: 0;
@@ -58,6 +67,9 @@
             top: 20%;
             left: 50%;
             transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
             font-family: 'Pinyon Script', cursive;
             color: #113c25;
             z-index: 1000;
@@ -96,6 +108,9 @@
         
         #EnvelopeSealWrap.opened {
             transform: rotateX(-180deg);
+            -ms-transform: rotateX(-180deg);
+            -moz-transform: rotateX(-180deg);
+            -webkit-transform: rotateX(-180deg);
         }
         
         #EnvelopeSeal {
@@ -122,6 +137,10 @@
         }
         .flip {
             transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+            
         }
         
         #EnvelopContent {
@@ -143,12 +162,11 @@
             object-fit:cover;
             transition: transform 2s ease, opacity 2s ease;
             transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -webkit-transform: rotateY(-180deg);
             opacity: 1;
             animation: slideUp 0.5s ease-out forwards;
-            -webkit-transform: rotateY(-180deg);
-            -webkit-transition: transform 2s ease, opacity 2s ease;
-            -moz-transition: transform 2s ease, opacity 2s ease;
-            -webkit-transition: transform 2s ease, opacity 2s ease;
         }
         
         .envContents:nth-child(1) {
@@ -273,6 +291,7 @@
 </script>
     </section>
 </body></html>
+
 
 
 
