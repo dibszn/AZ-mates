@@ -18,10 +18,10 @@
             -webkit-transform: scale(0.7);
             perspective: 1000px;
             margin: 0;
+            transform-style: preserve-3d;
         }
         #EnvelopeFlip {
             width: 100%;
-            transform-style: preserve-3d;
             transition: transform 2s ease;
             position: relative;
             cursor: pointer;
@@ -29,6 +29,9 @@
         
         #EnvelopeFrontWrap {
             backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             position: relative;
             width: 100%;
             z-index: 1000;
@@ -52,6 +55,9 @@
         
         #EnvelopeBack {
             backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             transform: rotateY(180deg);
             -ms-transform: rotateY(180deg);
             -moz-transform: rotateY(180deg);
@@ -146,11 +152,14 @@
         
         #EnvelopContent {
             width: 95%;
-            transform-style: preserve-3d;
             transition: transform 2s ease;
             position: relative;
             cursor: pointer;
             z-index: 0;
+            backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
         
         .envContents { 
@@ -162,10 +171,6 @@
             display: block;
             object-fit:cover;
             transition: transform 2s ease, opacity 2s ease;
-            transform: rotateY(-180deg);
-            -ms-transform: rotateY(-180deg);
-            -moz-transform: rotateY(-180deg);
-            -webkit-transform: rotateY(-180deg);
             opacity: 1;
             animation: slideUp 0.5s ease-out forwards;
         }
@@ -271,9 +276,9 @@
     
         envelopeFlip.classList.add('flip');
     
-        setTimeout(function() {
+        /* setTimeout(function() {
           envContent.insertBefore(lastChild, firstChild);
-        }, 500); 
+        }, 500); */
     
         setTimeout(() => {
           sealWrap.classList.add('opened');
@@ -292,8 +297,3 @@
 </script>
     </section>
 </body></html>
-
-
-
-
-
