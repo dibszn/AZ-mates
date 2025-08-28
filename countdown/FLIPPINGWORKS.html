@@ -1,219 +1,261 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invite Animation</title>
-  <style>
-    @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
-    @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOvaOrbh.woff2) format('woff2'); }
-    @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
-
-#EnvelopeContainer {
-  max-width: 90%;
-  perspective: 1000px;
-  margin: 0;
-}
-
-#EnvelopeFlip {
-  width: 100%;
-  transform-style: preserve-3d;
-  transition: transform 2s ease;
-  position: relative;
-  cursor: pointer;
-}
-
-#EnvelopeFrontWrap {
-  backface-visibility: hidden;
-  position: relative;
-}
-
-.front-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Pinyon Script', cursive;
-  color: black;
-  z-index: 1000;
-  text-align: center;
-  font-size: 4vmin;
-  margin: 0;
-}
-
-#EnvelopeBack {
-  backface-visibility: hidden;
-  transform: rotateY(180deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.back-text {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Pinyon Script', cursive;
-  color: #113c25;
-  z-index: 1000;
-  text-align: center;
-  font-size: 4vmin;
-  margin: 0;
-}
-
-#EnvelopeGroup {
-  position: relative;
-  width: 100%;
-  display:flex; 
-  align-items:flex-end
-}
-
-#EnvelopeFold {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: auto;
-  z-index: 1;
-}
-
-#EnvelopeSealWrap {
-  position: absolute;
-  top: 0;
-  left: 0;             
-  width: 100%;
-  height: 100%;
-  object-fit: none;
-  transform-origin: top center;
-  transition: transform 1500ms ease; 
-  z-index: 3;
-  perspective: 1000px;
-}
-
-#EnvelopeSealWrap.opened {
-  transform: rotateX(-120deg);
-}
-
-#EnvelopeSeal {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.seal-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  transition: opacity 750ms ease-in-out;
-  opacity: 1;
-  z-index: 1;
-}
-    
-.seal-img.hidden {
-  opacity: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-    
-
-#EnvelopeFlap {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-#EnvelopeFlapWrap {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  transform-origin: top center;
-  transition: transform 1500ms ease;
-}
-
-.flip {
-  transform: rotateY(180deg);
-}
-
-.flap-open {
-  transform: rotateX(-120deg);
-}
-
-  </style>
-</head>
-<body>
-  <section style="width:100vw; height:100vh; display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
-    <h1 class="title" style="color:white; font-family: Times New Roman, auto">JANGAN SENTUH PSLPLSPSLPSL</h1>
-
-    <div id="EnvelopeContainer">
-      <div id="EnvelopeFlip">
-
+    <section style="width:100vw;  display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
+      <style>
+        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOraOrbh.woff2) format('woff2'); }
+        @font-face { font-family: 'Pinyon Script'; font-style: normal; font-weight: 400; font-display: swap; src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2'); }
         
-        <div id="EnvelopeFrontWrap">
-          <img src="../images/EnvelopeMaterials/EnvelopeFront.png" alt="Envelope Front" id="EnvelopeFront"> 
-          <p class="front-text">To our favourite people;</p>
-        </div> 
-
+        #EnvelopeContainer {
+        transform: scale(0.8);
+        -ms-transform: scale(0.8);
+        -moz-transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+        perspective: 1000px;
+        margin: 0;
+        }
         
-        <div id="EnvelopeBack">
+        #EnvelopeFlip {
+        width: 100%;
+        transition: transform 2s ease;
+        position: relative;
+        cursor: pointer;
+        transform-style: preserve-3d;
+        }
+        
+        #EnvelopeFrontWrap {
+        backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        position: relative;
+        width: 100%;
+        z-index: 1000;
+        }
+        
+        .text {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        font-family: 'Pinyon Script', cursive;
+        color: #113c25;
+        z-index: 1000;
+        text-align: center;
+        font-size: 7vmin;
+        margin: 0;
+        }
+        
+        #EnvelopeBack {
+        backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        }
+        
+        #EnvelopeGroup {
+        position: relative;
+        width: 100%;
+        }
+        
+        #EnvelopeFold {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: auto;
+        }
+        
+        #EnvelopeSealWrap {
+        position: absolute;
+        top: 0;
+        left: 0;             
+        width: 100%;
+        height: 100%;
+        object-fit: none;
+        transform-origin: top center;
+        transition: transform 1500ms ease;
+        perspective: 1000px;
+        z-index:3;
+        }
+        
+        #EnvelopeSealWrap.opened {
+        transform: rotateX(-180deg);
+        -ms-transform: rotateX(-180deg);
+        -moz-transform: rotateX(-180deg);
+        -webkit-transform: rotateX(-180deg);
+        }
+        .seal-img, .flap-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: opacity 750ms ease-in-out;
+        opacity: 1;
+        z-index: 2;
+        }
+        
+        .seal-img.hidden {
+        opacity: 0;
+        }
+        
+        .flip, #EnvelopeBack {
+        transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        }
+        
+        .envContents {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit:cover;
+        }
+        
+        .envContents.slid:nth-child(1) {
+        --n: 1;
+        --top-pos: -15%;
+        z-index: 5;
+        }
+        
+        .envContents.slid:nth-child(2) {
+        --n: 2;
+        --top-pos: -30%;
+        z-index: 4;
+        }
+        
+        .envContents.slid:nth-child(3) {
+        --n: 3;
+        --top-pos: -45%;
+        z-index: 3;
+        }
+
+         .envContents.slid:nth-child(4) {
+        --n: 4;
+        --top-pos: -60%;
+        z-index: 2;
+        }    
+
+        .envContents.slid:nth-child(5) {
+        --n: 5;
+        --top-pos: -75%;
+        z-index: 1;
+        }
+        
+        .envContents.slid:nth-child(n) {
+        animation-delay: calc((var(--n) - 1) * 0.5s);
+        }        
+        
+        @keyframes slideUp {
+        to {
+        top: var(--top-pos);
+        }
+      }
+      </style>
+      
+      <h1 class="title" style="color:white; font-family: Times New Roman, auto">STACKING IN PROGRESS!!!!!</h1>
+      
+      <div id="EnvelopeContainer" style="display: block;">
+        <div id="EnvelopeFlip">
+          <div id="EnvelopeFrontWrap">
+            <img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index:-1;">
+            <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
+            <p class="text" style="top: 50%; left: 50%; z-index: 3;">To our favourite people;</p>
+          </div>
+          <div id="EnvelopeBack">
             <div id="EnvelopeSealWrap">
-              <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png" />
-              <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png" />
-              <p class="back-text">You're invited!</p>
+              <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
+              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" class="flap-img">          
+              <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
+              <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
             </div>
-
-            
-            <div id="EnvelopeFlapWrap">
-              <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" id="EnvelopeFlap">
-            </div>
-
-            
-            <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
+            <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold" style="z-index:2;">
+            <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index:-1">
+          </div>
         </div>
 
+        <div id="ContentsStack">
+          <div id="EnvelopeContent">
+            <img id="Page1" src="../images/FrontPage.png" class="envContents:nth-child(1)">
+            <img id="Page2" src="../images/LILYBG.jpg" class="envContents:nth-child(2)">
+            <img id="Page3" src="../images/GREYBG.jpg" class="envContents:nth-child(3)">
+            <img id="Page4" src="../images/QUOTEBG.jpg" class="envContents:nth-child(4)">
+            <img id="Page5" src="../images/SPACEBETWEEN.jpg" class="envContents:nth-child(5)">
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('#EnvelopeContainer img');
+        let loadedImages = 0;
 
-  <script>    
-const envelopeFlip = document.getElementById('EnvelopeFlip');
-const flapWrap = document.getElementById('EnvelopeFlapWrap');
-const sealWrap = document.getElementById('EnvelopeSealWrap');
-const sealOldImg = document.getElementById('EnvelopeSealOld');
-const sealNewImg = document.getElementById('EnvelopeSealNew');
-const foldImg = document.getElementById('EnvelopeFold');
+        function checkImagesLoaded() {
+          loadedImages++;
+          if (loadedImages === images.length) {
+            document.getElementById('EnvelopeContainer').style.display = 'block';
+            initAnimation();
+          }
+        }
 
-const foldHeight = foldImg.offsetHeight;
-const sealHeight = sealOldImg.offsetHeight;
-const newSealImgHeight = (foldHeight + sealHeight) + 'px';
-    
-function animateEnvelope() {
-  envelopeFlip.removeEventListener('click', animateEnvelope);
-  envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+        images.forEach(function(img) {
+          img.addEventListener('load', checkImagesLoaded);
+          if (img.complete) {
+            checkImagesLoaded();
+          }
+        });
+        
+      function initAnimation () {
+        const envelopeFlip = document.getElementById('EnvelopeFlip');
+        const sealWrap = document.getElementById('EnvelopeSealWrap');
+        const sealOldImg = document.getElementById('EnvelopeSealOld');
+        const sealNewImg = document.getElementById('EnvelopeSealNew');
+        const foldImg = document.getElementById('EnvelopeFold');
 
-  envelopeFlip.classList.add('flip');
-setTimeout(() => {
-  flapWrap.classList.add('flap-open');
-  sealWrap.classList.add('opened');
+        const foldHeight = foldImg.offsetHeight;
+        const sealHeight = sealOldImg.offsetHeight;
+        const newSealImgHeight = foldHeight + sealHeight + 'px';
+  
+        function animateEnvelope() {
+          envelopeFlip.removeEventListener('click', animateEnvelope);
+          envelopeFlip.removeEventListener('touchstart', animateEnvelope);
+  
+          envelopeFlip.classList.add('flip');
+  
+          envelopeFlip.addEventListener('transitionend', function() {
+            sealWrap.classList.add('opened');
+            
+            sealNewImg.style.height = "newSealImgHeight";
+            sealOldImg.style.height = "newSealImgHeight";
+            sealOldImg.classList.add('hidden');
+            sealNewImg.classList.remove('hidden');
+          });
 
-  sealNewImg.style.height = "newSealImgHeight";
-  sealOldImg.style.height = "newSealImgHeight";
-  sealOldImg.classList.add('hidden');
-  sealNewImg.classList.remove('hidden');
+          sealWrap.addEventListener('transitionend', function() {
+            let Page1 = document.querySelectorAll('#Page1');
+            let Page2 = document.querySelectorAll('#Page2');
+            let Page3 = document.querySelectorAll('#Page3');
+            let Page4 = document.querySelectorAll('#Page4');
+            let Page5 = document.querySelectorAll('#Page5');
 
-}, 2000);
-}
-
-envelopeFlip.addEventListener('click', animateEnvelope);
-envelopeFlip.addEventListener('touchstart', animateEnvelope);
-
-  </script>
-</body></html>
-
-
-
-
-
-
+            Page1.classList.add('slid');
+            Page2.classList.add('slid');
+            Page3.classList.add('slid');
+            Page4.classList.add('slid');
+            Page5.classList.add('slid');
+          });
+        }
+        envelopeFlip.addEventListener('click', animateEnvelope);
+        envelopeFlip.addEventListener('touchstart', animateEnvelope);
+      }
+        });
+      </script>
+    </section>
