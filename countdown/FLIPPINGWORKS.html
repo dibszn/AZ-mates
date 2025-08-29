@@ -122,7 +122,7 @@ object-fit: none;
     }
     .envContents2 {
       width: 100%;
-      height: auto;
+      height: 100%;
       position: absolute;
       left: 0;
       bottom: 0;
@@ -133,34 +133,29 @@ object-fit: none;
         --n: 1;
         --top-pos: -15%;
         z-index: 5;
-    transform: rotateY(-90deg);
         }
         
         .envContents2:nth-child(2) {
         --n: 2;
         --top-pos: -30%;
         z-index: 4;
- transform: rotateY(-90deg);
         }
         
         .envContents2:nth-child(3) {
         --n: 3;
         --top-pos: -45%;
         z-index: 3;
- transform: rotateY(-90deg);
         }
         .envContents2:nth-child(4) {
         --n: 4;
         --top-pos: -30%;
         z-index: 2;
- transform: rotateY(-90deg);
         }
         
         .envContents2:nth-child(5) {
         --n: 5;
         --top-pos: -45%;
         z-index: 1;
- transform: rotateY(-90deg);
         }
 
 .slid {
@@ -170,7 +165,8 @@ object-fit: none;
     @keyframes slideUp {
       from { transform: translateY(0); }
       to   { transform: translateY(--top-pos); }
-    }</style>
+    }
+  </style>
 </head>
 <body>
   <section style="width:100vw;  display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
@@ -198,10 +194,10 @@ object-fit: none;
     <div id="ContentsStack">
       <div id="EnvelopeContent">
         <img id="Page1" src="../images/BG4.jpg" class="envContents2">
-        <img id="Page2" src="../images/GREYBG.jpg" class="envContents2">
-        <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents2 ">
+        <img id="Page2" src="../images/image_1.jpg" class="envContents2">
+        <img id="Page3" src="../images/BG1.jpg" class="envContents2 ">
         <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
-        <img id="Page5" src="../images/FrontPage.png" class="envContents2">
+        <img id="Page5" src="../images/SPACEBETWEENEXT.png" class="envContents2">
       </div>
     </div>
   </div>
