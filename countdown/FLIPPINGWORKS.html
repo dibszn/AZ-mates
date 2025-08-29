@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,34 +129,34 @@ object-fit: none;
       object-fit: cover;
     }
 
-        .envContents.after:nth-child(1) {
+        .envContents2:nth-child(1) {
         --n: 1;
         --top-pos: -15%;
         z-index: 5;
     transform: rotateY(-90deg);
         }
         
-        .envContents.after:nth-child(2) {
+        .envContents2:nth-child(2) {
         --n: 2;
         --top-pos: -30%;
         z-index: 4;
  transform: rotateY(-90deg);
         }
         
-        .envContents.after:nth-child(3) {
+        .envContents2:nth-child(3) {
         --n: 3;
         --top-pos: -45%;
         z-index: 3;
  transform: rotateY(-90deg);
         }
-        .envContents.after:nth-child(4) {
+        .envContents2:nth-child(4) {
         --n: 4;
         --top-pos: -30%;
         z-index: 2;
  transform: rotateY(-90deg);
         }
         
-        .envContents.after:nth-child(5) {
+        .envContents2:nth-child(5) {
         --n: 5;
         --top-pos: -45%;
         z-index: 1;
@@ -176,33 +175,33 @@ object-fit: none;
 <body>
   <section style="width:100vw;  display:flex; flex-direction: column; align-items:center; justify-content:space-around; text-align:center; background-color:black">
     <h1 class="title" style="color:white; font-family: Times New Roman, auto">STACKING IN PROGRESS!!!!!</h1>
-  <div id="EnvelopeContainer" style="display: block;">
-    <div id="EnvelopeFlip" class="flip">
+  <div id="EnvelopeContainer">
+    <div id="EnvelopeFlip">
       <div id="EnvelopeFrontWrap">
-        <img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index: -1; display: none;">
+        <img id="FrontPage" src="../images/FrontPage.png" class="envContents" style="z-index: -1;">
         <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display: block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
         <p class="text" style="top: 50%; left: 50%; z-index: 3;">To our favourite people;</p>
       </div>
       <div id="EnvelopeBack">
-        <div id="EnvelopeSealWrap" class="opened">
-          <img id="EnvelopeSealOld" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
+        <div id="EnvelopeSealWrap">
+          <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
           <img src="../images/EnvelopeMaterials/EnvelopeBackFlapMask.png" style="z-index:0" class="flap-img">          
-          <img id="EnvelopeSealNew" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
+          <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
           <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
         </div>
         <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
-        <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index: -1; display: none;">
+        <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index: -1;">
       </div>
     </div>
 
-    <!-- stack goes right under the fold -->
-    <div id="ContentsStack" style="display: block;">
+    
+    <div id="ContentsStack">
       <div id="EnvelopeContent">
-        <img id="Page1" src="../images/BG4.jpg" class="envContents2 slid" style="--n: 1;">
-        <img id="Page2" src="../images/GREYBG.jpg" class="envContents2 slid" style="--n: 2;">
-        <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents2 slid" style="--n: 3;">
-        <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2 slid" style="--n: 4;">
-        <img id="Page5" src="../images/FrontPage.png" class="envContents2 slid" style="--n: 5;">
+        <img id="Page1" src="../images/BG4.jpg" class="envContents2">
+        <img id="Page2" src="../images/GREYBG.jpg" class="envContents2">
+        <img id="Page3" src="../images/QUOTEBG.jpg" class="envContents2 ">
+        <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
+        <img id="Page5" src="../images/FrontPage.png" class="envContents2">
       </div>
     </div>
   </div>
