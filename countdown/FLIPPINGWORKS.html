@@ -113,12 +113,13 @@ object-fit: none;
       bottom: 0; 
       left: 0;
       width: 100%;
+      height: 100%;
       display: none;
     }
     #EnvelopeContent {
       position: relative;
       width: 100%;
-      height: auto;
+      height: 100%;
     }
     .envContents2 {
       width: 100%;
@@ -185,19 +186,17 @@ object-fit: none;
           <img id="EnvelopeSealNew" class="seal-img hidden" src="../images/EnvelopeMaterials/EnvelopeBackFlapOpen.png">
           <p class="text" style="top: 20%; left: 50%; z-index: 3">You're invited!</p>
         </div>
+        <div id="ContentsStack">
+          <div id="EnvelopeContent">
+            <img id="Page1" src="../images/BG4.jpg" class="envContents2">
+            <img id="Page2" src="../images/image_1.jpg" class="envContents2">
+            <img id="Page3" src="../images/BG1.jpg" class="envContents2 ">
+            <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
+            <img id="Page5" src="../images/SPACEBETWEENEXT.png" class="envContents2">
+          </div>
+        </div>
         <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
         <img id="ThirdPage" src="../images/BG4.jpg" class="envContents" style="z-index: -1;">
-      </div>
-    </div>
-
-    
-    <div id="ContentsStack">
-      <div id="EnvelopeContent">
-        <img id="Page1" src="../images/BG4.jpg" class="envContents2">
-        <img id="Page2" src="../images/image_1.jpg" class="envContents2">
-        <img id="Page3" src="../images/BG1.jpg" class="envContents2 ">
-        <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
-        <img id="Page5" src="../images/SPACEBETWEENEXT.png" class="envContents2">
       </div>
     </div>
   </div>
@@ -247,8 +246,11 @@ object-fit: none;
 
           sealWrap.addEventListener('transitionend', function() {
             ContentsStack.style.display = 'block';
+            document.getElementById('EnvelopeFrontWrap').style.display = 'none';
             FirstPage.style.display = 'none';
+            FirstPage.style.zIndex = '';
             ThirdPage.style.display = 'none';
+            ThirdPage.style.zIndex = '';
             const pages = Content.querySelectorAll('.envContents2');
             pages.forEach((page, i) => {
               page.style.setProperty("--n", i+1);
