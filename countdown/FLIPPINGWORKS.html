@@ -244,20 +244,6 @@ object-fit: none;
             sealOldImg.classList.add('hidden');
             sealNewImg.classList.remove('hidden');
           }, { once: true });
-
-          sealWrap.addEventListener('transitionend', function() {
-            ContentsStack.style.display = 'block';
-            document.getElementById('EnvelopeFrontWrap').style.display = 'none';
-            FirstPage.style.display = 'none';
-            FirstPage.style.zIndex = '';
-            ThirdPage.style.display = 'none';
-            ThirdPage.style.zIndex = '';
-            const pages = Content.querySelectorAll('.envContents2');
-            pages.forEach((page, i) => {
-              page.style.setProperty("--n", i+1);
-              page.classList.add('slid');
-            });
-          }, { once: true });
         }
 
         envelopeFlip.addEventListener('click', animateEnvelope);
