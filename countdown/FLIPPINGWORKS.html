@@ -21,7 +21,6 @@
       src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2');
     }
 
-    /* Container */
     #EnvelopeContainer {
       transform: scale(0.8);
       perspective: 1000px;
@@ -140,8 +139,6 @@
       bottom: 0;
       object-fit: cover;
     }
-
-    /* Assign stacking + positions */
     .envContents2:nth-child(1) {
       --n: 1;
       --top-pos: -5%;
@@ -168,13 +165,11 @@
       z-index: 1;
     }
 
-    /* Animation trigger */
     .slid {
       animation: slideUp 800ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
 
-    /* Keyframes */
     @keyframes slideUp {
       from {
         transform: translateY(0);
@@ -191,14 +186,12 @@
 
     <div id="EnvelopeContainer">
       <div id="EnvelopeFlip">
-        <!-- Front -->
         <div id="EnvelopeFrontWrap">
           <img id="FrontPage" src="../images/PostcardFront.png" class="envContents" style="z-index: -1;">
           <img src="../images/EnvelopeMaterials/EnvelopeFront.png" style="width:100%; height:100%; display:block; z-index:2;" alt="Envelope Front" id="EnvelopeFront"> 
           <p class="text" style="top:50%; left:50%; z-index:3;">To our favourite people;</p>
         </div>
 
-        <!-- Back -->
         <div id="EnvelopeBack">
           <div id="EnvelopeSealWrap">
             <img id="EnvelopeSealOld" class="seal-img" src="../images/EnvelopeMaterials/EnvelopeBackPlain.png">
@@ -218,7 +211,7 @@
           </div>
 
           <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
-          <img id="ThirdPage" src="../images/PostcardBack.jpg" class="envContents" style="z-index:-1;">
+          <img id="ThirdPage" src="../images/PostcardBack.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
     </div>
@@ -259,7 +252,6 @@ function animateEnvelope() {
   envelopeFlip.removeEventListener('touchstart', animateEnvelope);
   envelopeFlip.classList.add('flip');
 
-  // First transition on envelope flip
   envelopeFlip.addEventListener('transitionend', function() {
     sealWrap.classList.add('opened');
     sealNewImg.style.height = "newSealImgHeight";
@@ -268,7 +260,6 @@ function animateEnvelope() {
     sealNewImg.classList.remove('hidden');
   }, { once: true });
 
-  // Second transition on seal wrap
   sealWrap.addEventListener('transitionend', function() {
     document.getElementById("ThirdPage").style.display = 'none';
     document.getElementById("EnvelopeFold").style.zIndex = '1000';
