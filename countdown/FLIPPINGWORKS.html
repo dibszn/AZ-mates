@@ -176,11 +176,14 @@
 
     /* Keyframes */
     @keyframes slideUp {
-      from {
+      0% {
         transform: translateY(0);
       }
-      to {
+      50% {
         transform: translateY(var(--top-pos));
+      }
+      100% {
+        transform: translateY(-400px) rotate(0deg) scale(1.5);
       }
     }
     @keyframes pullout {
@@ -289,13 +292,6 @@ function animateEnvelope() {
     ContentsStack.style.display = "block";
     document.querySelectorAll('.envContents2').forEach(img => {
       img.classList.add('slid');
-    });
-
-    // Wait for .envContents2 elements to finish sliding
-    document.querySelectorAll('.envContents2').forEach(img => {
-      img.addEventListener('transitionend', function() {
-        img.classList.add('pullout');
-      }, { once: true });
     });
   }, { once: true });
 }
