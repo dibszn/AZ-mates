@@ -264,8 +264,8 @@
             sealNewImg.style.height = "newSealImgHeight";
             sealOldImg.style.height = "newSealImgHeight";
             sealOldImg.classList.add('hidden');
-            sealNewImg.classList.remove('hidden');
-
+            sealNewImg.classList.remove('hidden'); }
+          sealWrap.addEventListener('transitionend', function() {
             document.getElementById("ThirdPage").style.display = 'none';
             document.getElementById("EnvelopeFold").style.zIndex = '1000';
             document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
