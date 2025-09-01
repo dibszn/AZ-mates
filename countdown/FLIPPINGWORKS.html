@@ -144,38 +144,33 @@
     /* Assign stacking + positions */
     .envContents2:nth-child(1) {
       --n: 1;
-      --x: -5%
       --top-pos: -5%;
       z-index: 5;
     }
     .envContents2:nth-child(2) {
       --n: 2;
-       --x: -15%
       --top-pos: -10%;
       z-index: 4;
     }
     .envContents2:nth-child(3) {
       --n: 3;
-       --x: -25%
       --top-pos: -15%;
       z-index: 3;
     }
     .envContents2:nth-child(4) {
       --n: 4;
-       --x: -35%
       --top-pos: -20%;
       z-index: 2;
     }
     .envContents2:nth-child(5) {
       --n: 5;
-       --x: -45%
       --top-pos: -25%;
       z-index: 1;
     }
 
     /* Animation trigger */
     .slid {
-      animation: slideUp 3s forwards ease-out;
+      animation: slideUp 800ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
 
@@ -184,8 +179,11 @@
       0% {
         transform: translateY(0);
       }
-      100% {
+      50% {
         transform: translateY(var(--top-pos));
+      }
+      100% {
+        transform: translateY(-400px) rotate(-90deg) scale(0.7);
       }
     }
   </style>
