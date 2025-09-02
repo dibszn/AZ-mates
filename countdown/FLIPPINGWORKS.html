@@ -51,7 +51,7 @@
       font-family: 'Pinyon Script', cursive;
       color: #113c25;
       text-align: center;
-      font-size: 7vmin;
+      font-size: 5vmin;
       margin: 0;
     }
 
@@ -254,7 +254,7 @@
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
         const ContentsStack = document.getElementById('ContentsStack');
-        const envContent2 = document.querySelectorAll('.envContents2');
+        const envContents2 = document.querySelectorAll('.envContents2');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -284,7 +284,8 @@ function animateEnvelope() {
     });
   }, { once: true });
   
-  envContents.addEventListener('transitionend', function() {
+  envContents2.addEventListener('transitionend', function() {
+    envContents2.style.zIndex = '1000';
     envContents2.forEach(img => {
       img.classList.add('down');
     });
