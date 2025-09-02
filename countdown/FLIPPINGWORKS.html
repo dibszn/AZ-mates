@@ -178,19 +178,17 @@
     }
 
     @keyframes slideUp {
-      to {
+      0% {
         transform: translateY(0);
       }
-      from {
+      25% {
         transform: translateY(var(--top-pos));
       }
-    }
-    @keyframes slideDown {
-      to {
-        transform: translateY(0);
+      50% {
+        transform: translateY(-400px) rotate(-90deg) scale(0.6);
       }
-      from {
-        transform: translateY(100%);
+      100% {
+        transform: translateX(var(--x)) translateY(200px) rotate(-90deg) scale(0.6);
       }
     }
   </style>
@@ -284,12 +282,6 @@ function animateEnvelope() {
     });
   }, { once: true });
   
-  envContents2.addEventListener('transitionend', function() {
-    envContents2.style.zIndex = '1000';
-    envContents2.forEach(img => {
-      img.classList.add('down');
-    });
-  }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
