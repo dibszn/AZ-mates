@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
   <style>
-    /* Font */
     @font-face {
       font-family: 'Pinyon Script';
       font-style: normal;
@@ -169,6 +168,9 @@
       animation: slideUp 800ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
+    .goDown {
+      animation: slideDown 800ms forwards ease-out;
+    }
 
     @keyframes slideUp {
       from {
@@ -177,6 +179,14 @@
       to {
         transform: translateY(var(--top-pos));
       }
+    @keyframes slideDown {
+      from {
+    transform: translateY(0);
+  }
+      to {
+    transform: translateY(-100%);
+  }
+}
     }
   </style>
 </head>
@@ -200,7 +210,7 @@
             <p class="text" style="top:20%; left:50%; z-index:3;">You're invited!</p>
           </div>
 
-          <div id="ContentsStack">
+          /* <div id="ContentsStack">
             <div id="EnvelopeContent">
               <img id="Page1" src="../images/BG4.jpg" class="envContents2">
               <img id="Page2" src="../images/image_1.jpg" class="envContents2">
@@ -208,7 +218,7 @@
               <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
               <img id="Page5" src="../images/SPACEBETWEENEXT.png" class="envContents2">
             </div>
-          </div>
+          </div> */
 
           <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
           <img id="ThirdPage" src="../images/PostcardBack.png" class="envContents" style="z-index:-1;">
@@ -259,14 +269,17 @@ function animateEnvelope() {
   }, { once: true });
 
   sealWrap.addEventListener('transitionend', function() {
-    document.getElementById("ThirdPage").style.display = 'none';
     document.getElementById("EnvelopeFold").style.zIndex = '1000';
     document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
-
-    ContentsStack.style.display = "block";
+    document.getElementById("ThirdPage").classList.add = 'slid';
+    /* ContentsStack.style.display = "block";
     document.querySelectorAll('.envContents2').forEach(img => {
       img.classList.add('slid');
-    });
+    }); */
+  }, { once: true });
+
+  document.getElementById("ThirdPage").addEventListener('transitionend', function() {
+    document.getElementById("ThirdPage").classList.add = 'goDown';
   }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
