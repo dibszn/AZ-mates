@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
   <style>
+    /* Font */
     @font-face {
       font-family: 'Pinyon Script';
       font-style: normal;
@@ -20,6 +21,7 @@
       src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2');
     }
 
+    /* Container */
     #EnvelopeContainer {
       transform: scale(0.8);
       perspective: 1000px;
@@ -49,7 +51,7 @@
       font-family: 'Pinyon Script', cursive;
       color: #113c25;
       text-align: center;
-      font-size: 5vmin;
+      font-size: 7vmin;
       margin: 0;
     }
 
@@ -138,6 +140,8 @@
       bottom: 0;
       object-fit: cover;
     }
+
+    /* Assign stacking + positions */
     .envContents2:nth-child(1) {
       --n: 1;
       --top-pos: -5%;
@@ -165,11 +169,8 @@
     }
 
     .slid {
-      animation: slideUp 1500ms forwards ease-out;
+      animation: slideUp 800ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
-    }
-    .goDown {
-      animation: slideDown 800ms forwards ease-out;
     }
 
     @keyframes slideUp {
@@ -180,17 +181,8 @@
         transform: translateY(var(--top-pos));
       }
       100% {
-        transform: translateY(-400px) rotate(-90deg) scale(0.7);
+        transform: translateY(70%);
       }
-    }
-    @keyframes slideDown {
-      from {
-    transform: translateY(0);
-  }
-      to {
-    transform: translateY(-100%);
-  }
-}
     }
   </style>
 </head>
@@ -214,12 +206,21 @@
             <p class="text" style="top:20%; left:50%; z-index:3;">You're invited!</p>
           </div>
 
+          <div id="ContentsStack">
+            <div id="EnvelopeContent">
+              <img id="Page1" src="../images/PostcardBack.png" class="envContents2">
+              <img id="Page2" src="../images/image_1.jpg" class="envContents2">
+            </div>
+          </div>
+
           <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
           <img id="ThirdPage" src="../images/PostcardBack.png" class="envContents" style="z-index:-1;">
         </div>
       </div>
     </div>
-      <script>
+  </section>
+
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const images = document.querySelectorAll('#EnvelopeContainer img');
       let loadedImages = 0;
@@ -243,7 +244,7 @@
         const sealOldImg = document.getElementById('EnvelopeSealOld');
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
-        const ThirdImg = document.getElementById("ThirdPage");
+        const ContentsStack = document.getElementById('ContentsStack');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -263,17 +264,20 @@ function animateEnvelope() {
   }, { once: true });
 
   sealWrap.addEventListener('transitionend', function() {
+    document.getElementById("ThirdPage").style.display = 'none';
     document.getElementById("EnvelopeFold").style.zIndex = '1000';
     document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
-    ThirdImg.classList.add = 'slid';
-  }, { once: true });
 
+    ContentsStack.style.display = "block";
+    document.querySelectorAll('.envContents2').forEach(img => {
+      img.classList.add('slid');
+    });
+  }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
       }
     });
   </script>
-  </section>
 </body>
 </html>
