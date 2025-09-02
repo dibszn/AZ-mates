@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invite Animation</title>
   <style>
-    /* Font */
     @font-face {
       font-family: 'Pinyon Script';
       font-style: normal;
@@ -21,7 +20,6 @@
       src: url(https://fonts.gstatic.com/s/pinyonscript/v23/6xKpdSJbL9-e9LuoeQiDRQR8WOXaOg.woff2) format('woff2');
     }
 
-    /* Container */
     #EnvelopeContainer {
       transform: scale(0.8);
       perspective: 1000px;
@@ -140,8 +138,6 @@
       bottom: 0;
       object-fit: cover;
     }
-
-    /* Assign stacking + positions */
     .envContents2:nth-child(1) {
       --n: 1;
       --top-pos: -5%;
@@ -169,28 +165,31 @@
     }
 
     .slid {
-      animation: slideUp 800ms forwards ease-out;
+      animation: slideUp 1500ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .down {
-      animation: slideDown 800ms forwards ease-out;
+      animation: slideDown 1500ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
 
     @keyframes slideUp {
-      0% {
+      from {
         transform: translateY(0);
       }
-      25% {
+      to {
         transform: translateY(var(--top-pos));
       }
-      50% {
-        transform: translateY(-400px) rotate(-90deg) scale(0.6);
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateY(0);
       }
-      100% {
-        transform: translateX(var(--x)) translateY(200px) rotate(-90deg) scale(0.6);
+      to {
+        transform: translateY(100%);
       }
     }
+    
   </style>
 </head>
 <body>
@@ -252,7 +251,7 @@
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
         const ContentsStack = document.getElementById('ContentsStack');
-        const envContents2 = document.querySelectorAll('.envContents2');
+        const Page2 = document.getElementById('Page2');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -281,6 +280,13 @@ function animateEnvelope() {
       img.classList.add('slid');
     });
   }, { once: true });
+  
+    Page2.addEventListener('animationend', function() {
+      envContents2.forEach(img => {
+        img.style.zIndex = '1000';
+        img.classList.add('down');
+      });
+    }, { once: true });
   
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
