@@ -165,7 +165,7 @@
     }
 
     .slid {
-      animation: slideUp 800ms forwards ease-out;
+      animation: slideUp 1500ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .goDown {
@@ -173,12 +173,16 @@
     }
 
     @keyframes slideUp {
-      from {
+      0% {
         transform: translateY(0);
       }
-      to {
+      50% {
         transform: translateY(var(--top-pos));
       }
+      100% {
+        transform: translateY(-400px) rotate(-90deg) scale(0.7);
+      }
+    }
     @keyframes slideDown {
       from {
     transform: translateY(0);
@@ -264,9 +268,6 @@ function animateEnvelope() {
     ThirdImg.classList.add = 'slid';
   }, { once: true });
 
-  ThirdImg.addEventListener('transitionend', function() {
-    ThirdImg.classList.add = 'goDown';
-  }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
