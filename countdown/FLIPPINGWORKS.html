@@ -215,7 +215,6 @@
           <div id="ContentsStack">
             <div id="EnvelopeContent">
               <img id="Page1" src="../images/PostcardBack.png" class="envContents2">
-              <img id="Page2" src="../images/image_1.jpg" class="envContents2">
             </div>
           </div>
 
@@ -251,7 +250,7 @@
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
         const ContentsStack = document.getElementById('ContentsStack');
-        const Page2 = document.getElementById('Page2');
+        const Page1 = document.getElementById('Page1');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -281,7 +280,7 @@ function animateEnvelope() {
     });
   }, { once: true });
   
-  Page2.addEventListener('animationend', function() {
+  Page1.addEventListener('animationend', function() {
     setTimeout(() => {
       document.getElementById("EnvelopeFold").style.zIndex = '-1';
       document.querySelectorAll('.envContents2').forEach(img => {
