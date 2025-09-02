@@ -140,7 +140,7 @@
     }
     .envContents2:nth-child(1) {
       --n: 1;
-      --top-pos: -90%;
+      --top-pos: -100%;
       z-index: 5;
     }
     .envContents2:nth-child(2) {
@@ -281,12 +281,10 @@ function animateEnvelope() {
   }, { once: true });
   
   Page1.addEventListener('animationend', function() {
-    setTimeout(() => {
       document.getElementById("EnvelopeFold").style.zIndex = '-1';
       document.querySelectorAll('.envContents2').forEach(img => {
         img.classList.add('down');
       });
-    }, 800);
   }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
