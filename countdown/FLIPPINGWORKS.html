@@ -282,7 +282,7 @@ function animateEnvelope() {
   }, { once: true });
   
     Page2.addEventListener('animationend', function() {
-      envContents2.forEach(img => {
+      document.querySelectorAll('.envContents2').forEach(img => {
         img.style.zIndex = '1000';
         img.classList.add('down');
       });
