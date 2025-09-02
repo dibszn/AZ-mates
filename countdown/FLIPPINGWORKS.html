@@ -186,7 +186,7 @@
         transform: translateY(var(--top-pos));
       }
       to {
-        transform: translateY(calc((var(--top-pos)) * -0.8));
+        transform: translateY(calc((var(--top-pos)) * -0.4));
       }
     }
     
@@ -286,7 +286,7 @@ function animateEnvelope() {
       document.querySelectorAll('.envContents2').forEach(img => {
         img.classList.add('down');
       });
-    }, 250);
+    }, 150);
   }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
