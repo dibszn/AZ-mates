@@ -172,16 +172,25 @@
       animation: slideUp 800ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
+    .down {
+      animation: slideDown 800ms forwards ease-out;
+      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
+    }
 
     @keyframes slideUp {
-      0% {
+      to {
         transform: translateY(0);
       }
-      50% {
+      from {
         transform: translateY(var(--top-pos));
       }
-      100% {
-        transform: translateY(70%);
+    }
+    @keyframes slideDown {
+      to {
+        transform: translateY(0);
+      }
+      from {
+        transform: translateY(100%);
       }
     }
   </style>
@@ -245,6 +254,7 @@
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
         const ContentsStack = document.getElementById('ContentsStack');
+        const envContent2 = document.querySelectorAll('.envContents2');
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -271,6 +281,12 @@ function animateEnvelope() {
     ContentsStack.style.display = "block";
     document.querySelectorAll('.envContents2').forEach(img => {
       img.classList.add('slid');
+    });
+  }, { once: true });
+  
+  envContents.addEventListener('transitionend', function() {
+    envContents2.forEach(img => {
+      img.classList.add('down');
     });
   }, { once: true });
 }
