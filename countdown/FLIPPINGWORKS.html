@@ -210,16 +210,6 @@
             <p class="text" style="top:20%; left:50%; z-index:3;">You're invited!</p>
           </div>
 
-          /* <div id="ContentsStack">
-            <div id="EnvelopeContent">
-              <img id="Page1" src="../images/BG4.jpg" class="envContents2">
-              <img id="Page2" src="../images/image_1.jpg" class="envContents2">
-              <img id="Page3" src="../images/BG1.jpg" class="envContents2">
-              <img id="Page4" src="../images/SPACEBETWEEN.jpg" class="envContents2">
-              <img id="Page5" src="../images/SPACEBETWEENEXT.png" class="envContents2">
-            </div>
-          </div> */
-
           <img src="../images/EnvelopeMaterials/EnvelopeBackBottom.png" id="EnvelopeFold">
           <img id="ThirdPage" src="../images/PostcardBack.png" class="envContents" style="z-index:-1;">
         </div>
@@ -249,7 +239,7 @@
         const sealOldImg = document.getElementById('EnvelopeSealOld');
         const sealNewImg = document.getElementById('EnvelopeSealNew');
         const foldImg = document.getElementById('EnvelopeFold');
-        const ContentsStack = document.getElementById('ContentsStack');
+        const ThirdImg = document.getElementById("ThirdPage");
 
         const foldHeight = foldImg.offsetHeight;
         const sealHeight = sealOldImg.offsetHeight;
@@ -271,15 +261,11 @@ function animateEnvelope() {
   sealWrap.addEventListener('transitionend', function() {
     document.getElementById("EnvelopeFold").style.zIndex = '1000';
     document.getElementById("EnvelopeSealWrap").style.zIndex = '-1';
-    document.getElementById("ThirdPage").classList.add = 'slid';
-    /* ContentsStack.style.display = "block";
-    document.querySelectorAll('.envContents2').forEach(img => {
-      img.classList.add('slid');
-    }); */
+    ThirdImg.classList.add = 'slid';
   }, { once: true });
 
-  document.getElementById("ThirdPage").addEventListener('transitionend', function() {
-    document.getElementById("ThirdPage").classList.add = 'goDown';
+  ThirdImg.addEventListener('transitionend', function() {
+    ThirdImg.classList.add = 'goDown';
   }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
