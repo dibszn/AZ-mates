@@ -140,27 +140,27 @@
     }
     .envContents2:nth-child(1) {
       --n: 1;
-      --top-pos: -5%;
+      --top-pos: -10%;
       z-index: 5;
     }
     .envContents2:nth-child(2) {
       --n: 2;
-      --top-pos: -10%;
+      --top-pos: -15%;
       z-index: 4;
     }
     .envContents2:nth-child(3) {
       --n: 3;
-      --top-pos: -15%;
+      --top-pos: -20%;
       z-index: 3;
     }
     .envContents2:nth-child(4) {
       --n: 4;
-      --top-pos: -20%;
+      --top-pos: -25%;
       z-index: 2;
     }
     .envContents2:nth-child(5) {
       --n: 5;
-      --top-pos: -25%;
+      --top-pos: -30%;
       z-index: 1;
     }
 
@@ -169,8 +169,8 @@
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .down {
-      animation: slideDown 800ms forwards ease-out;
-      animation-delay: calc((var(--n, 1) - 1) * 0.4s);
+      animation: slideDown 1500ms forwards ease-out;
+      animation-delay: calc((var(--n, 1) - 1) * 0.5s);
     }
 
     @keyframes slideUp {
@@ -186,7 +186,7 @@
         transform: translateY(0);
       }
       to {
-        transform: translateY(calc(--top-pos * (-1)));
+        transform: translateY(calc(--top-pos * (-2)));
       }
     }
     
