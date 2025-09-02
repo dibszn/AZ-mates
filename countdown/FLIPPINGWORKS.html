@@ -165,7 +165,7 @@
     }
 
     .slid {
-      animation: slideUp 800ms 800ms forwards ease-out;
+      animation: slideUp 800ms forwards ease-out;
       animation-delay: calc((var(--n, 1) - 1) * 0.4s);
     }
     .down {
@@ -174,14 +174,11 @@
     }
 
     @keyframes slideUp {
-      0% {
+      from {
         transform: translateY(0);
       }
-      50% {
+      to {
         transform: translateY(var(--top-pos));
-      }
-      100% {
-        transform: translateY(calc((var(--top-pos)) * -1.5));
       }
     }
     @keyframes slideDown {
@@ -284,13 +281,14 @@ function animateEnvelope() {
     });
   }, { once: true });
   
-    /*Page2.addEventListener('animationend', function() {
+  Page2.addEventListener('animationend', function() {
+    setTimeout(() => {
       document.getElementById("EnvelopeFold").style.zIndex = '-1';
       document.querySelectorAll('.envContents2').forEach(img => {
         img.classList.add('down');
       });
-    }, { once: true });*/
-  
+    }, 800);
+  }, { once: true });
 }
         envelopeFlip.addEventListener('click', animateEnvelope);
         envelopeFlip.addEventListener('touchstart', animateEnvelope);
